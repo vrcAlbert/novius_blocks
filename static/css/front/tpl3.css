@@ -1,0 +1,28 @@
+.tpl3 {
+    border: 1px solid #0f0;
+}
+.tpl3 h2 {
+    background: #0f0;
+    color: #000;
+    padding: 5px;
+    margin: 0;
+    text-align: center;
+}
+.tpl3 a:link,
+.tpl3 a:active,
+.tpl3 a:visited,
+.tpl3 a:focus,
+.tpl3 a:hover {
+    margin: 0;
+    display: block;
+    background: #0f0;
+    padding: 5px;
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+}
+.tpl3 img {
+    margin: 0;
+    display: block;
+}

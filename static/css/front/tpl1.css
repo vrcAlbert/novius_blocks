@@ -1,0 +1,32 @@
+.tpl1 {
+    border: 1px solid #333;
+}
+.tpl1:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.tpl1 h2 {
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.tpl1 .content {
+    padding: 5px 5px 10px 5px;
+}
+.tpl1 a:link,
+.tpl1 a:active,
+.tpl1 a:visited,
+.tpl1 a:focus,
+.tpl1 a:hover {
+    display: block;
+    float: right;
+    background: #333;
+    padding: 3px;
+    color: #fff;
+    margin: 0 5px 5px;
+    text-decoration: none;
+}

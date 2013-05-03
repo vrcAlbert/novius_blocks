@@ -1,4 +1,7 @@
 <?php
+
+$columns = \Arr::assoc_to_keyval(\Lib\Blocs\Model_Column::find('all'), 'blco_id', 'blco_title');
+
 return array(
     'controller_url'  => 'admin/lib_blocs/bloc/crud',
     'model' => 'Lib\Blocs\Model_Bloc',
@@ -6,41 +9,115 @@ return array(
         'large' => true,
         'save' => 'save',
         'title' => 'bloc_title',
-        'medias' => array('medias->image->medil_media_id'),
-        'subtitle' => array('bloc_type'),
         'content' => array(
-            'proprietes' => array(
+            'template' => array(
                 'view' => 'nos::form/expander',
                 'params' => array(
-                    'title'   => __('Propri&eacute;t&eacute;s'),
+                    'title'   => __('Template'),
                     'nomargin' => true,
                     'options' => array(
                         'allowExpand' => true,
                     ),
                     'content' => array(
-                        'view' => 'nos::form/fields',
+                        'view' => 'lib_blocs::admin/bloc/template',
                         'params' => array(
-                            'begin' => '<div class="wrapper_bloc">',
                             'fields' => array(
-                                'wysiwygs->description->wysiwyg_text'
+                                'bloc_template',
                             ),
-                            'end' => '</div>',
                         ),
                     ),
                 ),
             ),
-            'js' => array(
-                'view' => 'lib_blocs::admin/bloc_form',
+            'image' => array(
+                'view' => 'nos::form/expander',
+                'params' => array(
+                    'title'   => __('Image'),
+                    'nomargin' => true,
+                    'options' => array(
+                        'allowExpand' => true,
+                        'fieldset' => 'image',
+                    ),
+                    'content' => array(
+                        'view' => 'nos::form/fields',
+                        'params' => array(
+                            'fields' => array(
+                                'medias->image->medil_media_id',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'description' => array(
+                'view' => 'nos::form/expander',
+                'params' => array(
+                    'title'   => __('Contenu'),
+                    'nomargin' => true,
+                    'options' => array(
+                        'allowExpand' => true,
+                        'fieldset' => 'description',
+                    ),
+                    'content' => array(
+                        'view' => 'nos::form/fields',
+                        'params' => array(
+                            'fields' => array(
+                                'wysiwygs->description->wysiwyg_text',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'link' => array(
+                'view' => 'nos::form/expander',
+                'params' => array(
+                    'title'   => __('Link'),
+                    'nomargin' => true,
+                    'options' => array(
+                        'allowExpand' => true,
+                        'fieldset' => 'link',
+                    ),
+                    'content' => array(
+                        'view' => 'nos::form/fields',
+                        'params' => array(
+                            'fields' => array(
+                                'bloc_link',
+                            ),
+                        ),
+                    ),
+                ),
             ),
         ),
         'menu' => array(
-            __('Arborescence') => array(
-                'bloc_parent_id',
+            'accordion' => array(
+                'view' => 'nos::form/accordion',
+                'params' => array(
+                    'accordions' => array(
+                        'synchro' => array(
+                            'title' =>  __('Retrieve infos'),
+                            'view' => 'lib_blocs::admin/bloc/synchro',
+                            'fields' => array(
+                                'bloc_model',
+                                'bloc_model_id',
+                            ),
+                        ),
+                        'columns' => array(
+                            'title' => __('Columns'),
+                            'fields' => array(
+                                'columns'
+                            ),
+                        ),
+                    ),
+                ),
             ),
         ),
     ),
     'fields' => array(
-        'bloc__id' => array (
+
+        'bloc_link' => array(
+            'label' => 'link',
+            'dont_save' => true,
+        ),
+
+        'bloc_id' => array (
             'label' => 'ID: ',
             'form' => array(
                 'type' => 'hidden',
@@ -51,16 +128,6 @@ return array(
             'label' => __('Title'),
             'form' => array(
                 'type' => 'text',
-            ),
-        ),
-        'bloc_type' => array(
-            'label' => __('Type'),
-            'form' => array(
-                'type' => 'select',
-                'options' => array(
-                    'bloc' => 'Bloc',
-                    'folder' => 'Dossier',
-                ),
             ),
         ),
         'wysiwygs->description->wysiwyg_text' => array(
@@ -78,13 +145,43 @@ return array(
                 'title' => __('Image'),
             ),
         ),
-        'bloc_parent_id' => array(
-            'renderer' => 'Lib\Blocs\Renderer_Selector',
-            'renderer_options' => array(
-                'height' => '250px',
+        'bloc_template' => array(
+            'label' => '',
+        ),
+        'columns' => array(
+            'renderer' => 'Lib\Renderers\Renderer_Multiselect',
+            'label' => __('Columns'),
+            'form' => array(
+                'options' => $columns,
             ),
-            'label' => __('Location:'),
-            'form' => array(),
+            'populate' => function($item) {
+                if (!empty($item->columns)) {
+                    return array_keys($item->columns);
+                } else {
+                    return array();
+                }
+            },
+            'before_save' => function($item, $data) {
+                $item->columns;//fetch et 'cree' la relation
+                unset($item->columns);
+                if (!empty($data['columns'])) {
+                    foreach ($data['columns'] as $blco_id) {
+                        if (ctype_digit($blco_id) ) {
+                            $item->columns[$blco_id] = \Lib\Blocs\Model_Column::find($blco_id);
+                        }
+                    }
+                }
+            },
+        ),
+        'bloc_model' => array(
+            'form' => array(
+                'type' => 'hidden',
+            ),
+        ),
+        'bloc_model_id' => array(
+            'form' => array(
+                'type' => 'hidden',
+            ),
         ),
         'save' => array(
             'label' => '',

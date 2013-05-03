@@ -2,14 +2,9 @@
 return array(
     'model' => 'Lib\Blocs\Model_Bloc',
     'search_text' => 'bloc_title',
-    /*
     'inspectors' => array(
-        'author',
-        'tag',
-        'category',
-        'date'
+        'column',
     ),
-    */
     /*
     'query' => array(
         'model' => '{{namespace}}\Model_Post',
@@ -18,9 +13,9 @@ return array(
     ),
     */
 //    'selectedView' => 'treeGrid',
-    'appdesk' => array(
-        'appdesk' => array(
-            'defaultView' => 'treeGrid',
-        ),
-    ),
+//    'appdesk' => array(
+//        'appdesk' => array(
+//            'defaultView' => 'treeGrid',
+//        ),
+//    ),
 );

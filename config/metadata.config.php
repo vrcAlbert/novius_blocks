@@ -37,6 +37,33 @@ return array(
 //            //    'ajax' => true,
 //            //),
 //        ),
+        'blocs' => array(
+            'title' => 'Blocs',
+            'id' => 'blocs',
+            'desc' => '',
+            'enhancer' => 'lib_blocs/bloc/main',
+            'previewUrl' => 'admin/lib_blocs/bloc/enhancer/preview',
+            'dialog' => array(
+                'contentUrl' => 'admin/lib_blocs/bloc/enhancer/popup',
+                'ajax' => true,
+                'width' => 500,
+                'height' => 300,
+            ),
+        ),
+//        'noviusos_slideshow' => array(
+//            'title' => 'Slideshow',
+//            'id'    => 'slideshow',
+//            'desc'  => '',
+//            'enhancer' => 'noviusos_slideshow/slideshow/main',
+//            'iconUrl' => '/static/apps/noviusos_slideshow/img/slideshow-16.png',
+//            'previewUrl' => 'admin/noviusos_slideshow/enhancer/preview',
+//            'dialog' => array(
+//                'contentUrl'    => 'admin/noviusos_slideshow/enhancer/popup',
+//                'width'         => 450,
+//                'height'        => 300,
+//                'ajax'          => true,
+//            ),
+//        ),
     ),
     /* Data catcher configuration sample
     'data_catchers' => array(

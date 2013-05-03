@@ -1,0 +1,35 @@
+.blocs_wrapper {
+    margin: 0 5px 5px 5px;
+    position: relative;
+}
+.blocs_wrapper:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.blocs_wrapper .bloc_over_wrapper {
+    position: relative;
+    width: 150px;
+    margin: 10px;
+    padding: 10px 10px 30px 10px;
+    border: 1px solid #e1e1e8;
+    float: left;
+    border-radius: 15px;
+}
+.blocs_wrapper .bloc_select {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3px;
+    text-align: center;
+}
+.blocs_wrapper .bloc_select label {
+    cursor: pointer;
+}
+.bloc_over_wrapper .image {
+    display: block;
+    background: url('../../img/admin/img_bg.jpg');
+}
