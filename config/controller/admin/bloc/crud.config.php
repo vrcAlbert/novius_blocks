@@ -3,6 +3,9 @@
 $columns = \Arr::assoc_to_keyval(\Lib\Blocs\Model_Column::find('all'), 'blco_id', 'blco_title');
 
 return array(
+    'model_compatibility' => array(
+        'view' => 'lib_blocs::admin/bloc/model_compatibility',
+    ),
     'controller_url'  => 'admin/lib_blocs/bloc/crud',
     'model' => 'Lib\Blocs\Model_Bloc',
     'layout' => array(
@@ -80,6 +83,7 @@ return array(
                         'params' => array(
                             'fields' => array(
                                 'bloc_link',
+                                'bloc_link_new_page',
                             ),
                         ),
                     ),
@@ -91,14 +95,14 @@ return array(
                 'view' => 'nos::form/accordion',
                 'params' => array(
                     'accordions' => array(
-                        'synchro' => array(
-                            'title' =>  __('Retrieve infos'),
-                            'view' => 'lib_blocs::admin/bloc/synchro',
-                            'fields' => array(
-                                'bloc_model',
-                                'bloc_model_id',
-                            ),
-                        ),
+//                        'synchro' => array(
+//                            'title' =>  __('Retrieve infos'),
+//                            'view' => 'lib_blocs::admin/bloc/synchro',
+//                            'fields' => array(
+//                                'bloc_model',
+//                                'bloc_model_id',
+//                            ),
+//                        ),
                         'columns' => array(
                             'title' => __('Columns'),
                             'fields' => array(
@@ -111,12 +115,6 @@ return array(
         ),
     ),
     'fields' => array(
-
-        'bloc_link' => array(
-            'label' => 'link',
-            'dont_save' => true,
-        ),
-
         'bloc_id' => array (
             'label' => 'ID: ',
             'form' => array(
@@ -147,6 +145,15 @@ return array(
         ),
         'bloc_template' => array(
             'label' => '',
+        ),
+        'bloc_link' => array(
+            'label' => 'Lien',
+        ),
+        'bloc_link_new_page' => array(
+            'label' => 'Ouvrir dans une nouvelle page',
+            'form' => array(
+                'type' => 'checkbox',
+            ),
         ),
         'columns' => array(
             'renderer' => 'Lib\Renderers\Renderer_Multiselect',

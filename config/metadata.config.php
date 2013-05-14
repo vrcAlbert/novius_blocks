@@ -65,16 +65,15 @@ return array(
 //            ),
 //        ),
     ),
-    /* Data catcher configuration sample
     'data_catchers' => array(
-        'key' => array( // key must be defined
-            'title' => 'title',
-            'description'  => '',
+        'lib_blocs' => array( // key must be defined
+            'title' => 'Blocs',
+            'description'  => 'mettez cet élément en avant',
             'action' => array(
                 'action' => 'nosTabs',
                 'tab' => array(
-                    'url' => 'admin/blocs/post/insert_update/?context={{context}}&title={{urlencode:'.\Nos\DataCatcher::TYPE_TITLE.'}}&summary={{urlencode:'.\Nos\DataCatcher::TYPE_TEXT.'}}&thumbnail={{urlencode:'.\Nos\DataCatcher::TYPE_IMAGE.'}}',
-                    'label' => 'label of the data catcher',
+                    'url' => 'admin/lib_blocs/bloc/crud/insert_update/?context={{context}}&title={{urlencode:'.\Nos\DataCatcher::TYPE_TITLE.'}}&summary={{urlencode:'.\Nos\DataCatcher::TYPE_TEXT.'}}&thumbnail={{urlencode:'.\Nos\DataCatcher::TYPE_IMAGE.'}}&absolute_url={{urlencode:'.\Nos\DataCatcher::TYPE_URL.'}}',
+                    'label' => 'Bloc',
                 ),
             ),
             'onDemand' => true,
@@ -86,8 +85,8 @@ return array(
             'optional_data' => array(
                 \Nos\DataCatcher::TYPE_TEXT,
                 \Nos\DataCatcher::TYPE_IMAGE,
+                \Nos\DataCatcher::TYPE_URL,
             ),
         ),
     ),
-    */
 );
