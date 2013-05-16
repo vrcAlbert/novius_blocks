@@ -25,23 +25,11 @@ return array(
         ),
     ),
     'enhancers' => array(
-//        'blocs_bloc' => array( // key must be defined
-//            'title' => 'Blocs Bloc',
-//            'desc'  => '',
-//            'urlEnhancer' => 'blocs/front/bloc/main', // URL of the enhancer
-//            //'previewUrl' => 'admin/blocs/application/preview', // URL of preview
-//            //'dialog' => array(
-//            //    'contentUrl' => 'admin/blocs/application/popup',
-//            //    'width' => 450,
-//            //    'height' => 400,
-//            //    'ajax' => true,
-//            //),
-//        ),
         'blocs' => array(
             'title' => 'Blocs',
             'id' => 'blocs',
             'desc' => '',
-            'enhancer' => 'lib_blocs/bloc/main',
+            'enhancer' => 'lib_blocs/front/bloc/main',
             'previewUrl' => 'admin/lib_blocs/bloc/enhancer/preview',
             'dialog' => array(
                 'contentUrl' => 'admin/lib_blocs/bloc/enhancer/popup',
@@ -50,23 +38,9 @@ return array(
                 'height' => 300,
             ),
         ),
-//        'noviusos_slideshow' => array(
-//            'title' => 'Slideshow',
-//            'id'    => 'slideshow',
-//            'desc'  => '',
-//            'enhancer' => 'noviusos_slideshow/slideshow/main',
-//            'iconUrl' => '/static/apps/noviusos_slideshow/img/slideshow-16.png',
-//            'previewUrl' => 'admin/noviusos_slideshow/enhancer/preview',
-//            'dialog' => array(
-//                'contentUrl'    => 'admin/noviusos_slideshow/enhancer/popup',
-//                'width'         => 450,
-//                'height'        => 300,
-//                'ajax'          => true,
-//            ),
-//        ),
     ),
     'data_catchers' => array(
-        'lib_blocs' => array( // key must be defined
+        'lib_blocs' => array(
             'title' => 'Blocs',
             'description'  => 'mettez cet élément en avant',
             'action' => array(
@@ -78,7 +52,6 @@ return array(
             ),
             'onDemand' => true,
             'specified_models' => false,
-            // data examples
             'required_data' => array(
                 \Nos\DataCatcher::TYPE_TITLE,
             ),

@@ -80,4 +80,17 @@ class Model_Bloc extends \Nos\Orm\Model
         ),
     );
 
+    /**
+     * Retourne la config pour un bloc en particulier
+     * dans cette fonction sont définis les paramètres par défaut
+     * @param $config
+     * @param $name
+     * @return array
+     */
+    public static function init_config ($config, $name) {
+        $default_config = \Config::load('lib_blocs::template_default', true);
+        $default_config['view'] = str_replace('{name}', $name, $default_config['view']);
+        return array_merge($default_config, $config);
+    }
+
 }

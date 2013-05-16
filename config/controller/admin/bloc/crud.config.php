@@ -127,6 +127,7 @@ return array(
             'form' => array(
                 'type' => 'text',
             ),
+            'validation' => array('required'),
         ),
         'wysiwygs->description->wysiwyg_text' => array(
             'label' => __('Description'),
@@ -148,11 +149,13 @@ return array(
         ),
         'bloc_link' => array(
             'label' => 'Lien',
+            'description' => 'TEST jdiopezj ',
         ),
         'bloc_link_new_page' => array(
             'label' => 'Ouvrir dans une nouvelle page',
             'form' => array(
                 'type' => 'checkbox',
+                'value' => 1,
             ),
         ),
         'columns' => array(

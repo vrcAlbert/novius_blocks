@@ -15,24 +15,17 @@ $templates_config = \Config::load('lib_blocs::templates', true);
 <?php
 
 foreach ($templates_config as $name => $props) {
-    $props = array_merge(array(
-        'view'   => 'lib_blocs::templates/' . $name,
-        'fields' => array(
-            'description',
-            'link',
-            'image',
-        ),
-    ), $props);
+    $props = \Lib\Blocs\Model_Bloc::init_config($props, $name);
     $props['fields'][] = 'titre';   //titre obligatoire
     //on charge la vue correspondante
     $view = \View::forge($props['view'], array(
         'name' => $name,
         'title' => $item->bloc_title ? $item->bloc_title : 'Titre',
-        'description' => '
+        'description' => $item->wysiwygs->description ? $item->wysiwygs->description : '
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ipsum eros, euismod sagittis interdum non, pulvinar in tellus.
         ',
         'url' => '#',
-        'image' => 'img_admin',
+        'image' => '<img src="http://lorempixel.com/148/100" />',
     ), false);
     ?>
     <div class="bloc_over_wrapper">
