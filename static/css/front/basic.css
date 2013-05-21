@@ -1,0 +1,35 @@
+.basic {
+    border: 1px solid #333;
+}
+.basic:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.basic h2 {
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.basic .content {
+    padding: 5px 5px 10px 5px;
+}
+.basic .wrapper_img {
+    text-align: center;
+}
+.basic a:link,
+.basic a:active,
+.basic a:visited,
+.basic a:focus,
+.basic a:hover {
+    display: block;
+    float: right;
+    background: #333;
+    padding: 3px;
+    color: #fff;
+    margin: 0 5px 5px;
+    text-decoration: none;
+}

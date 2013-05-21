@@ -2,6 +2,7 @@
     $type_affichage     = uniqid('type_affichage_');
     $blco_id            = \Input::get('blco_id', false);
     $blocs_ids          = \Input::get('blocs_ids', array());
+    $context            = \Input::get('nosContext', false);
     $wrapper_columns    = uniqid('wrapper_colum_');
     $wrapper_blocs      = uniqid('wrapper_blocs_');
 
@@ -67,28 +68,34 @@
         'height'        => '100px',
         'namespace'     => 'Lib\Blocs',
         'folder'        => 'lib_blocs',
-        'inspector'     => 'bloc/inspector/column',
+        'inspector_tree'=> 'bloc/inspector/column',
         'class'         => 'Model_Column',
         'multiple'      => false,
         'columns'       => array(
             array(
                 'dataKey'   => 'blco_title',
-            )
+            ),
+        ),
+        'treeOptions' => array(
+            'context' => $context,
         ),
         'input_name'    => 'blco_id',
         'selected'      => array('id' => $blco_id),
         'label'         => 'Column',
+        'reset_default_column' => true,
     ));
     ?>
 </div>
-
 <!-- Séléction de blocs -->
 <div id="<?= $wrapper_blocs ?>" style="visibility: hidden; position: absolute;">
-    <?=
-    \Lib\Renderers\Renderer_Multiselect::renderer(array(
-        'options'       => \Arr::assoc_to_keyval(\Lib\Blocs\Model_bloc::find('all'), 'bloc_id', 'bloc_title'),
+    <?= \Lib\Renderers\Renderer_Multiselect::renderer(array(
+        'options'       => \Arr::assoc_to_keyval(\Lib\Blocs\Model_bloc::find('all', array('where' => array('bloc_context' => $context))), 'bloc_id', 'bloc_title'),
         'name'          => 'blocs_ids[]',
         'values'        => $blocs_ids,
+        'order'         => true,
+        'style'         => array(
+            'width'     => '400px',
+        ),
     ));
     ?>
 </div>

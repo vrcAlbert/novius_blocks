@@ -29,9 +29,15 @@ define(
 
             //on rend cliquable les templates
             $container.find('.bloc_over_wrapper').each(function(){
+                var $wrapper = $(this);
+                if ($(this).find('input[name="bloc_template"]').attr('checked')) {
+                    $wrapper.addClass('on');
+                }
                 $(this).css('cursor', 'pointer').click(function(){
                     if (!$(this).find('input[name="bloc_template"]').attr('checked')) {
+                        $container.find('.bloc_over_wrapper').removeClass('on');
                         $(this).find('input[name="bloc_template"]').attr('checked', true);
+                        $wrapper.addClass('on');
                         display_expanders();
                     }
                     return false;

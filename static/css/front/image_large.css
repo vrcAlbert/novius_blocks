@@ -1,0 +1,28 @@
+.image_large {
+    border: 1px solid #333;
+}
+.image_large h2 {
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    margin: 0;
+    text-align: center;
+}
+.image_large a.bottom:link,
+.image_large a.bottom:active,
+.image_large a.bottom:visited,
+.image_large a.bottom:focus,
+.image_large a.bottom:hover {
+    margin: 0;
+    display: block;
+    background: #333;
+    padding: 5px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+}
+.image_large img {
+    margin: 0;
+    display: block;
+}

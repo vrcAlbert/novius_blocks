@@ -109,6 +109,12 @@ return array(
                                 'columns'
                             ),
                         ),
+                        'params' => array(
+                            'title' => __('Configuration'),
+                            'fields' => array(
+                                'bloc_class',
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -134,7 +140,7 @@ return array(
             'renderer' => 'Nos\Renderer_Wysiwyg',
             'template' => '{field}',
             'form' => array(
-                'style' => 'width: 100%; height: 500px;',
+                'style' => 'width: 100%; height: 200px;',
             ),
         ),
         'medias->image->medil_media_id' => array(
@@ -158,11 +164,20 @@ return array(
                 'value' => 1,
             ),
         ),
+        'bloc_class' => array(
+            'label' => __('Class'),
+            'form' => array(
+                'type' => 'text',
+            ),
+        ),
         'columns' => array(
             'renderer' => 'Lib\Renderers\Renderer_Multiselect',
             'label' => __('Columns'),
             'form' => array(
                 'options' => $columns,
+                'style' => array(
+                    'width' => '70%'
+                )
             ),
             'populate' => function($item) {
                 if (!empty($item->columns)) {

@@ -1,6 +1,7 @@
 .blocs_wrapper {
     margin: 0 5px 5px 5px;
     position: relative;
+    font-size: 10px;
 }
 .blocs_wrapper:after{
     content: ".";
@@ -11,15 +12,19 @@
 }
 .blocs_wrapper .bloc_over_wrapper {
     position: relative;
-    width: 150px;
+    width: 190px;
     margin: 10px;
-    padding: 10px 10px 30px 10px;
-    border: 1px solid #e1e1e8;
+    padding: 8px;
+    border: 1px solid #ccc;
     float: left;
     border-radius: 15px;
 }
+.blocs_wrapper .bloc_over_wrapper.on {
+    border: 1px solid #0000BB;
+}
 .blocs_wrapper .bloc_select {
     position: absolute;
+    visibility: hidden;
     bottom: 0;
     left: 0;
     right: 0;
@@ -28,8 +33,4 @@
 }
 .blocs_wrapper .bloc_select label {
     cursor: pointer;
-}
-.bloc_over_wrapper .image {
-    display: block;
-    background: url('../../img/admin/img_bg.jpg');
 }

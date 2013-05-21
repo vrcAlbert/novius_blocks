@@ -22,6 +22,17 @@ class Model_Column extends \Nos\Orm\Model
     );
 
     protected static $_behaviours = array(
+        'Nos\Orm_Behaviour_Contextable' => array(
+            'events' => array('before_insert'),
+            'context_property' => 'blco_context',
+        ),
+        'Nos\Orm_Behaviour_Twinnable' => array(
+            'events' => array('before_insert', 'after_insert', 'before_save', 'after_delete', 'change_parent'),
+            'context_property'      => 'blco_context',
+            'common_id_property' => 'blco_context_common_id',
+            'is_main_property' => 'blco_context_is_main',
+            'invariant_fields'   => array(),
+        ),
 //        'Nos\Orm_Behaviour_Tree' => array(
 //            'events' => array('before'),
 //            'parent_relation' => 'parent',
@@ -56,9 +67,6 @@ class Model_Column extends \Nos\Orm\Model
         ),
         */
     );
-
-//    protected static $_behaviours = array(
-//    );
 
 //    protected static $_has_many = array(
 //        'children' => array(

@@ -9,6 +9,10 @@ if (!count($blocs)) {
 //chargement de la config des templates
 $templates_config = \Config::load('lib_blocs::templates', true);
 
+?>
+<div class="blocs_wrapper">
+<?php
+
 foreach ($blocs as $bloc) {
     $name = $bloc->bloc_template;
     if (!$template_config = $templates_config[$name]) {
@@ -17,6 +21,9 @@ foreach ($blocs as $bloc) {
 
     $image = '';
     $config = \Lib\Blocs\Model_Bloc::init_config($template_config, $name);
+    if ($config['css']) {
+        \Nos\Nos::main_controller()->addCss($config['css']);
+    }
     if (!empty($bloc->medias->image)) {
         $image = str_replace(
             array(
@@ -30,11 +37,44 @@ foreach ($blocs as $bloc) {
             $config['image_params']['tpl']
         );
     }
-    echo \View::forge($config['view'], array(
-        'description'   => $bloc->wysiwygs->description,
-        'title'         => $bloc->bloc_title,
-        'link'          => $bloc->bloc_link,
+
+    $description = $bloc->wysiwygs->description;
+    $title = $bloc->bloc_title;
+    $link = $bloc->bloc_link;
+
+    if ($link) {
+        $link = substr($link, 0, 7) == 'http://' ? $link : 'http://'.$link;
+    }
+
+    if ($bloc->bloc_class) {
+        $config['class'] .= ($config['class'] ? ' ' : '') . $bloc->bloc_class;
+    }
+
+    $bloc = str_replace(array(
+        '{title}',
+        '{name}',
+        '{description}',
+        '{link}',
+        '{image}',
+        '{class}',
+    ), array(
+        $title,
+        $name,
+        $description,
+        $link,
+        $image,
+        $config['class'],
+    ), \View::forge($config['view'], array(
+        'config'        => $config,
+        'description'   => $description,
+        'title'         => $title,
+        'link'          => $link,
         'link_new_page' => $bloc->bloc_link_new_page,
         'image'         => $image,
-    ), false);
+    ), false));
+
+    echo $bloc;
 }
+
+?>
+</div>

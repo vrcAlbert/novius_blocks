@@ -30,6 +30,17 @@ class Model_Bloc extends \Nos\Orm\Model
         'Nos\Orm_Behaviour_Urlenhancer' => array(
             'enhancers' => array('blocs_bloc'),
         ),
+        'Nos\Orm_Behaviour_Contextable' => array(
+            'events' => array('before_insert'),
+            'context_property' => 'bloc_context',
+        ),
+        'Nos\Orm_Behaviour_Twinnable' => array(
+            'events' => array('before_insert', 'after_insert', 'before_save', 'after_delete', 'change_parent'),
+            'context_property'      => 'bloc_context',
+            'common_id_property' => 'bloc_context_common_id',
+            'is_main_property' => 'bloc_context_is_main',
+            'invariant_fields'   => array(),
+        ),
 //        'Nos\Orm_Behaviour_Tree' => array(
 //            'events' => array('before_query', 'before_delete'),
 //            'parent_relation' => 'parent',
@@ -90,7 +101,12 @@ class Model_Bloc extends \Nos\Orm\Model
     public static function init_config ($config, $name) {
         $default_config = \Config::load('lib_blocs::template_default', true);
         $default_config['view'] = str_replace('{name}', $name, $default_config['view']);
-        return array_merge($default_config, $config);
+        $default_config['css'] = str_replace('{name}', $name, $default_config['css']);
+        //on vérifie si une feuille de style a été crée en local :
+        if (is_file(DOCROOT . 'static/css/blocs/' . $name . '.css')) {
+            $default_config['css'] = 'static/css/blocs/' . $name . '.css';
+        }
+        return \Arr::merge($default_config, $config);
     }
 
 }
