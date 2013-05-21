@@ -13,14 +13,15 @@
 .blocs_wrapper .bloc_over_wrapper {
     position: relative;
     width: 190px;
-    margin: 10px;
+    margin: 14px;
     padding: 8px;
     border: 1px solid #ccc;
     float: left;
     border-radius: 15px;
 }
 .blocs_wrapper .bloc_over_wrapper.on {
-    border: 1px solid #0000BB;
+    border: 5px solid #607890;
+    margin: 10px;
 }
 .blocs_wrapper .bloc_select {
     position: absolute;
