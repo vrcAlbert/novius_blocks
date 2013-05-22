@@ -51,7 +51,7 @@ define(
                     max_height = $(this).height();
                 }
             });
-            $container.find('.bloc_over_wrapper').height(max_height);
+            $container.find('.bloc_over_wrapper').css('min-height', max_height);
 
             display_expanders();
 

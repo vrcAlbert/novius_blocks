@@ -11,6 +11,6 @@
     }
     if ($url) {
     ?>
-    <a class="bottom" href="<?= $url ?>">{link_text}</a>
+    <a class="bottom" href="<?= $url ?>">{link_title}</a>
     <? } ?>
 </div>

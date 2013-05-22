@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'title'             => '',
     'css'               => 'static/apps/lib_blocs/css/front/{name}.css',
     'view'              => 'lib_blocs::templates/{name}',
     'fields'            => array(
@@ -16,6 +17,6 @@ return array(
         'tpl'           => '<img src="{src}" alt="{title}" border="0" />',
         'tpl_admin'     => '<img src="{src}" alt="{title}" border="0" width="{width}" height="{height}" />',
     ),
-    'link_text'         => 'Lire la suite',
     'class'             => '',
+    'background'        => 'white', // examples : '#128', 'black' or 'transparent'
 );

@@ -25,6 +25,7 @@ foreach ($templates_config as $name => $props) {
         ';
     $url = '#';
     $image = '';
+    $link_title = $item->bloc_link_title ? $item->bloc_link_title : 'Lien';
 
     if (isset($props['image_params'])) {
         $image = str_replace(
@@ -54,6 +55,7 @@ foreach ($templates_config as $name => $props) {
         'description' => $description,
         'url' => $url,
         'image' => $image,
+        'link_title' => $link_title,
     ), false);
 
     $view = str_replace(array(
@@ -61,7 +63,7 @@ foreach ($templates_config as $name => $props) {
         '{name}',
         '{description}',
         '{link}',
-        '{link_text}',
+        '{link_title}',
         '{image}',
         '{class}',
     ), array(
@@ -69,7 +71,7 @@ foreach ($templates_config as $name => $props) {
         $name,
         $description,
         $url,
-        $props['link_text'],
+        $link_title,
         $image,
         $props['class'],
     ), $view);
@@ -88,7 +90,10 @@ foreach ($templates_config as $name => $props) {
     }
 
     ?>
-    <div class="bloc_over_wrapper">
+    <div class="bloc_over_wrapper" style="<?= $props['background'] == 'transparent' ? 'background:url(static/apps/lib_blocs/img/transparent.png) repeat;' : 'background:'.$props['background'] ?>">
+        <? if (!empty($props['title'])) { ?>
+            <h3 class="bloc_title"><?= $props['title'] ?></h3>
+        <? } ?>
         <?= $view ?>
         <div class="bloc_select">
             <label for="template_<?= $name ?>">

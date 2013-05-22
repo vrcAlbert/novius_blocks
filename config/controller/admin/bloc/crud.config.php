@@ -83,6 +83,7 @@ return array(
                         'params' => array(
                             'fields' => array(
                                 'bloc_link',
+                                'bloc_link_title',
                                 'bloc_link_new_page',
                             ),
                         ),
@@ -155,7 +156,10 @@ return array(
         ),
         'bloc_link' => array(
             'label' => 'Lien',
-            'description' => 'TEST jdiopezj ',
+            'description' => '',
+        ),
+        'bloc_link_title' => array(
+            'label' => 'Intitulé du lien',
         ),
         'bloc_link_new_page' => array(
             'label' => 'Ouvrir dans une nouvelle page',

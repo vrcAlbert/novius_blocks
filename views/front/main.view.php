@@ -41,6 +41,7 @@ foreach ($blocs as $bloc) {
     $description = $bloc->wysiwygs->description;
     $title = $bloc->bloc_title;
     $link = $bloc->bloc_link;
+    $link_title = $bloc->bloc_link_title;
 
     if ($link) {
         $link = substr($link, 0, 7) == 'http://' ? $link : 'http://'.$link;
@@ -69,6 +70,7 @@ foreach ($blocs as $bloc) {
         'description'   => $description,
         'title'         => $title,
         'link'          => $link,
+        'link_title'    => $link_title,
         'link_new_page' => $bloc->bloc_link_new_page,
         'image'         => $image,
     ), false));
