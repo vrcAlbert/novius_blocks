@@ -38,7 +38,7 @@ foreach ($blocs as $bloc) {
         );
     }
 
-    $description = $bloc->wysiwygs->description;
+    $description = \Nos\Nos::parse_wysiwyg($bloc->wysiwygs->description);
     $title = $bloc->bloc_title;
     $link = $bloc->bloc_link;
     $link_title = $bloc->bloc_link_title;
