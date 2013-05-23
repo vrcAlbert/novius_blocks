@@ -1,5 +1,5 @@
 {
-  "version":"1.0.0",
-  "commentaire":"1ère version stable",
-  "last_commit":"b515d98"
+  "version":"1.0.1",
+  "commentaire":"Ajout d'un champ pour le texte du lien, petit fix JS (min-height), et paramètre de background (avec image transparente)",
+  "last_commit":"af54ecc"
 }

@@ -56,6 +56,7 @@ foreach ($blocs as $bloc) {
         '{name}',
         '{description}',
         '{link}',
+        '{link_title}',
         '{image}',
         '{class}',
     ), array(
@@ -63,6 +64,7 @@ foreach ($blocs as $bloc) {
         $name,
         $description,
         $link,
+        $link_title,
         $image,
         $config['class'],
     ), \View::forge($config['view'], array(
