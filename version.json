@@ -1,5 +1,5 @@
 {
-  "version":"1.0.2",
-  "commentaire":"Ajout d'une clé pour le texte du lien en front",
-  "last_commit":"c1645d5"
+  "version":"1.0.3",
+  "commentaire":"Ajout du parsewysiwyg pour écrire les enhancers en front",
+  "last_commit":"a3f8e0b"
 }

@@ -1,7 +1,5 @@
 <?php
 
-$columns = \Arr::assoc_to_keyval(\Lib\Blocs\Model_Column::find('all'), 'blco_id', 'blco_title');
-
 return array(
     'model_compatibility' => array(
         'view' => 'lib_blocs::admin/bloc/model_compatibility',
@@ -178,7 +176,7 @@ return array(
             'renderer' => 'Lib\Renderers\Renderer_Multiselect',
             'label' => __('Columns'),
             'form' => array(
-                'options' => $columns,
+                'options' => array(),
                 'style' => array(
                     'width' => '70%'
                 )
