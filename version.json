@@ -1,5 +1,5 @@
 {
-  "version":"1.0.3",
-  "commentaire":"Ajout du parsewysiwyg pour écrire les enhancers en front",
-  "last_commit":"a3f8e0b"
+  "version":"1.0.4",
+  "commentaire":"Correction de l'affectation d'une colonne à un bloc",
+  "last_commit":"1d9aaf8"
 }

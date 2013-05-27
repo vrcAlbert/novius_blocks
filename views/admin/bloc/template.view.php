@@ -20,9 +20,8 @@ foreach ($templates_config as $name => $props) {
 
     //set des données transmises
     $title = $item->bloc_title ? $item->bloc_title : 'Titre';
-    $description = $item->wysiwygs->description ? $item->wysiwygs->description : '
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ipsum eros, euismod sagittis interdum non, pulvinar in tellus.
-        ';
+    $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ipsum eros, euismod sagittis interdum non, pulvinar in tellus.';
+    //$item->wysiwygs->description ? $item->wysiwygs->description :
     $url = '#';
     $image = '';
     $link_title = $item->bloc_link_title ? $item->bloc_link_title : 'Lien';

@@ -106,7 +106,11 @@ class Model_Bloc extends \Nos\Orm\Model
         if (is_file(DOCROOT . 'static/css/blocs/' . $name . '.css')) {
             $default_config['css'] = 'static/css/blocs/' . $name . '.css';
         }
-        return \Arr::merge($default_config, $config);
+        $retour_config = \Arr::merge($default_config, $config);
+        if ($config['fields']) {
+            $retour_config['fields'] = $config['fields'];
+        }
+        return $retour_config;
     }
 
 }
