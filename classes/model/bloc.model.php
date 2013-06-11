@@ -102,6 +102,12 @@ class Model_Bloc extends \Nos\Orm\Model
         $default_config = \Config::load('lib_blocs::template_default', true);
         $default_config['view'] = str_replace('{name}', $name, $default_config['view']);
         $default_config['css'] = str_replace('{name}', $name, $default_config['css']);
+
+        //charge vue locale
+        if (is_file(APPPATH . 'views/lib_blocs/' . $name . '.view.php')) {
+            $default_config['view'] = 'local::/lib_blocs/' . $name;
+        }
+
         //on vérifie si une feuille de style a été crée en local :
         if (is_file(DOCROOT . 'static/css/blocs/' . $name . '.css')) {
             $default_config['css'] = 'static/css/blocs/' . $name . '.css';

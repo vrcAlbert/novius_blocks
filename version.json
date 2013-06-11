@@ -1,5 +1,5 @@
 {
-  "version":"1.0.4",
-  "commentaire":"Correction de l'affectation d'une colonne à un bloc",
-  "last_commit":"1d9aaf8"
+  "version":"1.0.5",
+  "commentaire":"Séléction des champs en js",
+  "last_commit":"7e2ba32"
 }
