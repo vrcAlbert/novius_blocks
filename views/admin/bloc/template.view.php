@@ -55,6 +55,7 @@ foreach ($templates_config as $name => $props) {
         'url' => $url,
         'image' => $image,
         'link_title' => $link_title,
+        'bloc' => $item
     ), false);
 
     $view = str_replace(array(
