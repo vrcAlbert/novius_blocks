@@ -51,6 +51,8 @@ foreach ($blocs as $bloc) {
         $config['class'] .= ($config['class'] ? ' ' : '') . $bloc->bloc_class;
     }
 
+    $bloc_object = $bloc;
+
     $bloc = str_replace(array(
         '{title}',
         '{name}',
@@ -75,6 +77,7 @@ foreach ($blocs as $bloc) {
         'link_title'    => $link_title,
         'link_new_page' => $bloc->bloc_link_new_page,
         'image'         => $image,
+        'bloc'          => $bloc_object
     ), false));
 
     echo $bloc;
