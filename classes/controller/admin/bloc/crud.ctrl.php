@@ -27,7 +27,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
             $this->item->{'medias->image->medil_media_id'} = $thumbnail;
         }
         if (!empty($absolute_url)) {
-            $this->item->bloc_link = $absolute_url;
+            $this->item->bloc_link = str_replace(\Uri::base(), '', $absolute_url);
         }
     }
 

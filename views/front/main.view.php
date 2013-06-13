@@ -43,9 +43,6 @@ foreach ($blocs as $bloc) {
     $link = $bloc->bloc_link;
     $link_title = $bloc->bloc_link_title;
 
-    if ($link) {
-        $link = substr($link, 0, 7) == 'http://' ? $link : 'http://'.$link;
-    }
 
     if ($bloc->bloc_class) {
         $config['class'] .= ($config['class'] ? ' ' : '') . $bloc->bloc_class;
