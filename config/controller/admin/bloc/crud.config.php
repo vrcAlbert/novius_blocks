@@ -68,7 +68,8 @@ return array(
                 ),
             ),
             'link' => array(
-                'view' => 'nos::form/expander',
+//                'view' => 'nos::form/expander',
+                'view' => 'lib_blocs::admin/bloc/link',
                 'params' => array(
                     'title'   => __('Link'),
                     'nomargin' => true,
@@ -94,18 +95,19 @@ return array(
                 'view' => 'nos::form/accordion',
                 'params' => array(
                     'accordions' => array(
-//                        'synchro' => array(
-//                            'title' =>  __('Retrieve infos'),
-//                            'view' => 'lib_blocs::admin/bloc/synchro',
-//                            'fields' => array(
-//                                'bloc_model',
-//                                'bloc_model_id',
-//                            ),
-//                        ),
                         'columns' => array(
                             'title' => __('Columns'),
                             'fields' => array(
                                 'columns'
+                            ),
+                        ),
+                        'connection_model' => array(
+                            'title' =>  __('Liaison avec un objet'),
+                            'view' => 'lib_blocs::admin/bloc/connection_model',
+                            'fields' => array(
+                                'model_autocomplete',
+                                'bloc_model_id',
+                                'bloc_model',
                             ),
                         ),
                         'params' => array(
@@ -204,6 +206,27 @@ return array(
             'form' => array(
                 'type' => 'hidden',
             ),
+        ),
+        'model_autocomplete' => array(
+            'label' => __('Chercher l\'élément'),
+            'renderer' => '\Lib\Renderers\Renderer_Autocomplete',
+            'form' => array(),
+            'renderer_options' => array(
+                'data' => array(
+                    'data-autocomplete-url' => 'admin/lib_blocs/bloc/crud/autocomplete_model',
+                    'data-maj_url' => '1',
+                    'data-autocomplete-callback' => 'click_model',
+                )
+            ),
+            'populate' => function($item){
+//                if (!empty($item)) {
+//                    return $item->entite->annu_nom;
+//                }
+            },
+            'dont_save' => true,
+//            'validation' => array(
+//                'required',
+//            ),
         ),
         'bloc_model_id' => array(
             'form' => array(

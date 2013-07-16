@@ -10,8 +10,6 @@ define(
             //le radio qui permet de séléctionner le template
             var $template = $container.find('input[name="bloc_template"]');
             var init = false;
-            var $wrapper_links = $container.find('.wrapper_links');
-            var $model_id = $container.find('input[name="bloc_model_id"]');
 
             //On va recenser tous les expanders qui contiennent des champs facultatifs
             var fieldsets = new Array();
@@ -55,12 +53,7 @@ define(
             });
             $container.find('.bloc_over_wrapper').css('min-height', max_height);
 
-            check_link();
             display_expanders();
-
-            $wrapper_links.on('action_links', function() {
-                check_link();
-            });
 
 //            $template.change(function(){
 //                display_expanders();
@@ -70,33 +63,6 @@ define(
 //                console.log(i);
 //                console.log(o);
 //            });
-
-            function check_link ()
-            {
-                var model_id = $model_id.val();
-                var $wrapper_default = $wrapper_links.find('.link_default');
-                var $wrapper_model = $wrapper_links.find('.link_model');
-                var model_key = $container.find('input[name="bloc_model"]').val();
-                var $wrapper_assoc_model_choice = $container.find('.wrapper_assoc_model_choice');
-                var $wrapper_assoc_model_done = $container.find('.wrapper_assoc_model_done');
-
-                if (model_id && model_key) {
-                    $wrapper_default.hide();
-                    $wrapper_assoc_model_choice.hide();
-                    //on recherche le contenu assoc
-                    $nos.ajax({
-                        'url': 'admin/lib_blocs/bloc/crud/get_model_assoc_infos/' + model_key + '/' + model_id,
-                        'success' : function(vue) {
-                            $wrapper_assoc_model_done.html(vue);
-                            $wrapper_model.html(vue);
-                        }
-                    });
-
-                } else {
-                    $wrapper_default.fadeIn();
-                    $wrapper_model.hide();
-                }
-            }
 
             /**
              * Permet d'afficher seulement les expanders qui nous intéressent

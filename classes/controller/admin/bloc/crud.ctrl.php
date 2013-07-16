@@ -100,4 +100,95 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
 
         return \View::forge($this->config['views'][$this->is_new ? 'insert' : 'update'], $view_params, false);
     }
+
+    /**
+     * @param string $model_key
+     */
+    public function action_autocomplete_model($config_key = 'no')
+    {
+        $models = \Config::load('lib_blocs::connection_model');
+        $filter = \Fuel\Core\Input::post('search', '');
+
+        if (!isset($models[$config_key])) {
+            return \Response::json(array());
+        }
+
+        $model_config = $models[$config_key];
+        $model = $model_config['model'];
+
+        $table = $model::table();
+
+        $show = \Fuel\Core\DB::select(
+            array($model_config['autocomplete_value'], 'value'),
+            array($model_config['autocomplete_label'], 'label')
+        )->from($table);
+
+        if (strlen($filter) > 0
+            && isset($model_config['search_autocomplete_fields'])
+            && is_array($model_config['search_autocomplete_fields'])
+            && count($model_config['search_autocomplete_fields']))
+        {
+            $show->where_open();
+            foreach ($model_config['search_autocomplete_fields'] as $field) {
+                $show->or_where($field, 'LIKE', '%' . $filter . '%');
+            }
+            $show->where_close();
+        }
+
+        $show = (array) $show->distinct(true)->execute()->as_array();
+
+        return \Response::json($show);
+    }
+
+    /**
+     * @param $config_key
+     * @param $model_id
+     * @param $wrapper_dialog
+     * @return bool|\Fuel\Core\View
+     */
+    public function action_retrieve_model ($config_key, $model_id, $wrapper_dialog)
+    {
+        $models = \Config::load('lib_blocs::connection_model');
+        if (!isset($models[$config_key])) {
+            return false;
+        }
+        $model_config = $models[$config_key];
+        $class_name = $model_config['model'];
+        if (!$item = $class_name::find($model_id)) {
+            return false;
+        }
+
+        return \View::forge('lib_blocs::admin/bloc/retrieve_model', array(
+            'item'              => $item,
+            'config'            => $model_config,
+            'wrapper_dialog'    => $wrapper_dialog,
+            'item_id'           => $model_id,
+        ), false);
+    }
+
+    /**
+     * @param $config_key
+     * @param $model_id
+     * @return bool|\Fuel\Core\View
+     */
+    public function action_get_model_assoc_infos ($config_key, $model_id)
+    {
+        $models = \Config::load('lib_blocs::connection_model');
+        if (!isset($models[$config_key])) {
+            return false;
+        }
+        $model_config = $models[$config_key];
+        $class_name = $model_config['model'];
+        if (!$item = $class_name::find($model_id)) {
+            return false;
+        }
+
+        $return = \View::forge('lib_blocs::admin/bloc/model_assoc_infos', array(
+            'item'              => $item,
+            'config'            => $model_config,
+            'item_id'           => $model_id,
+        ), false);
+        \Response::forge($return)->send(true);
+        exit();
+    }
 }
