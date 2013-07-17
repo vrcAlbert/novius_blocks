@@ -40,7 +40,7 @@ foreach ($blocs as $bloc) {
 
     $description = \Nos\Nos::parse_wysiwyg($bloc->wysiwygs->description);
     $title = $bloc->bloc_title;
-    $link = $bloc->bloc_link;
+    $link = $bloc->get_url();
     $link_title = $bloc->bloc_link_title;
 
 

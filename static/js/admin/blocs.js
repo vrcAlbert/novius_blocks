@@ -74,27 +74,53 @@ define(
             function check_link ()
             {
                 var model_id = $model_id.val();
-                var $wrapper_default = $wrapper_links.find('.link_default');
+                var $wrapper_default = $wrapper_links.find('.link_default').find('tr').first();
                 var $wrapper_model = $wrapper_links.find('.link_model');
                 var model_key = $container.find('input[name="bloc_model"]').val();
                 var $wrapper_assoc_model_choice = $container.find('.wrapper_assoc_model_choice');
                 var $wrapper_assoc_model_done = $container.find('.wrapper_assoc_model_done');
+                var $wrapper_autocompletion = $wrapper_assoc_model_done.next();
+                var $select_model = $container.find('select[name="select_model"]');
+                var $first_option = $select_model.find('option').first();
 
                 if (model_id && model_key) {
                     $wrapper_default.hide();
-                    $wrapper_assoc_model_choice.hide();
+//                    $wrapper_assoc_model_choice.hide();
+                    $wrapper_assoc_model_choice.css('visibility', 'hidden');
+                    $wrapper_autocompletion.hide();
                     //on recherche le contenu assoc
                     $nos.ajax({
                         'url': 'admin/lib_blocs/bloc/crud/get_model_assoc_infos/' + model_key + '/' + model_id,
                         'success' : function(vue) {
                             $wrapper_assoc_model_done.html(vue);
+                            $wrapper_assoc_model_done.fadeIn();
                             $wrapper_model.html(vue);
+                            $wrapper_model.fadeIn();
+                            //on active le js
+                            $container.find('.delete_liaison_model').on('click', function(){
+                                if (!confirm('Souhaitez vous supprimer cette relation ?')) {
+                                    return false;
+                                }
+                                $model_id.val('');
+                                $container.find('input[name="bloc_model"]').val('');
+                                $select_model.find('option').attr('selected', false);
+                                $first_option.attr('selected', 'selected');
+                                $select_model.wijdropdown('refresh');
+                                $wrapper_links.trigger('action_links');
+                                return false;
+                            });
                         }
                     });
 
                 } else {
-                    $wrapper_default.fadeIn();
+                    $wrapper_assoc_model_choice.css('visibility', 'visible');
+//                    $wrapper_autocompletion.fadeIn();
+                    $wrapper_default.fadeIn().nosOnShow();
+
+                    $wrapper_model.html('');
                     $wrapper_model.hide();
+                    $wrapper_assoc_model_done.html('');
+                    $wrapper_assoc_model_done.hide();
                 }
             }
 

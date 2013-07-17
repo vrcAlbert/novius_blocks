@@ -22,7 +22,7 @@ if (!empty($content) || !empty($show_when_empty)) {
             <div class="link_default">
             <?= $content; ?>
             </div>
-            <div class="link_model">
+            <div class="link_model" style="margin:0 15px 15px 15px; padding: 15px 0 0 0;">
             </div>
         </div>
     </div>

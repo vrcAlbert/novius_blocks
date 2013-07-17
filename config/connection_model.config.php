@@ -9,6 +9,7 @@ return array(
         ),
         'autocomplete_value'            => 'page_id',
         'autocomplete_label'            => 'page_title',
+        'display_label'                 => 'page_title',
         'data_mapping'                  => array(
             'title'                     => array(
                 'field' => 'page_title',
