@@ -31,11 +31,20 @@
                         //on appelle la fonction de vérif du lien
                         $wrapper_links.trigger('action_links');
                     } else {
+                        var $wrapper_value = $dialog.find('#' + t_id + '_value');
+                        var type = $wrapper_value.data('type') || $(this).attr('data-type') || false;
                         var t_val = $dialog.find('#' + t_id + '_value').val();
-                        //on cherche le champs du formulaire
-                        var $elem = $form_global.find('[name="bloc_' + t_name + '"]');
-                        if ($elem.length) {
-                            $elem.val(t_val);
+                        switch (type) {
+                            case 'wysiwyg' :
+                                tinyMCE.activeEditor.setContent(t_val);
+                                break;
+                            default :
+                                //on cherche le champs du formulaire
+                                var $elem = $form_global.find('[name="bloc_' + t_name + '"]');
+                                if ($elem.length) {
+                                    $elem.val(t_val);
+                                }
+                                break;
                         }
                     }
                 });

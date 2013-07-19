@@ -22,11 +22,6 @@ class Model_Bloc extends \Nos\Orm\Model
     );
 
     protected static $_behaviours = array(
-        /*
-        'Nos\Orm_Behaviour_Publishable' => array(
-            'publication_bool_property' => 'bloc__published',
-        ),
-        */
         'Nos\Orm_Behaviour_Urlenhancer' => array(
             'enhancers' => array('blocs_bloc'),
         ),
@@ -41,41 +36,6 @@ class Model_Bloc extends \Nos\Orm\Model
             'is_main_property' => 'bloc_context_is_main',
             'invariant_fields'   => array(),
         ),
-//        'Nos\Orm_Behaviour_Tree' => array(
-//            'events' => array('before_query', 'before_delete'),
-//            'parent_relation' => 'parent',
-//            'children_relation' => 'children',
-//            'level_property' => 'bloc_level',
-//        ),
-        /*
-        'Nos\Orm_Behaviour_Twinnable' => array(
-            'events' => array('before_insert', 'after_insert', 'before_save', 'after_delete', 'change_parent'),
-            'context_property'      => 'bloc__context',
-            'common_id_property' => 'bloc__context_common_id',
-            'is_main_property' => 'bloc__context_is_main',
-            'invariant_fields'   => array(),
-        ),
-        */
-    );
-
-//    protected static $_has_many = array(
-//        'children' => array(
-//            'key_from'       => 'bloc_id',
-//            'model_to'       => 'Lib\Blocs\Model_Bloc',
-//            'key_to'         => 'bloc_parent_id',
-//            'cascade_save'   => false,
-//            'cascade_delete' => false,
-//        ),
-//    );
-
-    protected static $_belongs_to = array(
-//        'parent' => array(
-//            'key_from'       => 'bloc_parent_id',
-//            'model_to'       => 'Lib\Blocs\Model_Folder',
-//            'key_to'         => 'blfo_id',
-//            'cascade_save'   => false,
-//            'cascade_delete' => false,
-//        ),
     );
 
     protected static $_many_many = array(
@@ -91,6 +51,9 @@ class Model_Bloc extends \Nos\Orm\Model
         ),
     );
 
+    /**
+     * @return mixed|\Nos\Orm\Model|null
+     */
     public function get_url ()
     {
         if ($this->bloc_model_id && $this->bloc_model) {

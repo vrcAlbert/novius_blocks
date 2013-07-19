@@ -1,7 +1,8 @@
 define(
     [
-//        'jquery-nos-wysiwyg',
-        'jquery-nos'
+        'jquery-nos-wysiwyg',
+        'jquery-nos',
+        'tinymce'
     ],
     function($) {
         "use strict";
@@ -16,6 +17,7 @@ define(
             //On va recenser tous les expanders qui contiennent des champs facultatifs
             var fieldsets = new Array();
             var nb = 0;
+
             $container.find('.expander').each(function(i){
                 var $options = $(this).data('wijexpander-options') || $(this).attr('data-wijexpander-options') || false;
 
@@ -61,15 +63,6 @@ define(
             $wrapper_links.on('action_links', function() {
                 check_link();
             });
-
-//            $template.change(function(){
-//                display_expanders();
-//            });
-
-//            $.each(fieldsets, function(i,o){
-//                console.log(i);
-//                console.log(o);
-//            });
 
             function check_link ()
             {

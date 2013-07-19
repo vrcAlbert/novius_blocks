@@ -25,25 +25,6 @@ return array(
                     ),
                 ),
             ),
-
-//            'contenu' => array(
-//                'view' => 'nos::form/expander',
-//                'params' => array(
-//                    'title'   => __('Contenu'),
-//                    'nomargin' => true,
-//                    'options' => array(
-//                        'allowExpand' => true,
-//                    ),
-//                    'content' => array(
-//                        'view' => 'nos::form/fields',
-//                        'params' => array(
-//                            'fields' => array(
-//                                'wysiwygs->description->wysiwyg_text',
-//                            ),
-//                        ),
-//                    ),
-//                ),
-//            ),
         ),
     ),
     'fields' => array(

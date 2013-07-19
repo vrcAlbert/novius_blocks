@@ -15,15 +15,28 @@
     <?php
     //on va récupérer les différents champs disponibles
     foreach ($config['data_mapping'] as $key => $field) {
+        $field = array_merge(array(
+            'type' => 'text',
+        ), $field);
         $t_id = uniqid($field['field']);
+        $value = '';
+        switch ($field['type']) {
+            case 'wysiwyg' :
+                $value = $item->wysiwygs->{$field['field']};
+                break;
+            case 'text' :
+                default :
+                    $value = $item->{$field['field']};
+                break;
+        }
         ?>
         <p>
             <input type="checkbox" name="<?= $key ?>" id="<?= $t_id ?>" value="1" />
             <label for="<?= $t_id ?>"><?= $field['label'] ?></label>
             <div style="margin: 3px; border: 1px solid #535353; padding: 8px;">
-                <?= $item->{$field['field']} ?>
+                <?= $value ?>
             </div>
-            <textarea style="display:none" id="<?= $t_id ?>_value"><?= $item->{$field['field']} ?></textarea>
+            <textarea data-type="<?= $field['type']?>" style="display:none" id="<?= $t_id ?>_value"><?= $value ?></textarea>
         </p>
         <?php
     }

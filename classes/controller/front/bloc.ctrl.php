@@ -33,8 +33,20 @@ class Controller_Front_Bloc extends Controller_Front_Application
                         $blocs_tmp = $blocs;
                         $blocs = array();
                         $ordre = unserialize($column->blco_blocs_ordre);
+                        $ids = array();
+                        foreach ($blocs_tmp as $tmp_bloc) {
+                            $ids[$tmp_bloc->bloc_id] = $tmp_bloc->bloc_id;
+                        }
                         foreach ($ordre as $bloc_id) {
-                            $blocs[] = $blocs_tmp[$bloc_id];
+                            if (in_array($bloc_id, $ids)) {
+                                $blocs[] = $blocs_tmp[$bloc_id];
+                                unset($ids[$bloc_id]);
+                            }
+                        }
+                        if (count($ids)) {
+                            foreach ($ids as $bloc_id) {
+                                $blocs[] = $blocs_tmp[$bloc_id];
+                            }
                         }
                     }
                 }

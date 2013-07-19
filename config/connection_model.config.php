@@ -15,6 +15,11 @@ return array(
                 'field' => 'page_title',
                 'label' => 'Titre',
             ),
+            'description'               => array(
+                'field' => 'content',
+                'label' => 'Description',
+                'type'  => 'wysiwyg',
+            ),
 //            'description'               => 'page_title',
         ),
     ),
