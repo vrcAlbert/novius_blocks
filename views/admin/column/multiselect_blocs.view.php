@@ -32,5 +32,6 @@
         'order'         => true,
         'style'         => array(
             'width'     => '70%',
+            'height'    => '400px',
         ),
     ));
