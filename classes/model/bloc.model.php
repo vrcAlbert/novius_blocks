@@ -58,16 +58,13 @@ class Model_Bloc extends \Nos\Orm\Model
     {
         if ($this->bloc_model_id && $this->bloc_model) {
             $models = \Config::load('lib_blocs::connection_model');
-            if (!isset($models[$this->bloc_model])) {
-                return $this->bloc_link;
-            }
-            $model_config = $models[$this->bloc_model];
-            $class_name = $model_config['model'];
-            if (!$item = $class_name::find($this->bloc_model_id)) {
-                return $this->bloc_link;
-            }
-            if (method_exists($item, 'url')) {
-                return $item->url();
+            if (isset($models[$this->bloc_model])) {
+                $model_config = $models[$this->bloc_model];
+                $class_name = $model_config['model'];
+                $item = $class_name::find($this->bloc_model_id);
+                if ($item && method_exists($item, 'url')) {
+                    return $item->url();
+                }
             }
         }
         return $this->bloc_link;
