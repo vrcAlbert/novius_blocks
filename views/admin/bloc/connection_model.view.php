@@ -1,5 +1,5 @@
 <?php
-    $models = \Config::load('lib_blocs::connection_model');
+    $models = \Config::load('lib_blocs::connection_model', true);
     $select_id = uniqid('select_model_');
     $model_selected_id = uniqid('model_selected_');
     $function_js = uniqid('function_js_');

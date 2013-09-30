@@ -62,7 +62,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
         //on récupère la clé de la config qui nous interesse
         $model_key = \Input::get('model_key');
         //on charge la config des models compatibles
-        $models = \Config::load('lib_blocs::model_compatibility');
+        $models = \Config::load('lib_blocs::model_compatibility', true);
         if (!isset($models[$model_key])) {
             return false;
         }
@@ -106,7 +106,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
      */
     public function action_autocomplete_model($config_key = 'no')
     {
-        $models = \Config::load('lib_blocs::connection_model');
+        $models = \Config::load('lib_blocs::connection_model', true);
         $filter = \Fuel\Core\Input::post('search', '');
 
         if (!isset($models[$config_key])) {
@@ -148,7 +148,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
      */
     public function action_retrieve_model ($config_key, $model_id, $wrapper_dialog)
     {
-        $models = \Config::load('lib_blocs::connection_model');
+        $models = \Config::load('lib_blocs::connection_model', true);
         if (!isset($models[$config_key])) {
             return false;
         }
@@ -173,7 +173,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
      */
     public function action_get_model_assoc_infos ($config_key, $model_id)
     {
-        $models = \Config::load('lib_blocs::connection_model');
+        $models = \Config::load('lib_blocs::connection_model', true);
         if (!isset($models[$config_key])) {
             return false;
         }
