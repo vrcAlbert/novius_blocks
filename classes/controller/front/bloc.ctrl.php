@@ -16,11 +16,15 @@ class Controller_Front_Bloc extends Controller_Front_Application
         switch ($args['type_affichage']) {
             case 'blocs' :
                 if (!empty($args['blocs_ids'])) {
-                    $blocs = Model_Bloc::find('all', array(
+                    $blocs_tmp = Model_Bloc::find('all', array(
                         'where' => array(
                             array('bloc_id', 'in', $args['blocs_ids'])
                         ),
                     ));
+                    $blocs = array();
+                    foreach ($args['blocs_ids'] as $id) {
+                        $blocs[$blocs_tmp[$id]->bloc_id] = $blocs_tmp[$id];
+                    }
                 }
                 break;
             case 'column' :
