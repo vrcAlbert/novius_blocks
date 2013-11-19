@@ -30,6 +30,9 @@
         'name'          => 'blocs[]',
         'values'        => $values,
         'order'         => true,
+        'renderer_options' => array(
+            'sortable' => true,
+        ),
         'style'         => array(
             'width'     => '70%',
             'height'    => '400px',

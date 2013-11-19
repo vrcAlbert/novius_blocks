@@ -93,6 +93,9 @@
         'name'          => 'blocs_ids[]',
         'values'        => $blocs_ids,
         'order'         => true,
+        'renderer_options' => array(
+            'sortable' => true,
+        ),
         'style'         => array(
             'width'     => '400px',
         ),

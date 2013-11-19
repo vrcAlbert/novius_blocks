@@ -12,6 +12,7 @@ return array(
     'provider' => array(
         'name' => 'Novius',
     ),
+    'requires' => array('lib_renderers'),
     'namespace' => 'Lib\Blocs',
     'launchers' => array(
 		'lib_blocs' => array(
