@@ -1,5 +1,5 @@
 {
-  "version":"2.0.0.7",
-  "commentaire":"correction clé twinnable, corrections js (prop au lieu d'attr), correction de la vérification de présence de méthode ->url()",
-  "last_commit":"1f9be20"
+  "version":"2.0.0.8",
+  "commentaire":"",
+  "last_commit":"5bb6ffe"
 }
