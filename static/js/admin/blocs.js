@@ -32,19 +32,23 @@ define(
             });
 
             //on rend cliquable les templates
-            $container.find('.bloc_over_wrapper').each(function(){
+            $container.find('.bloc_over_wrapper').each(function(e){
                 var $wrapper = $(this);
-                if ($(this).find('input[name="bloc_template"]').attr('checked')) {
+                var $checkbox = $(this).find('input[name="bloc_template"]');
+                if ($checkbox.is(':checked')) {
                     $wrapper.addClass('on');
                 }
-                $(this).css('cursor', 'pointer').click(function(){
-                    if (!$(this).find('input[name="bloc_template"]').attr('checked')) {
-                        $container.find('.bloc_over_wrapper').removeClass('on');
-                        $(this).find('input[name="bloc_template"]').attr('checked', true);
+                $wrapper.css('cursor', 'pointer').click(function(ev){
+                    var $this = $(this);
+                    var $this_checkbox = $this.find('input[name="bloc_template"]');
+                    if (!$this_checkbox.is(':checked')) {
+                        var $bloc_over_wrapper = $container.find('.bloc_over_wrapper');
+                        $bloc_over_wrapper.removeClass('on');
+                        $this_checkbox.prop('checked', true);
                         $wrapper.addClass('on');
                         display_expanders();
                     }
-                    return false;
+                    ev.preventDefault();
                 });
             });
 
@@ -90,17 +94,17 @@ define(
                             $wrapper_model.html(vue);
                             $wrapper_model.fadeIn();
                             //on active le js
-                            $container.find('.delete_liaison_model').on('click', function(){
+                            $container.find('.delete_liaison_model').on('click', function(e){
                                 if (!confirm('Souhaitez vous supprimer cette relation ?')) {
                                     return false;
                                 }
                                 $model_id.val('');
                                 $container.find('input[name="bloc_model"]').val('');
-                                $select_model.find('option').attr('selected', false);
-                                $first_option.attr('selected', 'selected');
-                                $select_model.wijdropdown('refresh');
+                                $select_model.find('option').prop('selected', false);
+                                $first_option.prop('selected', 'selected');
                                 $wrapper_links.trigger('action_links');
-                                return false;
+                                e.preventDefault();
+                                $select_model.wijdropdown('refresh');
                             });
                         }
                     });

@@ -33,7 +33,7 @@
         <p>
             <input type="checkbox" name="<?= $key ?>" id="<?= $t_id ?>" value="1" />
             <label for="<?= $t_id ?>"><?= $field['label'] ?></label>
-            <div style="margin: 3px; border: 1px solid #535353; padding: 8px;">
+            <div style="margin: 3px; border: 1px solid #535353; padding: 8px; max-height: 180px; overflow:hidden;">
                 <?= $value ?>
             </div>
             <textarea data-type="<?= $field['type']?>" style="display:none" id="<?= $t_id ?>_value"><?= $value ?></textarea>
@@ -42,7 +42,12 @@
     }
 
     //on vérifie que le model est une méthode pour afficher une url :
-    if (method_exists($item, 'url')) {
+    $url = null;
+    if ($item::behaviours('Nos\Orm_Behaviour_Urlenhancer', false) !== false) {
+        $url = $item->url();
+    }
+
+    if (!is_null($url)) {
         $t_id = uniqid('lien_');
         ?>
         <p>

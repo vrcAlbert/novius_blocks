@@ -27,9 +27,6 @@
 </div>
 
 <div class="wrapper_assoc_model_done" id="<?= $model_selected_id ?>">
-</div>
-
-
 <?php
 echo \View::forge('lib_blocs::admin/bloc/assoc_model_js', array(
     'model_selected'    => $model_selected_id,
@@ -37,3 +34,5 @@ echo \View::forge('lib_blocs::admin/bloc/assoc_model_js', array(
     'function_js'       => $function_js,
     'form_id'           => $fieldset->form()->get_attribute('id'),
 ), false);
+?>
+</div>
