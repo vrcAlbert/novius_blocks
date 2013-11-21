@@ -31,7 +31,7 @@ class Model_Column extends \Nos\Orm\Model
             'context_property'      => 'blco_context',
             'common_id_property' => 'blco_context_common_id',
             'is_main_property' => 'blco_context_is_main',
-            'invariant_fields'   => array(),
+            'common_fields'   => array(),
         ),
 //        'Nos\Orm_Behaviour_Tree' => array(
 //            'events' => array('before'),

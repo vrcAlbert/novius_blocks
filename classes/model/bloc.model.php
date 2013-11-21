@@ -34,7 +34,7 @@ class Model_Bloc extends \Nos\Orm\Model
             'context_property'      => 'bloc_context',
             'common_id_property' => 'bloc_context_common_id',
             'is_main_property' => 'bloc_context_is_main',
-            'invariant_fields'   => array(),
+            'common_fields' => array(),
         ),
     );
 
