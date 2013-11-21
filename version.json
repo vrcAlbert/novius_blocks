@@ -1,5 +1,5 @@
 {
-  "version":"2.0.0.6",
-  "commentaire":"Prise en compte de l'ordre des blocs dans le multi-select",
-  "last_commit":"f8cc4c5"
+  "version":"2.0.0.7",
+  "commentaire":"correction clé twinnable, corrections js (prop au lieu d'attr), correction de la vérification de présence de méthode ->url()",
+  "last_commit":"1f9be20"
 }

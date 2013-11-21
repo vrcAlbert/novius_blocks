@@ -20,6 +20,7 @@
         var $select_type = $('#<?= $type_affichage ?>');
         var $wrapper_column = $('#<?= $wrapper_columns ?>');
         var $wrapper_blocs = $('#<?= $wrapper_blocs ?>');
+        var b_width = $wrapper_blocs.width();
 
         $select_type.change(function(){
             affiche_select();
@@ -33,21 +34,21 @@
                     $wrapper_blocs.css({
                         visibility : 'hidden'
                         , position : 'absolute'
-                    });
+                    }).width(b_width);
                     $wrapper_column.css({
                         visibility : 'visible'
                         , position : 'relative'
-                    });
+                    }).width(b_width);
                     break;
                 case 'blocs' :
                     $wrapper_column.css({
                         visibility : 'hidden'
                         , position : 'absolute'
-                    });
+                    }).width(b_width);
                     $wrapper_blocs.css({
                         visibility : 'visible'
                         , position : 'relative'
-                    });
+                    }).width(b_width);
                     break;
             }
         }
@@ -59,9 +60,8 @@
     <option value="blocs"<?= \Input::get('type_affichage') == 'blocs' ? ' selected' : '' ?>>Séléction de blocs</option>
 </select>
 <br />&nbsp;
-
 <!-- Séléction de columns -->
-<div id="<?= $wrapper_columns ?>" style="visibility: hidden; position: absolute;">
+<div id="<?= $wrapper_columns ?>" style="visibility: hidden; position: relative;">
     <?=
     \Lib\Renderers\Renderer_Categories::renderer(array(
         'width'         => '250px',
@@ -87,7 +87,7 @@
     ?>
 </div>
 <!-- Séléction de blocs -->
-<div id="<?= $wrapper_blocs ?>" style="visibility: hidden; position: absolute;">
+<div id="<?= $wrapper_blocs ?>" style="visibility: hidden; position: relative;">
     <?= \Lib\Renderers\Renderer_Multiselect::renderer(array(
         'options'       => \Arr::assoc_to_keyval(\Lib\Blocs\Model_bloc::find('all', array('where' => array('bloc_context' => $context))), 'bloc_id', 'bloc_title'),
         'name'          => 'blocs_ids[]',
