@@ -43,7 +43,7 @@
 
     //on vérifie que le model est une méthode pour afficher une url :
     $url = null;
-    if ($item::behaviours('Nos\Orm_Behaviour_Urlenhancer', false) !== false) {
+    if ($item::behaviours('Nos\Orm_Behaviour_Urlenhancer', false) !== false || method_exists($item, 'url')) {
         $url = $item->url();
     }
 
