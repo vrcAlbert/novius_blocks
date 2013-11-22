@@ -14,7 +14,9 @@ define(
             $select.change(function(){
                 var model_key = $(this).val();
                 if (model_key) {
-                    $input_autocomplete.attr('data-autocomplete-url','admin/lib_blocs/bloc/crud/autocomplete_model/' + model_key);
+                    $input_autocomplete.data('autocomplete-url', 'admin/lib_blocs/bloc/crud/autocomplete_model/' + model_key);
+                    var event = $nos.Event('update_autocomplete.renderer');
+                    $input_autocomplete.trigger(event);
                 }
                 verif_affiche_autocomplete();
             });
