@@ -171,7 +171,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
      * @param $model_id
      * @return bool|\Fuel\Core\View
      */
-    public function action_get_model_assoc_infos ($config_key, $model_id)
+    public function action_get_model_assoc_infos ($config_key, $model_id, $model_name)
     {
         $models = \Config::load('lib_blocs::connection_model', true);
         if (!isset($models[$config_key])) {

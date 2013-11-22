@@ -66,8 +66,14 @@ class Model_Bloc extends \Nos\Orm\Model
             if (!$item = $class_name::find($this->bloc_model_id)) {
                 return $this->bloc_link;
             }
-            if (method_exists($item, 'url')) {
-                return $item->url();
+
+            $url = null;
+            if ($item::behaviours('Nos\Orm_Behaviour_Urlenhancer', false) !== false || method_exists($item, 'url')) {
+                $url = $item->url();
+            }
+
+            if ($url) {
+                return $url;
             }
         }
         return $this->bloc_link;
