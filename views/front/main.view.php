@@ -24,59 +24,8 @@ foreach ($blocs as $bloc) {
     if ($config['css']) {
         \Nos\Nos::main_controller()->addCss($config['css']);
     }
-    if (!empty($bloc->medias->image)) {
-        $image = str_replace(
-            array(
-                '{src}',
-                '{title}',
-            ),
-            array(
-                $bloc->medias->image->get_public_path_resized($config['image_params']['width'], $config['image_params']['height']),
-                $bloc->bloc_title,
-            ),
-            $config['image_params']['tpl']
-        );
-    }
 
-    $description = \Nos\Nos::parse_wysiwyg($bloc->wysiwygs->description);
-    $title = $bloc->bloc_title;
-    $link = $bloc->get_url();
-    $link_title = $bloc->bloc_link_title;
-
-    if ($bloc->bloc_class) {
-        $config['class'] .= ($config['class'] ? ' ' : '') . $bloc->bloc_class;
-    }
-
-    $bloc_object = $bloc;
-
-    $bloc = str_replace(array(
-        '{title}',
-        '{name}',
-        '{description}',
-        '{link}',
-        '{link_title}',
-        '{image}',
-        '{class}',
-    ), array(
-        $title,
-        $name,
-        $description,
-        $link,
-        $link_title,
-        $image,
-        $config['class'],
-    ), \View::forge($config['view'], array(
-        'config'        => $config,
-        'description'   => $description,
-        'title'         => $title,
-        'link'          => $link,
-        'link_title'    => $link_title,
-        'link_new_page' => $bloc->bloc_link_new_page,
-        'image'         => $image,
-        'bloc'          => $bloc_object
-    ), false));
-
-    echo $bloc;
+    echo \Lib\Blocs\Controller_Front_Bloc::get_bloc_view($bloc, $config, $name);
 }
 
 ?>

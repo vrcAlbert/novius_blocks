@@ -7,6 +7,10 @@ return array(
             'view' => 'lib_blocs::admin/enhancer/popup',
         ),
     ),
+    'preview' => array(
+        'custom' => false,
+        'view' => 'lib_blocs::admin/enhancer/preview',
+    ),
     // Configuration de la prévisualisation
 //    'preview' => array(
 //        // (facultatif) vue à utiliser pour le rendu (valeur par défaut en exemple)
