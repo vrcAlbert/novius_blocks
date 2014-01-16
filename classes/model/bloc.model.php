@@ -101,7 +101,7 @@ class Model_Bloc extends \Nos\Orm\Model
             $default_config['css'] = 'static/css/blocs/' . $name . '.css';
         }
         $retour_config = \Arr::merge($default_config, $config);
-        if ($config['fields']) {
+        if (isset($config['fields']) && $config['fields']) {
             $retour_config['fields'] = $config['fields'];
         }
         return $retour_config;
