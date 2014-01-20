@@ -5,11 +5,12 @@ if (!count($blocs)) {
     exit();
 }
 
+
 $templates_config = \Config::load('lib_blocs::templates', true);
 
-?>
 
-    <div class="blocs_wrapper blocs_wrapper_enhancer">
+?>
+<div class="blocs_wrapper blocs_wrapper_enhancer">
 <?php
 foreach ($blocs as $bloc) {
     $name = $bloc->bloc_template;
@@ -35,8 +36,7 @@ foreach ($blocs as $bloc) {
         <link rel="stylesheet" href="static/css/blocs/admin/<?= $name ?>.css" />
     <?php
     }
-
     echo \Lib\Blocs\Controller_Front_Bloc::get_bloc_view($bloc, $config, $name);
 }
 ?>
-    </div>
+</div>
