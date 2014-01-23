@@ -1,8 +1,8 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
@@ -13,7 +13,7 @@
         $nos(function () {
             // We retrieve the value of the type to hide or not the wanted fields
             var $container = $(this);
-            var $select_type = $container.find('select[name=bloc_type]');
+            var $select_type = $container.find('select[name=block_type]');
             var inited = false;
 
             $select_type.change(function() {
@@ -22,7 +22,7 @@
 
             function adapte_form() {
                 var type = $select_type.val();
-                var $expanders = $container.find('.wrapper_bloc').parent().parent();
+                var $expanders = $container.find('.wrapper_block').parent().parent();
 
                 if (type == 'folder') {
                     $expanders.each(function(){

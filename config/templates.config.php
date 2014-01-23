@@ -1,8 +1,8 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
@@ -32,7 +32,7 @@ return array(
         ),
     ),
 //    'tpl' => array(
-//        'view' => 'novius_blocs::templates/tpl', //optional : wiew of the template
+//        'view' => 'novius_blocks::templates/tpl', //optional : wiew of the template
 //        'fields' => array( //optional : list of the available fields of this template
 //            'description',
 //            'link',

@@ -1,8 +1,8 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
@@ -12,7 +12,7 @@
     $btn_ok = uniqid('btn_ok_');
 ?>
 <script type="text/javascript">
-    require(['jquery-nos', 'static/apps/novius_blocs/js/admin/retrieve_model.js'], function ($, callback_fn) {
+    require(['jquery-nos', 'static/apps/novius_blocks/js/admin/retrieve_model.js'], function ($, callback_fn) {
         $(function () {
             callback_fn.call($('#<?= $wrapper_id ?>'), '<?= $btn_ok ?>');
         });

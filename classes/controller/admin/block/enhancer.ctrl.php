@@ -1,16 +1,16 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
  */
 
-namespace Novius\Blocs;
+namespace Novius\Blocks;
 
-class Controller_Admin_Bloc_Enhancer extends \Nos\Controller_Admin_Enhancer
+class Controller_Admin_Block_Enhancer extends \Nos\Controller_Admin_Enhancer
 {
     public function action_save(array $args = null)
     {
@@ -29,7 +29,7 @@ class Controller_Admin_Bloc_Enhancer extends \Nos\Controller_Admin_Enhancer
             }
         }
 
-        $blocs = Controller_Front_Bloc::get_blocs($args);
+        $blocks = Controller_Front_Block::get_blocks($args);
 
         if ($this->config['preview']['custom']) {
             $view = $this->config['preview']['view'];
@@ -44,7 +44,7 @@ class Controller_Admin_Bloc_Enhancer extends \Nos\Controller_Admin_Enhancer
                     'layout' => $this->config['preview']['layout'],
                     'params' => $this->config['preview']['params'],
                     'enhancer_args' => $args,
-                    'blocs' => $blocs,
+                    'blocks' => $blocks,
                 ))->render(),
         );
         \Response::json($body);

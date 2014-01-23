@@ -1,26 +1,26 @@
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
  */
 
-.blocs_wrapper {
+.blocks_wrapper {
     margin: 0 5px 5px 5px;
     position: relative;
     font-size: 10px;
     min-height: 150px;
 }
-.blocs_wrapper:after{
+.blocks_wrapper:after{
     content: ".";
     display: block;
     height: 0;
     clear: both;
     visibility: hidden;
 }
-.blocs_wrapper .bloc_over_wrapper {
+.blocks_wrapper .block_over_wrapper {
     position: relative;
     width: 190px;
     margin: 14px;
@@ -29,11 +29,11 @@
     float: left;
     border-radius: 15px;
 }
-.blocs_wrapper .bloc_over_wrapper.on {
+.blocks_wrapper .block_over_wrapper.on {
     border: 5px solid #607890;
     margin: 10px;
 }
-.blocs_wrapper .bloc_select {
+.blocks_wrapper .block_select {
     position: absolute;
     visibility: hidden;
     bottom: 0;
@@ -42,10 +42,10 @@
     padding: 3px;
     text-align: center;
 }
-.blocs_wrapper .bloc_select label {
+.blocks_wrapper .block_select label {
     cursor: pointer;
 }
-.blocs_wrapper h3.bloc_title {
+.blocks_wrapper h3.block_title {
     font-size: 18px;
     margin: 0 0 15px;
     text-align: center;

@@ -1,8 +1,8 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
@@ -10,8 +10,8 @@
 
 return array(
     'title'             => '',
-    'css'               => 'static/apps/novius_blocs/css/front/{name}.css',
-    'view'              => 'novius_blocs::templates/{name}',
+    'css'               => 'static/apps/novius_blocks/css/front/{name}.css',
+    'view'              => 'novius_blocks::templates/{name}',
     'fields'            => array(
         'description',
         'link',

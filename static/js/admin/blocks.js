@@ -1,7 +1,7 @@
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
@@ -18,10 +18,10 @@ define(
         return function(uniqid) {
             var $container = $(this);
             // The radio which allows to select the template
-            var $template = $container.find('input[name="bloc_template"]');
+            var $template = $container.find('input[name="block_template"]');
             var init = false;
             var $wrapper_links = $container.find('.wrapper_links');
-            var $model_id = $container.find('input[name="bloc_model_id"]');
+            var $model_id = $container.find('input[name="block_model_id"]');
 
             // We identify all the expanders that contain optional fields
             var fieldsets = new Array();
@@ -40,18 +40,18 @@ define(
             });
 
             // We make the templates clickables
-            $container.find('.bloc_over_wrapper').each(function(e){
+            $container.find('.block_over_wrapper').each(function(e){
                 var $wrapper = $(this);
-                var $checkbox = $(this).find('input[name="bloc_template"]');
+                var $checkbox = $(this).find('input[name="block_template"]');
                 if ($checkbox.is(':checked')) {
                     $wrapper.addClass('on');
                 }
                 $wrapper.css('cursor', 'pointer').click(function(ev){
                     var $this = $(this);
-                    var $this_checkbox = $this.find('input[name="bloc_template"]');
+                    var $this_checkbox = $this.find('input[name="block_template"]');
                     if (!$this_checkbox.is(':checked')) {
-                        var $bloc_over_wrapper = $container.find('.bloc_over_wrapper');
-                        $bloc_over_wrapper.removeClass('on');
+                        var $block_over_wrapper = $container.find('.block_over_wrapper');
+                        $block_over_wrapper.removeClass('on');
                         $this_checkbox.prop('checked', true);
                         $wrapper.addClass('on');
                         display_expanders();
@@ -62,12 +62,12 @@ define(
 
             // We equilibrate the display of the template's preview
             var max_height = 0;
-            $container.find('.bloc_over_wrapper').each(function(){
+            $container.find('.block_over_wrapper').each(function(){
                 if ($(this).height() > max_height) {
                     max_height = $(this).height();
                 }
             });
-            $container.find('.bloc_over_wrapper').css('min-height', max_height);
+            $container.find('.block_over_wrapper').css('min-height', max_height);
 
             check_link();
             display_expanders();
@@ -81,7 +81,7 @@ define(
                 var model_id = $model_id.val();
                 var $wrapper_default = $wrapper_links.find('.link_default').find('tr').first();
                 var $wrapper_model = $wrapper_links.find('.link_model');
-                var model_key = $container.find('input[name="bloc_model"]').val();
+                var model_key = $container.find('input[name="block_model"]').val();
                 var $wrapper_assoc_model_choice = $container.find('.wrapper_assoc_model_choice');
                 var $wrapper_assoc_model_done = $container.find('.wrapper_assoc_model_done');
                 var $wrapper_autocompletion = $wrapper_assoc_model_done.next();
@@ -94,7 +94,7 @@ define(
                     $wrapper_autocompletion.hide();
                     // We search for the associated content
                     $nos.ajax({
-                        'url': 'admin/novius_blocs/bloc/crud/get_model_assoc_infos/' + model_key + '/' + model_id,
+                        'url': 'admin/novius_blocks/block/crud/get_model_assoc_infos/' + model_key + '/' + model_id,
                         'success' : function(vue) {
                             $wrapper_assoc_model_done.html(vue);
                             $wrapper_assoc_model_done.fadeIn();
@@ -106,7 +106,7 @@ define(
                                     return false;
                                 }
                                 $model_id.val('');
-                                $container.find('input[name="bloc_model"]').val('');
+                                $container.find('input[name="block_model"]').val('');
                                 $select_model.find('option').prop('selected', false);
                                 $first_option.prop('selected', 'selected');
                                 $wrapper_links.trigger('action_links');
@@ -136,7 +136,7 @@ define(
                         $('#' + name + uniqid).hide();
                     });
                     init = true;
-                var $template_selected = $('input[name="bloc_template"]:checked');
+                var $template_selected = $('input[name="block_template"]:checked');
                 var fields = explode('|', $template_selected.data('fields') || $template_selected.attr('data-fields') || '');
                 $.each(fieldsets, function(i,name){
                     if (in_array(name, fields)) {

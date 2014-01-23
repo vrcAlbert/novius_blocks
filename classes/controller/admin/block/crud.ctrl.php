@@ -1,18 +1,18 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
  */
 
-namespace Novius\Blocs;
+namespace Novius\Blocks;
 
 use Fuel\Core\Input;
 
-class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
+class Controller_Admin_Block_Crud extends \Nos\Controller_Admin_Crud
 {
     protected function init_item()
     {
@@ -26,7 +26,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
 
         // And we set them to the item if they're not empty
         if (!empty($title)) {
-            $this->item->bloc_title = $title;
+            $this->item->block_title = $title;
         }
         if (!empty($summary)) {
             $this->item->wysiwygs->description = nl2br($summary);
@@ -35,7 +35,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
             $this->item->{'medias->image->medil_media_id'} = $thumbnail;
         }
         if (!empty($absolute_url)) {
-            $this->item->bloc_link = str_replace(\Uri::base(), '', $absolute_url);
+            $this->item->block_link = str_replace(\Uri::base(), '', $absolute_url);
         }
     }
 
@@ -72,7 +72,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
         $model_key = \Input::get('model_key');
 
         // We load the config of the compatible models
-        $models = \Config::load('novius_blocs::model_compatibility', true);
+        $models = \Config::load('novius_blocks::model_compatibility', true);
         if (!isset($models[$model_key])) {
             return false;
         }
@@ -89,8 +89,8 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
      */
     public function action_form($id = null)
     {
-        $context = Input::get('context', $this->item->bloc_context);
-        $this->config['fields']['columns']['form']['options'] = \Arr::assoc_to_keyval(\Novius\Blocs\Model_Column::find('all', array('where' => array('blco_context' => $context))), 'blco_id', 'blco_title');
+        $context = Input::get('context', $this->item->block_context);
+        $this->config['fields']['columns']['form']['options'] = \Arr::assoc_to_keyval(\Novius\Blocks\Model_Column::find('all', array('where' => array('blco_context' => $context))), 'blco_id', 'blco_title');
         $this->item = $this->crud_item($id);
         $this->clone = clone $this->item;
         $this->is_new = $this->item->is_new();
@@ -120,10 +120,10 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
     public function action_autocomplete_model($config_key = 'no')
     {
         // We load the config of the compatible models
-        $models = \Config::load('novius_blocs::connection_model', true);
+        $models = \Config::load('novius_block::connection_model', true);
         $filter = \Fuel\Core\Input::post('search', '');
 
-        // We assure that the model is compatible with the blocs
+        // We assure that the model is compatible with the block
         if (!isset($models[$config_key])) {
             return \Response::json(array());
         }
@@ -164,7 +164,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
      */
     public function action_retrieve_model ($config_key, $model_id, $wrapper_dialog)
     {
-        $models = \Config::load('novius_blocs::connection_model', true);
+        $models = \Config::load('novius_blocks::connection_model', true);
         if (!isset($models[$config_key])) {
             return false;
         }
@@ -174,7 +174,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
             return false;
         }
 
-        return \View::forge('novius_blocs::admin/bloc/retrieve_model', array(
+        return \View::forge('novius_blocks::admin/block/retrieve_model', array(
             'item'              => $item,
             'config'            => $model_config,
             'wrapper_dialog'    => $wrapper_dialog,
@@ -189,7 +189,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
      */
     public function action_get_model_assoc_infos ($config_key, $model_id)
     {
-        $models = \Config::load('novius_blocs::connection_model', true);
+        $models = \Config::load('novius_blocks::connection_model', true);
         if (!isset($models[$config_key])) {
             return false;
         }
@@ -199,7 +199,7 @@ class Controller_Admin_Bloc_Crud extends \Nos\Controller_Admin_Crud
             return false;
         }
 
-        $return = \View::forge('novius_blocs::admin/bloc/model_assoc_infos', array(
+        $return = \View::forge('novius_blocks::admin/block/model_assoc_infos', array(
             'item'              => $item,
             'config'            => $model_config,
             'item_id'           => $model_id,

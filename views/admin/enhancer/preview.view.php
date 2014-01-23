@@ -1,34 +1,34 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
  */
 
 
-if (!count($blocs)) {
+if (!count($blocks)) {
     echo 'No block will be displayed';
     exit();
 }
 
 
-$templates_config = \Config::load('novius_blocs::templates', true);
+$templates_config = \Config::load('novius_blocks::templates', true);
 
 
 ?>
-<div class="blocs_wrapper blocs_wrapper_enhancer">
+<div class="blocks_wrapper blocks_wrapper_enhancer">
 <?php
-foreach ($blocs as $bloc) {
-    $name = $bloc->bloc_template;
+foreach ($blocks as $block) {
+    $name = $block->block_template;
     if (!$template_config = $templates_config[$name]) {
         continue;
     }
 
     $image = '';
-    $config = \Novius\Blocs\Model_Bloc::init_config($template_config, $name);
+    $config = \Novius\Blocks\Model_Block::init_config($template_config, $name);
     if ($config['css']) {
         ?>
         <link rel="stylesheet" href="<?= $config['css'] ?>" />
@@ -36,16 +36,16 @@ foreach ($blocs as $bloc) {
     }
 
     // Does a special admin CSS file exists
-    if (is_file(DOCROOT . 'static/css/blocs/admin/' . $name . '.preview.css')) {
+    if (is_file(DOCROOT . 'static/css/blocks/admin/' . $name . '.preview.css')) {
         ?>
-        <link rel="stylesheet" href="static/css/blocs/admin/<?= $name ?>.preview.css" />
+        <link rel="stylesheet" href="static/css/blocks/admin/<?= $name ?>.preview.css" />
     <?php
-    } else if (is_file(DOCROOT . 'static/css/blocs/admin/' . $name . '.css')) {
+    } else if (is_file(DOCROOT . 'static/css/blocks/admin/' . $name . '.css')) {
         ?>
-        <link rel="stylesheet" href="static/css/blocs/admin/<?= $name ?>.css" />
+        <link rel="stylesheet" href="static/css/blocks/admin/<?= $name ?>.css" />
     <?php
     }
-    echo \Novius\Blocs\Controller_Front_Bloc::get_bloc_view($bloc, $config, $name);
+    echo \Novius\Blocks\Controller_Front_Block::get_block_view($block, $config, $name);
 }
 ?>
 </div>

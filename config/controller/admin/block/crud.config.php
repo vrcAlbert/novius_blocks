@@ -1,8 +1,8 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
@@ -10,14 +10,14 @@
 
 return array(
     'model_compatibility' => array(
-        'view' => 'novius_blocs::admin/bloc/model_compatibility',
+        'view' => 'novius_blocks::admin/block/model_compatibility',
     ),
-    'controller_url'  => 'admin/novius_blocs/bloc/crud',
-    'model' => 'Novius\Blocs\Model_Bloc',
+    'controller_url'  => 'admin/novius_blocks/block/crud',
+    'model' => 'Novius\Blocks\Model_Block',
     'layout' => array(
         'large' => true,
         'save' => 'save',
-        'title' => 'bloc_title',
+        'title' => 'block_title',
         'content' => array(
             'template' => array(
                 'view' => 'nos::form/expander',
@@ -28,10 +28,10 @@ return array(
                         'allowExpand' => true,
                     ),
                     'content' => array(
-                        'view' => 'novius_blocs::admin/bloc/template',
+                        'view' => 'novius_blocks::admin/block/template',
                         'params' => array(
                             'fields' => array(
-                                'bloc_template',
+                                'block_template',
                             ),
                         ),
                     ),
@@ -77,7 +77,7 @@ return array(
             ),
             'link' => array(
 //                'view' => 'nos::form/expander',
-                'view' => 'novius_blocs::admin/bloc/link',
+                'view' => 'novius_blocks::admin/block/link',
                 'params' => array(
                     'title'   => __('Link'),
                     'nomargin' => true,
@@ -89,9 +89,9 @@ return array(
                         'view' => 'nos::form/fields',
                         'params' => array(
                             'fields' => array(
-                                'bloc_link',
-                                'bloc_link_title',
-                                'bloc_link_new_page',
+                                'block_link',
+                                'block_link_title',
+                                'block_link_new_page',
                             ),
                         ),
                     ),
@@ -111,17 +111,17 @@ return array(
                         ),
                         'connection_model' => array(
                             'title' =>  __('Link with a model'),
-                            'view' => 'novius_blocs::admin/bloc/connection_model',
+                            'view' => 'novius_blocks::admin/block/connection_model',
                             'fields' => array(
                                 'model_autocomplete',
-                                'bloc_model_id',
-                                'bloc_model',
+                                'block_model_id',
+                                'block_model',
                             ),
                         ),
                         'params' => array(
                             'title' => __('Configuration'),
                             'fields' => array(
-                                'bloc_class',
+                                'block_class',
                             ),
                         ),
                     ),
@@ -130,14 +130,14 @@ return array(
         ),
     ),
     'fields' => array(
-        'bloc_id' => array (
+        'block_id' => array (
             'label' => 'ID: ',
             'form' => array(
                 'type' => 'hidden',
             ),
             'dont_save' => true,
         ),
-        'bloc_title' => array(
+        'block_title' => array(
             'label' => __('Title'),
             'form' => array(
                 'type' => 'text',
@@ -159,24 +159,24 @@ return array(
                 'title' => __('Image'),
             ),
         ),
-        'bloc_template' => array(
+        'block_template' => array(
             'label' => '',
         ),
-        'bloc_link' => array(
+        'block_link' => array(
             'label' => 'Lien',
             'description' => '',
         ),
-        'bloc_link_title' => array(
+        'block_link_title' => array(
             'label' => 'Text of the link',
         ),
-        'bloc_link_new_page' => array(
+        'block_link_new_page' => array(
             'label' => 'Open in a new page',
             'form' => array(
                 'type' => 'checkbox',
                 'value' => 1,
             ),
         ),
-        'bloc_class' => array(
+        'block_class' => array(
             'label' => __('Class'),
             'form' => array(
                 'type' => 'text',
@@ -204,13 +204,13 @@ return array(
                 if (!empty($data['columns'])) {
                     foreach ($data['columns'] as $blco_id) {
                         if (ctype_digit($blco_id) ) {
-                            $item->columns[$blco_id] = \Novius\Blocs\Model_Column::find($blco_id);
+                            $item->columns[$blco_id] = \Novius\Blocks\Model_Column::find($blco_id);
                         }
                     }
                 }
             },
         ),
-        'bloc_model' => array(
+        'block_model' => array(
             'form' => array(
                 'type' => 'hidden',
             ),
@@ -221,7 +221,7 @@ return array(
             'form' => array(),
             'renderer_options' => array(
                 'data' => array(
-                    'data-autocomplete-url' => 'admin/novius_blocs/bloc/crud/autocomplete_model',
+                    'data-autocomplete-url' => 'admin/novius_blocks/block/crud/autocomplete_model',
                     'data-maj_url' => '1',
                     'data-autocomplete-callback' => 'click_model',
                 )
@@ -230,7 +230,7 @@ return array(
             },
             'dont_save' => true,
         ),
-        'bloc_model_id' => array(
+        'block_model_id' => array(
             'form' => array(
                 'type' => 'hidden',
             ),

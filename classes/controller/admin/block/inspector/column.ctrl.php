@@ -8,13 +8,8 @@
  * @link http://www.novius-os.org
  */
 
-return array(
-    'data_mapping' => array(
-        'blco_title' => array(
-            'title' => __('Columns'),
-        ),
-    ),
-    'controller' => 'column/crud',
-    'actions' => array(
-    ),
-);
+namespace Novius\Blocks;
+
+class Controller_Admin_Block_Inspector_Column extends \Nos\Controller_Inspector_Modeltree
+{
+}

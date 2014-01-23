@@ -1,25 +1,25 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
  */
 
-namespace Novius\Blocs;
+namespace Novius\Blocks;
 
 use Nos\Controller_Front_Application;
 
 use View;
 
-class Controller_Front_Bloc extends Controller_Front_Application
+class Controller_Front_Block extends Controller_Front_Application
 {
     public function action_main($args = array())
     {
         return \View::forge($this->config['views'][$args['display_type']], array(
-            'blocs'     => self::get_blocs($args),
+            'blocks'     => self::get_blocks($args),
         ), false);
     }
 
@@ -27,80 +27,80 @@ class Controller_Front_Bloc extends Controller_Front_Application
      * @param $args
      * @return array
      */
-    public static function get_blocs ($args)
+    public static function get_blocks ($args)
     {
-        $blocs = array();
+        $blocks = array();
         switch ($args['display_type']) {
-            case 'blocs' :
-                if (!empty($args['blocs_ids'])) {
-                    $blocs_tmp = Model_Bloc::find('all', array(
+            case 'blocks' :
+                if (!empty($args['blocks_ids'])) {
+                    $blocks_tmp = Model_Block::find('all', array(
                         'where' => array(
-                            array('bloc_id', 'in', $args['blocs_ids'])
+                            array('block_id', 'in', $args['blocks_ids'])
                         ),
                     ));
-                    $blocs = array();
-                    foreach ($args['blocs_ids'] as $id) {
-                        $blocs[$blocs_tmp[$id]->bloc_id] = $blocs_tmp[$id];
+                    $blocks = array();
+                    foreach ($args['blocks_ids'] as $id) {
+                        $blocks[$blocks_tmp[$id]->block_id] = $blocks_tmp[$id];
                     }
                 }
                 break;
             case 'column' :
                 if (!empty($args['blco_id'])) {
                     $column = Model_Column::find($args['blco_id']);
-                    $blocs_tmp = $column->blocs;
-                    if ($column->blco_blocs_ordre) {
-                        $ordre = unserialize($column->blco_blocs_ordre);
+                    $blocks_tmp = $column->blocks;
+                    if ($column->blco_blocks_ordre) {
+                        $ordre = unserialize($column->blco_blocks_ordre);
                         $ids = array();
-                        foreach ($blocs_tmp as $tmp_bloc) {
-                            $ids[$tmp_bloc->bloc_id] = $tmp_bloc->bloc_id;
+                        foreach ($blocks_tmp as $tmp_block) {
+                            $ids[$tmp_block->block_id] = $tmp_block->block_id;
                         }
-                        foreach ($ordre as $bloc_id) {
-                            if (in_array($bloc_id, $ids)) {
-                                $blocs[] = $blocs_tmp[$bloc_id];
-                                unset($ids[$bloc_id]);
+                        foreach ($ordre as $block_id) {
+                            if (in_array($block_id, $ids)) {
+                                $blocks[] = $blocks_tmp[$block_id];
+                                unset($ids[$block_id]);
                             }
                         }
                         if (count($ids)) {
-                            foreach ($ids as $bloc_id) {
-                                $blocs[] = $blocs_tmp[$bloc_id];
+                            foreach ($ids as $block_id) {
+                                $blocks[] = $blocks_tmp[$block_id];
                             }
                         }
                     }
                 }
                 break;
         }
-        return $blocs;
+        return $blocks;
     }
 
     /**
-     * @param Model_Bloc $bloc
+     * @param Model_Block $block
      * @param $config
      * @param $name
      * @return mixed
      */
-    public static function get_bloc_view (Model_Bloc $bloc, $config, $name)
+    public static function get_block_view (Model_Block $block, $config, $name)
     {
         $image = '';
-        if (!empty($bloc->medias->image)) {
+        if (!empty($block->medias->image)) {
             $image = str_replace(
                 array(
                     '{src}',
                     '{title}',
                 ),
                 array(
-                    $bloc->medias->image->get_public_path_resized($config['image_params']['width'], $config['image_params']['height']),
-                    $bloc->bloc_title,
+                    $block->medias->image->get_public_path_resized($config['image_params']['width'], $config['image_params']['height']),
+                    $block->block_title,
                 ),
                 $config['image_params']['tpl']
             );
         }
-        $description = \Nos\Nos::parse_wysiwyg($bloc->wysiwygs->description);
-        $title = $bloc->bloc_title;
-        $link = $bloc->get_url();
-        $link_title = $bloc->bloc_link_title;
+        $description = \Nos\Nos::parse_wysiwyg($block->wysiwygs->description);
+        $title = $block->block_title;
+        $link = $block->get_url();
+        $link_title = $block->block_link_title;
 
-        if ($bloc->bloc_class) {
-            $config['class'] .= ($config['class'] ? ' ' : '') . $bloc->bloc_class;
+        if ($block->block_class) {
+            $config['class'] .= ($config['class'] ? ' ' : '') . $block->block_class;
         }
 
         return str_replace(array(
@@ -125,9 +125,9 @@ class Controller_Front_Bloc extends Controller_Front_Application
             'title'         => $title,
             'link'          => $link,
             'link_title'    => $link_title,
-            'link_new_page' => $bloc->bloc_link_new_page,
+            'link_new_page' => $block->block_link_new_page,
             'image'         => $image,
-            'bloc'          => $bloc
+            'block'          => $block
         ), false));
     }
 }

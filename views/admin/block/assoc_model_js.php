@@ -1,8 +1,8 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
@@ -21,7 +21,7 @@
             var $wrapper_links = $form_global.find('.wrapper_links');
 
             $dialog = $select.nosDialog('open', {
-                contentUrl:  'admin/novius_blocs/bloc/crud/retrieve_model/' + model_config_key + '/' + model_id + '/<?= $config_select ?>',
+                contentUrl:  'admin/novius_blocks/block/crud/retrieve_model/' + model_config_key + '/' + model_id + '/<?= $config_select ?>',
                 title: 'Retrieve model',
                 ajax: true,
                 width: 600,
@@ -36,8 +36,8 @@
                     if (t_name == 'get_link') {
                         var model_id = $dialog.find('input[name="retrieve_model_id"]').val();
                         var model_name = $form_global.find('select[name="select_model"]').val();
-                        $form_global.find('input[name="bloc_model_id"]').val(model_id);
-                        $form_global.find('input[name="bloc_model"]').val(model_name);
+                        $form_global.find('input[name="block_model_id"]').val(model_id);
+                        $form_global.find('input[name="block_model"]').val(model_name);
                         $wrapper_links.trigger('action_links');
                     } else {
                         var $wrapper_value = $dialog.find('#' + t_id + '_value');
@@ -48,7 +48,7 @@
                                 tinyMCE.activeEditor.setContent(t_val);
                                 break;
                             default :
-                                var $elem = $form_global.find('[name="bloc_' + t_name + '"]');
+                                var $elem = $form_global.find('[name="block_' + t_name + '"]');
                                 if ($elem.length) {
                                     $elem.val(t_val);
                                 }

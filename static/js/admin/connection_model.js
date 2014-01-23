@@ -1,7 +1,7 @@
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
@@ -22,7 +22,7 @@ define(
             $select.change(function(){
                 var model_key = $(this).val();
                 if (model_key) {
-                    $input_autocomplete.data('autocomplete-url', 'admin/novius_blocs/bloc/crud/autocomplete_model/' + model_key);
+                    $input_autocomplete.data('autocomplete-url', 'admin/novius_blocks/block/crud/autocomplete_model/' + model_key);
                     var event = $nos.Event('update_autocomplete.renderer');
                     $input_autocomplete.trigger(event);
                 }

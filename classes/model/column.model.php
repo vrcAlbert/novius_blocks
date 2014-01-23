@@ -1,19 +1,19 @@
 <?php
 /**
- * Novius Blocs
+ * Novius Blocks
  *
- * @copyright  2013 Novius
+ * @copyright  2014 Novius
  * @license    GNU Affero General Public License v3 or (at your option) any later version
  *             http://www.gnu.org/licenses/agpl-3.0.html
  * @link http://www.novius-os.org
  */
 
-namespace Novius\Blocs;
+namespace Novius\Blocks;
 
 class Model_Column extends \Nos\Orm\Model
 {
     protected static $_primary_key = array('blco_id');
-    protected static $_table_name = 'blocs_columns';
+    protected static $_table_name = 'blocks_columns';
 
     protected static $_observers = array(
         'Orm\Observer_CreatedAt' => array(
@@ -43,15 +43,15 @@ class Model_Column extends \Nos\Orm\Model
     );
 
     protected static $_many_many = array(
-        'blocs' => array(
-            'table_through' => 'blocs_columns_liaison',
+        'blocks' => array(
+            'table_through' => 'blocks_columns_liaison',
             'key_from' => 'blco_id',
             'key_through_from' => 'blcl_blco_id',
-            'key_through_to' => 'blcl_bloc_id',
-            'key_to' => 'bloc_id',
+            'key_through_to' => 'blcl_block_id',
+            'key_to' => 'block_id',
             'cascade_save' => false,
             'cascade_delete' => false,
-            'model_to' => 'Novius\Blocs\Model_Bloc',
+            'model_to' => 'Novius\Blocks\Model_Block',
         ),
     );
 }
