@@ -1,17 +1,24 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
     $title_id = uniqid('search_title_');
     $titre_liste_id = uniqid('titre_liste_');
     $wrapper_liste_id = uniqid('wrapper_liste_');
 ?>
-<?= d($config_model); ?>
 <form action="#">
     <div>
-        <h1>Recherche d'un élément à synchroniser :</h1>
-        <h2><label for="<?= $title_id ?>">Par titre :</label></h2>
+        <h1>Search for an item to synchronize :</h1>
+        <h2><label for="<?= $title_id ?>">Title :</label></h2>
         <input type="text" name="search_title" value="" id="<?= $title_id ?>" />
-        <h2 id="<?= $titre_liste_id ?>">Derniers éléments ajoutés :</h2>
+        <h2 id="<?= $titre_liste_id ?>">Last elements added :</h2>
         <div id="<?= $wrapper_liste_id ?>">
-
         </div>
     </div>
 </form>

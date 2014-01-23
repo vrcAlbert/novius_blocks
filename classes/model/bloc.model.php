@@ -1,6 +1,14 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
 
-namespace Lib\Blocs;
+namespace Novius\Blocs;
 
 class Model_Bloc extends \Nos\Orm\Model
 {
@@ -39,30 +47,32 @@ class Model_Bloc extends \Nos\Orm\Model
     );
 
     protected static $_many_many = array(
-        'columns' => array( // key must be defined, relation will be loaded via $bloc->key
-            'table_through' => 'blocs_columns_liaison', // intermediary table must be defined
-            'key_from' => 'bloc_id', // Column on this model
-            'key_through_from' => 'blcl_bloc_id', // Column "from" on the intermediary table
-            'key_through_to' => 'blcl_blco_id', // Column "to" on the intermediary table
-            'key_to' => 'blco_id', // Column on the other model
+        'columns' => array(
+            'table_through' => 'blocs_columns_liaison',
+            'key_from' => 'bloc_id',
+            'key_through_from' => 'blcl_bloc_id',
+            'key_through_to' => 'blcl_blco_id',
+            'key_to' => 'blco_id',
             'cascade_save' => false,
             'cascade_delete' => false,
-            'model_to'       => 'Lib\Blocs\Model_Column', // Model to be defined
+            'model_to' => 'Novius\Blocs\Model_Column',
         ),
     );
 
     /**
+     * Return the link that goes with the block
      * @return mixed|\Nos\Orm\Model|null
      */
     public function get_url ()
     {
         if ($this->bloc_model_id && $this->bloc_model) {
-            $models = \Config::load('lib_blocs::connection_model', true);
+            $models = \Config::load('novius_blocs::connection_model', true);
             if (!isset($models[$this->bloc_model])) {
                 return $this->bloc_link;
             }
             $model_config = $models[$this->bloc_model];
             $class_name = $model_config['model'];
+            // If no model is associated, we just return the text link of the block
             if (!$item = $class_name::find($this->bloc_model_id)) {
                 return $this->bloc_link;
             }
@@ -80,23 +90,23 @@ class Model_Bloc extends \Nos\Orm\Model
     }
 
     /**
-     * Retourne la config pour un bloc en particulier
-     * dans cette fonction sont définis les paramètres par défaut
+     * Return the config of a particular bloc
+     * Default parameters are defined in this function
      * @param $config
      * @param $name
      * @return array
      */
     public static function init_config ($config, $name) {
-        $default_config = \Config::load('lib_blocs::template_default', true);
+        $default_config = \Config::load('novius_blocs::template_default', true);
         $default_config['view'] = str_replace('{name}', $name, $default_config['view']);
         $default_config['css'] = str_replace('{name}', $name, $default_config['css']);
 
-        //charge vue locale
-        if (is_file(APPPATH . 'views/lib_blocs/' . $name . '.view.php')) {
-            $default_config['view'] = 'local::/lib_blocs/' . $name;
+        // Loading of the local view
+        if (is_file(APPPATH . 'views/novius_blocs/' . $name . '.view.php')) {
+            $default_config['view'] = 'local::/novius_blocs/' . $name;
         }
 
-        //on vérifie si une feuille de style a été crée en local :
+        // We check if a local CSS file has been created
         if (is_file(DOCROOT . 'static/css/blocs/' . $name . '.css')) {
             $default_config['css'] = 'static/css/blocs/' . $name . '.css';
         }

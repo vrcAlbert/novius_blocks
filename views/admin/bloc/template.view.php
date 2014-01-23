@@ -1,11 +1,18 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
 
-//chargement de la config
-$templates_config = \Config::load('lib_blocs::templates', true);
+$templates_config = \Config::load('novius_blocs::templates', true);
 ?>
-<link rel="stylesheet" href="static/apps/lib_blocs/css/admin/template.css" />
+<link rel="stylesheet" href="static/apps/novius_blocs/css/admin/template.css" />
 <script type="text/javascript">
-    require(['jquery-nos', 'static/apps/lib_blocs/js/admin/blocs.js'], function ($, callback_fn) {
+    require(['jquery-nos', 'static/apps/novius_blocs/js/admin/blocs.js'], function ($, callback_fn) {
         $(function () {
             callback_fn.call($('#<?= $fieldset->form()->get_attribute('id') ?>'), '<?= uniqid('_this_blocs_'); ?>');
         });
@@ -15,16 +22,15 @@ $templates_config = \Config::load('lib_blocs::templates', true);
 <?php
 
 foreach ($templates_config as $name => $props) {
-    $props = \Lib\Blocs\Model_Bloc::init_config($props, $name);
-    $props['fields'][] = 'titre';   //titre obligatoire
+    $props = \Novius\Blocs\Model_Bloc::init_config($props, $name);
+    $props['fields'][] = 'titre';   // Mandatory title
 
-    //set des données transmises
-    $title = $item->bloc_title ? $item->bloc_title : 'Titre';
+    // We set the transmitted datas
+    $title = $item->bloc_title ? $item->bloc_title : 'Title';
     $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ipsum eros, euismod sagittis interdum non, pulvinar in tellus.';
-    //$item->wysiwygs->description ? $item->wysiwygs->description :
     $url = '#';
     $image = '';
-    $link_title = $item->bloc_link_title ? $item->bloc_link_title : 'Lien';
+    $link_title = $item->bloc_link_title ? $item->bloc_link_title : 'Link';
 
     if (isset($props['image_params'])) {
         $image = str_replace(
@@ -46,7 +52,7 @@ foreach ($templates_config as $name => $props) {
         $props['class'] .= ($props['class'] ? ' ' : '') . $item->bloc_class;
     }
 
-    //on charge la vue correspondante
+    // We load the corresponding view
     $view = \View::forge($props['view'], array(
         'config' => $props,
         'name' => $name,
@@ -82,7 +88,7 @@ foreach ($templates_config as $name => $props) {
         <?php
     }
 
-    //on vérifie si il existe une feuille de style spéciale pour l'admin
+    // We check if there is an existing CSS file for the administration
     if (is_file(DOCROOT . 'static/css/blocs/admin/' . $name . '.css')) {
         ?>
         <link rel="stylesheet" href="static/css/blocs/admin/<?= $name ?>.css" />
@@ -90,7 +96,7 @@ foreach ($templates_config as $name => $props) {
     }
 
     ?>
-    <div class="bloc_over_wrapper" style="<?= $props['background'] == 'transparent' ? 'background:url(static/apps/lib_blocs/img/transparent.png) repeat;' : 'background:'.$props['background'] ?>">
+    <div class="bloc_over_wrapper" style="<?= $props['background'] == 'transparent' ? 'background:url(static/apps/novius_blocs/img/transparent.png) repeat;' : 'background:'.$props['background'] ?>">
         <? if (!empty($props['title'])) { ?>
             <h3 class="bloc_title"><?= $props['title'] ?></h3>
         <? } ?>
@@ -103,6 +109,5 @@ foreach ($templates_config as $name => $props) {
     </div>
     <?php
 }
-
 ?>
 </div>

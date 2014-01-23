@@ -1,19 +1,27 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
     $wrapper_id = uniqid('wrapper_');
     $btn_ok = uniqid('btn_ok_');
 ?>
 <script type="text/javascript">
-    require(['jquery-nos', 'static/apps/lib_blocs/js/admin/retrieve_model.js'], function ($, callback_fn) {
+    require(['jquery-nos', 'static/apps/novius_blocs/js/admin/retrieve_model.js'], function ($, callback_fn) {
         $(function () {
             callback_fn.call($('#<?= $wrapper_id ?>'), '<?= $btn_ok ?>');
         });
     });
 </script>
 <div id="<?= $wrapper_id ?>">
-    <h1>Rappatrier les données d'un objet</h1>
+    <h1>Retrieve the datas of an item</h1>
     <input type="hidden" name="retrieve_model_id" value="<?= $item_id ?>" />
     <?php
-    //on va récupérer les différents champs disponibles
     foreach ($config['data_mapping'] as $key => $field) {
         $field = array_merge(array(
             'type' => 'text',
@@ -41,7 +49,7 @@
         <?php
     }
 
-    //on vérifie que le model est une méthode pour afficher une url :
+    // We check that the model has a method to display an url
     $url = null;
     if ($item::behaviours('Nos\Orm_Behaviour_Urlenhancer', false) !== false || method_exists($item, 'url')) {
         $url = $item->url();
@@ -52,7 +60,7 @@
         ?>
         <p>
             <input type="checkbox" name="get_link" id="<?= $t_id ?>" value="1" />
-            <label for="<?= $t_id ?>">Utiliser l'URL de l'objet</label>
+            <label for="<?= $t_id ?>">Use the url of an item</label>
         </p>
         <?php
     }
@@ -60,6 +68,6 @@
     <button id="<?= $btn_ok ?>"
             class="ui-button ui-state-default ui-corner-all ui-button-text-icon-primary">
         <span class="ui-button-icon-primary ui-icon ui-icon-play"></span>
-        <span class="ui-button-text">Valider</span>
+        <span class="ui-button-text">Save</span>
     </button>
 </div>

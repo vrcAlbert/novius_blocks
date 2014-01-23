@@ -1,11 +1,19 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
 
 return array(
     'model_compatibility' => array(
-        'view' => 'lib_blocs::admin/bloc/model_compatibility',
+        'view' => 'novius_blocs::admin/bloc/model_compatibility',
     ),
-    'controller_url'  => 'admin/lib_blocs/bloc/crud',
-    'model' => 'Lib\Blocs\Model_Bloc',
+    'controller_url'  => 'admin/novius_blocs/bloc/crud',
+    'model' => 'Novius\Blocs\Model_Bloc',
     'layout' => array(
         'large' => true,
         'save' => 'save',
@@ -20,7 +28,7 @@ return array(
                         'allowExpand' => true,
                     ),
                     'content' => array(
-                        'view' => 'lib_blocs::admin/bloc/template',
+                        'view' => 'novius_blocs::admin/bloc/template',
                         'params' => array(
                             'fields' => array(
                                 'bloc_template',
@@ -51,7 +59,7 @@ return array(
             'description' => array(
                 'view' => 'nos::form/expander',
                 'params' => array(
-                    'title'   => __('Contenu'),
+                    'title'   => __('Description'),
                     'nomargin' => true,
                     'options' => array(
                         'allowExpand' => true,
@@ -69,7 +77,7 @@ return array(
             ),
             'link' => array(
 //                'view' => 'nos::form/expander',
-                'view' => 'lib_blocs::admin/bloc/link',
+                'view' => 'novius_blocs::admin/bloc/link',
                 'params' => array(
                     'title'   => __('Link'),
                     'nomargin' => true,
@@ -102,8 +110,8 @@ return array(
                             ),
                         ),
                         'connection_model' => array(
-                            'title' =>  __('Liaison avec un objet'),
-                            'view' => 'lib_blocs::admin/bloc/connection_model',
+                            'title' =>  __('Link with a model'),
+                            'view' => 'novius_blocs::admin/bloc/connection_model',
                             'fields' => array(
                                 'model_autocomplete',
                                 'bloc_model_id',
@@ -159,10 +167,10 @@ return array(
             'description' => '',
         ),
         'bloc_link_title' => array(
-            'label' => 'Intitulé du lien',
+            'label' => 'Text of the link',
         ),
         'bloc_link_new_page' => array(
-            'label' => 'Ouvrir dans une nouvelle page',
+            'label' => 'Open in a new page',
             'form' => array(
                 'type' => 'checkbox',
                 'value' => 1,
@@ -175,7 +183,7 @@ return array(
             ),
         ),
         'columns' => array(
-            'renderer' => 'Lib\Renderers\Renderer_Multiselect',
+            'renderer' => 'Novius\Renderers\Renderer_Multiselect',
             'label' => __('Columns'),
             'form' => array(
                 'options' => array(),
@@ -191,12 +199,12 @@ return array(
                 }
             },
             'before_save' => function($item, $data) {
-                $item->columns;//fetch et 'cree' la relation
+                $item->columns;
                 unset($item->columns);
                 if (!empty($data['columns'])) {
                     foreach ($data['columns'] as $blco_id) {
                         if (ctype_digit($blco_id) ) {
-                            $item->columns[$blco_id] = \Lib\Blocs\Model_Column::find($blco_id);
+                            $item->columns[$blco_id] = \Novius\Blocs\Model_Column::find($blco_id);
                         }
                     }
                 }
@@ -208,25 +216,19 @@ return array(
             ),
         ),
         'model_autocomplete' => array(
-            'label' => __('Chercher l\'élément'),
-            'renderer' => '\Lib\Renderers\Renderer_Autocomplete',
+            'label' => __('Search the item'),
+            'renderer' => '\Novius\Renderers\Renderer_Autocomplete',
             'form' => array(),
             'renderer_options' => array(
                 'data' => array(
-                    'data-autocomplete-url' => 'admin/lib_blocs/bloc/crud/autocomplete_model',
+                    'data-autocomplete-url' => 'admin/novius_blocs/bloc/crud/autocomplete_model',
                     'data-maj_url' => '1',
                     'data-autocomplete-callback' => 'click_model',
                 )
             ),
             'populate' => function($item){
-//                if (!empty($item)) {
-//                    return $item->entite->annu_nom;
-//                }
             },
             'dont_save' => true,
-//            'validation' => array(
-//                'required',
-//            ),
         ),
         'bloc_model_id' => array(
             'form' => array(
@@ -238,38 +240,10 @@ return array(
             'form' => array(
                 'type' => 'submit',
                 'tag' => 'button',
-                // Note to translator: This is a submit button
                 'value' => __('Save'),
                 'class' => 'primary',
                 'data-icon' => 'check',
             ),
         ),
     )
-    /* UI texts sample
-    'messages' => array(
-        'successfully added' => __('Item successfully added.'),
-        'successfully saved' => __('Item successfully saved.'),
-        'successfully deleted' => __('Item has successfully been deleted!'),
-        'you are about to delete, confim' => __('You are about to delete item <span style="font-weight: bold;">":title"</span>. Are you sure you want to continue?'),
-        'you are about to delete' => __('You are about to delete item <span style="font-weight: bold;">":title"</span>.'),
-        'exists in multiple context' => __('This item exists in <strong>{count} contexts</strong>.'),
-        'delete in the following contexts' => __('Delete this item in the following contexts:'),
-        'item deleted' => __('This item has been deleted.'),
-        'not found' => __('Item not found'),
-        'error added in context' => __('This item cannot be added {context}.'),
-        'item inexistent in context yet' => __('This item has not been added in {context} yet.'),
-        'add an item in context' => __('Add a new item in {context}'),
-        'delete an item' => __('Delete a item'),
-    ),
-    */
-    /*
-    Tab configuration sample
-    'tab' => array(
-        'iconUrl' => 'static/apps/{{application_name}}/img/16/icon.png',
-        'labels' => array(
-            'insert' => __('Add a item'),
-            'blankSlate' => __('Translate a item'),
-        ),
-    ),
-    */
 );

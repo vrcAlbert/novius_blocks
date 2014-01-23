@@ -1,26 +1,35 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
 return array(
     'name'    => __('Blocs'),
     'version' => 'dev',
     'icons' => array(
-        64 => 'static/apps/lib_blocs/img/64-blocs.png',
-        32 => 'static/apps/lib_blocs/img/32-blocs.png',
-        16 => 'static/apps/lib_blocs/img/16-blocs.png',
+        64 => 'static/apps/novius_blocs/img/64-blocs.png',
+        32 => 'static/apps/novius_blocs/img/32-blocs.png',
+        16 => 'static/apps/novius_blocs/img/16-blocs.png',
     ),
     'permission' => array(
     ),
     'provider' => array(
         'name' => 'Novius',
     ),
-    'requires' => array('lib_renderers'),
-    'namespace' => 'Lib\Blocs',
+    'requires' => array('novius_renderers'),
+    'namespace' => 'Novius\Blocs',
     'launchers' => array(
-		'lib_blocs' => array(
+		'novius_blocs' => array(
             'name'    => 'Blocs',
             'action' => array(
                 'action' => 'nosTabs',
                 'tab' => array(
-                    'url' => 'admin/lib_blocs/bloc/appdesk',
+                    'url' => 'admin/novius_blocs/bloc/appdesk',
                 ),
             ),
         ),
@@ -30,10 +39,10 @@ return array(
             'title' => 'Blocs',
             'id' => 'blocs',
             'desc' => '',
-            'enhancer' => 'lib_blocs/front/bloc/main',
-            'previewUrl' => 'admin/lib_blocs/bloc/enhancer/preview',
+            'enhancer' => 'novius_blocs/front/bloc/main',
+            'previewUrl' => 'admin/novius_blocs/bloc/enhancer/preview',
             'dialog' => array(
-                'contentUrl' => 'admin/lib_blocs/bloc/enhancer/popup',
+                'contentUrl' => 'admin/novius_blocs/bloc/enhancer/popup',
                 'ajax' => true,
                 'width' => 500,
                 'height' => 300,
@@ -41,13 +50,13 @@ return array(
         ),
     ),
     'data_catchers' => array(
-        'lib_blocs' => array(
+        'novius_blocs' => array(
             'title' => 'Blocs',
-            'description'  => 'mettez cet élément en avant',
+            'description'  => 'Put forward this element',
             'action' => array(
                 'action' => 'nosTabs',
                 'tab' => array(
-                    'url' => 'admin/lib_blocs/bloc/crud/insert_update/?context={{context}}&title={{urlencode:'.\Nos\DataCatcher::TYPE_TITLE.'}}&summary={{urlencode:'.\Nos\DataCatcher::TYPE_TEXT.'}}&thumbnail={{urlencode:'.\Nos\DataCatcher::TYPE_IMAGE.'}}&absolute_url={{urlencode:absolute_url}}',
+                    'url' => 'admin/novius_blocs/bloc/crud/insert_update/?context={{context}}&title={{urlencode:'.\Nos\DataCatcher::TYPE_TITLE.'}}&summary={{urlencode:'.\Nos\DataCatcher::TYPE_TEXT.'}}&thumbnail={{urlencode:'.\Nos\DataCatcher::TYPE_IMAGE.'}}&absolute_url={{urlencode:absolute_url}}',
                     'label' => 'Bloc',
                 ),
             ),

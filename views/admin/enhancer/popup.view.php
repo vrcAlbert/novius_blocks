@@ -1,12 +1,21 @@
 <?php
-    $type_affichage     = uniqid('type_affichage_');
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
+    $display_type       = uniqid('display_type_');
     $blco_id            = \Input::get('blco_id', false);
     $blocs_ids          = \Input::get('blocs_ids', array());
     $context            = \Input::get('nosContext', false);
     $wrapper_columns    = uniqid('wrapper_colum_');
     $wrapper_blocs      = uniqid('wrapper_blocs_');
 
-    switch ($type_affichage) {
+    switch ($display_type) {
         case 'column' :
             $blocs_ids = array();
             break;
@@ -17,17 +26,17 @@
 ?>
 <script type="text/javascript">
     require(['jquery-nos'], function () {
-        var $select_type = $('#<?= $type_affichage ?>');
+        var $select_type = $('#<?= $display_type ?>');
         var $wrapper_column = $('#<?= $wrapper_columns ?>');
         var $wrapper_blocs = $('#<?= $wrapper_blocs ?>');
         var b_width = $wrapper_blocs.width();
 
         $select_type.change(function(){
-            affiche_select();
+            display_select();
         });
-        affiche_select();
+        display_select();
 
-        function affiche_select() {
+        function display_select() {
             var type = $select_type.val();
             switch (type) {
                 case 'column' :
@@ -55,19 +64,19 @@
     });
 </script>
 <h1><?= __('Display type'); ?></h1>
-<select name="type_affichage" id="<?= $type_affichage ?>">
-    <option value="column"<?= \Input::get('type_affichage') == 'column' ? ' selected' : '' ?>>Column</option>
-    <option value="blocs"<?= \Input::get('type_affichage') == 'blocs' ? ' selected' : '' ?>>Séléction de blocs</option>
+<select name="display_type" id="<?= $display_type ?>">
+    <option value="column"<?= \Input::get('display_type') == 'column' ? ' selected' : '' ?>>Column</option>
+    <option value="blocs"<?= \Input::get('display_type') == 'blocs' ? ' selected' : '' ?>>Blocks selection</option>
 </select>
 <br />&nbsp;
-<!-- Séléction de columns -->
+<!-- Columns selection -->
 <div id="<?= $wrapper_columns ?>" style="visibility: hidden; position: relative;">
     <?=
-    \Lib\Renderers\Renderer_Categories::renderer(array(
+    \Novius\Renderers\Renderer_Categories::renderer(array(
         'width'         => '250px',
         'height'        => '100px',
-        'namespace'     => 'Lib\Blocs',
-        'folder'        => 'lib_blocs',
+        'namespace'     => 'Novius\Blocs',
+        'folder'        => 'novius_blocs',
         'inspector_tree'=> 'bloc/inspector/column',
         'class'         => 'Model_Column',
         'multiple'      => false,
@@ -86,10 +95,10 @@
     ));
     ?>
 </div>
-<!-- Séléction de blocs -->
+<!-- Blocks selection -->
 <div id="<?= $wrapper_blocs ?>" style="visibility: hidden; position: relative;">
-    <?= \Lib\Renderers\Renderer_Multiselect::renderer(array(
-        'options'       => \Arr::assoc_to_keyval(\Lib\Blocs\Model_bloc::find('all', array('where' => array('bloc_context' => $context))), 'bloc_id', 'bloc_title'),
+    <?= \Novius\Renderers\Renderer_Multiselect::renderer(array(
+        'options'       => \Arr::assoc_to_keyval(\Novius\Blocs\Model_bloc::find('all', array('where' => array('bloc_context' => $context))), 'bloc_id', 'bloc_title'),
         'name'          => 'blocs_ids[]',
         'values'        => $blocs_ids,
         'order'         => true,

@@ -1,6 +1,14 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
 
-namespace Lib\Blocs;
+namespace Novius\Blocs;
 
 use Nos\Controller_Front_Application;
 
@@ -10,7 +18,7 @@ class Controller_Front_Bloc extends Controller_Front_Application
 {
     public function action_main($args = array())
     {
-        return \View::forge($this->config['views'][$args['type_affichage']], array(
+        return \View::forge($this->config['views'][$args['display_type']], array(
             'blocs'     => self::get_blocs($args),
         ), false);
     }
@@ -22,7 +30,7 @@ class Controller_Front_Bloc extends Controller_Front_Application
     public static function get_blocs ($args)
     {
         $blocs = array();
-        switch ($args['type_affichage']) {
+        switch ($args['display_type']) {
             case 'blocs' :
                 if (!empty($args['blocs_ids'])) {
                     $blocs_tmp = Model_Bloc::find('all', array(

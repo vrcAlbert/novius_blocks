@@ -1,21 +1,17 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
 return array(
-    'model' => 'Lib\Blocs\Model_Bloc',
+    'model' => 'Novius\Blocs\Model_Bloc',
     'search_text' => 'bloc_title',
     'inspectors' => array(
         'column',
     ),
-    /*
-    'query' => array(
-        'model' => '{{namespace}}\Model_Post',
-        'order_by' => array('post_created_at' => 'DESC'),
-        'limit' => 20,
-    ),
-    */
-//    'selectedView' => 'treeGrid',
-//    'appdesk' => array(
-//        'appdesk' => array(
-//            'defaultView' => 'treeGrid',
-//        ),
-//    ),
 );

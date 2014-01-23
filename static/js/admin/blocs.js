@@ -1,3 +1,12 @@
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
 define(
     [
         'jquery-nos-wysiwyg',
@@ -8,13 +17,13 @@ define(
         "use strict";
         return function(uniqid) {
             var $container = $(this);
-            //le radio qui permet de séléctionner le template
+            // The radio which allows to select the template
             var $template = $container.find('input[name="bloc_template"]');
             var init = false;
             var $wrapper_links = $container.find('.wrapper_links');
             var $model_id = $container.find('input[name="bloc_model_id"]');
 
-            //On va recenser tous les expanders qui contiennent des champs facultatifs
+            // We identify all the expanders that contain optional fields
             var fieldsets = new Array();
             var nb = 0;
 
@@ -24,14 +33,13 @@ define(
 
                 if ($options.fieldset) {
                     $(this).attr('id', $options.fieldset + uniqid);
-//                    $(this).css('visibility', 'hidden');
                     $(this).hide();
                     fieldsets[nb] = $options.fieldset;
                     nb++;
                 }
             });
 
-            //on rend cliquable les templates
+            // We make the templates clickables
             $container.find('.bloc_over_wrapper').each(function(e){
                 var $wrapper = $(this);
                 var $checkbox = $(this).find('input[name="bloc_template"]');
@@ -52,7 +60,7 @@ define(
                 });
             });
 
-            //on équilibre l'affichage des preview de template
+            // We equilibrate the display of the template's preview
             var max_height = 0;
             $container.find('.bloc_over_wrapper').each(function(){
                 if ($(this).height() > max_height) {
@@ -82,18 +90,17 @@ define(
 
                 if (model_id && model_key) {
                     $wrapper_default.hide();
-//                    $wrapper_assoc_model_choice.hide();
                     $wrapper_assoc_model_choice.css('visibility', 'hidden');
                     $wrapper_autocompletion.hide();
-                    //on recherche le contenu assoc
+                    // We search for the associated content
                     $nos.ajax({
-                        'url': 'admin/lib_blocs/bloc/crud/get_model_assoc_infos/' + model_key + '/' + model_id,
+                        'url': 'admin/novius_blocs/bloc/crud/get_model_assoc_infos/' + model_key + '/' + model_id,
                         'success' : function(vue) {
                             $wrapper_assoc_model_done.html(vue);
                             $wrapper_assoc_model_done.fadeIn();
                             $wrapper_model.html(vue);
                             $wrapper_model.fadeIn();
-                            //on active le js
+                            // We activate the js
                             $container.find('.delete_liaison_model').on('click', function(e){
                                 if (!confirm('Souhaitez vous supprimer cette relation ?')) {
                                     return false;
@@ -111,7 +118,6 @@ define(
 
                 } else {
                     $wrapper_assoc_model_choice.css('visibility', 'visible');
-//                    $wrapper_autocompletion.fadeIn();
                     $wrapper_default.fadeIn().nosOnShow();
 
                     $wrapper_model.html('');
@@ -122,17 +128,14 @@ define(
             }
 
             /**
-             * Permet d'afficher seulement les expanders qui nous intéressent
+             * Display only the required expanders
              */
             function display_expanders()
             {
-//                if (!init) {
                     $.each(fieldsets, function(i,name){
                         $('#' + name + uniqid).hide();
-//                        $('#' + name + uniqid).css('visibility', 'visible');
                     });
                     init = true;
-//                }
                 var $template_selected = $('input[name="bloc_template"]:checked');
                 var fields = explode('|', $template_selected.data('fields') || $template_selected.attr('data-fields') || '');
                 $.each(fieldsets, function(i,name){
@@ -151,6 +154,10 @@ define(
              */
             function explode (delimiter, string, limit)
             {
+                // From: http://phpjs.org/functions
+                // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+                // *     example 1: explode(' ', 'Kevin van Zonneveld');
+                // *     returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}
                 if ( arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined' ) return null;
                 if ( delimiter === '' || delimiter === false || delimiter === null) return false;
                 if ( typeof delimiter === 'function' || typeof delimiter === 'object' || typeof string === 'function' || typeof string === 'object'){
@@ -191,6 +198,21 @@ define(
              * @returns {boolean}
              */
             function in_array (needle, haystack, argStrict) {
+                // From: http://phpjs.org/functions
+                // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+                // +   improved by: vlado houba
+                // +   input by: Billy
+                // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+                // *     example 1: in_array('van', ['Kevin', 'van', 'Zonneveld']);
+                // *     returns 1: true
+                // *     example 2: in_array('vlado', {0: 'Kevin', vlado: 'van', 1: 'Zonneveld'});
+                // *     returns 2: false
+                // *     example 3: in_array(1, ['1', '2', '3']);
+                // *     returns 3: true
+                // *     example 3: in_array(1, ['1', '2', '3'], false);
+                // *     returns 3: true
+                // *     example 4: in_array(1, ['1', '2', '3'], true);
+                // *     returns 4: false
                 var key = '',
                     strict = !! argStrict;
 

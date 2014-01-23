@@ -1,4 +1,13 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
     $values = array();
     if ($item->blco_id && $item->blocs) {
         if($item->blco_blocs_ordre) {
@@ -25,8 +34,8 @@
         }
     }
 
-    echo \Lib\Renderers\Renderer_Multiselect::renderer(array(
-        'options'       => \Arr::assoc_to_keyval(\Lib\Blocs\Model_bloc::find('all', array('where' => array('bloc_context' => $item->blco_context))), 'bloc_id', 'bloc_title'),
+    echo \Novius\Renderers\Renderer_Multiselect::renderer(array(
+        'options'       => \Arr::assoc_to_keyval(\Novius\Blocs\Model_bloc::find('all', array('where' => array('bloc_context' => $item->blco_context))), 'bloc_id', 'bloc_title'),
         'name'          => 'blocs[]',
         'values'        => $values,
         'order'         => true,

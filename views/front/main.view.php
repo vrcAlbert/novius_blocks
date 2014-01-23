@@ -1,13 +1,22 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
 
-//pas de blocs ?
+
+// No blocks ?
 if (!count($blocs)) {
     echo '&nbsp;';
     return;
 }
 
-//chargement de la config des templates
-$templates_config = \Config::load('lib_blocs::templates', true);
+// Loading of the templates config
+$templates_config = \Config::load('novius_blocs::templates', true);
 
 ?>
 <div class="blocs_wrapper">
@@ -20,12 +29,12 @@ foreach ($blocs as $bloc) {
     }
 
     $image = '';
-    $config = \Lib\Blocs\Model_Bloc::init_config($template_config, $name);
+    $config = \Novius\Blocs\Model_Bloc::init_config($template_config, $name);
     if ($config['css']) {
         \Nos\Nos::main_controller()->addCss($config['css']);
     }
 
-    echo \Lib\Blocs\Controller_Front_Bloc::get_bloc_view($bloc, $config, $name);
+    echo \Novius\Blocs\Controller_Front_Bloc::get_bloc_view($bloc, $config, $name);
 }
 
 ?>

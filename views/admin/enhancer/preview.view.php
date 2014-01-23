@@ -1,12 +1,21 @@
 <?php
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
 
 if (!count($blocs)) {
-    echo 'Aucun bloc ne sera affiché';
+    echo 'No block will be displayed';
     exit();
 }
 
 
-$templates_config = \Config::load('lib_blocs::templates', true);
+$templates_config = \Config::load('novius_blocs::templates', true);
 
 
 ?>
@@ -19,14 +28,14 @@ foreach ($blocs as $bloc) {
     }
 
     $image = '';
-    $config = \Lib\Blocs\Model_Bloc::init_config($template_config, $name);
+    $config = \Novius\Blocs\Model_Bloc::init_config($template_config, $name);
     if ($config['css']) {
         ?>
         <link rel="stylesheet" href="<?= $config['css'] ?>" />
         <?php
     }
 
-    //on vérifie si il existe une feuille de style spéciale pour l'admin
+    // Does a special admin CSS file exists
     if (is_file(DOCROOT . 'static/css/blocs/admin/' . $name . '.preview.css')) {
         ?>
         <link rel="stylesheet" href="static/css/blocs/admin/<?= $name ?>.preview.css" />
@@ -36,7 +45,7 @@ foreach ($blocs as $bloc) {
         <link rel="stylesheet" href="static/css/blocs/admin/<?= $name ?>.css" />
     <?php
     }
-    echo \Lib\Blocs\Controller_Front_Bloc::get_bloc_view($bloc, $config, $name);
+    echo \Novius\Blocs\Controller_Front_Bloc::get_bloc_view($bloc, $config, $name);
 }
 ?>
 </div>

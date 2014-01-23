@@ -1,6 +1,14 @@
+/**
+ * Novius Blocs
+ *
+ * @copyright  2013 Novius
+ * @license    GNU Affero General Public License v3 or (at your option) any later version
+ *             http://www.gnu.org/licenses/agpl-3.0.html
+ * @link http://www.novius-os.org
+ */
+
 define(
     [
-//        'jquery-nos-wysiwyg',
         'jquery-nos'
     ],
     function($) {
@@ -14,16 +22,17 @@ define(
             $select.change(function(){
                 var model_key = $(this).val();
                 if (model_key) {
-                    $input_autocomplete.data('autocomplete-url', 'admin/lib_blocs/bloc/crud/autocomplete_model/' + model_key);
+                    $input_autocomplete.data('autocomplete-url', 'admin/novius_blocs/bloc/crud/autocomplete_model/' + model_key);
                     var event = $nos.Event('update_autocomplete.renderer');
                     $input_autocomplete.trigger(event);
                 }
-                verif_affiche_autocomplete();
+                check_display_autocomplete();
+                check_display_autocomplete();
             });
 
-            verif_affiche_autocomplete();
+            check_display_autocomplete();
 
-            function verif_affiche_autocomplete() {
+            function check_display_autocomplete() {
                 var model_key = $select.val();
                 if (model_key) {
                     $autocomplete_wrapper.show();
