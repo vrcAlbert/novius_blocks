@@ -47,16 +47,6 @@ class Model_Block extends \Nos\Orm\Model
             'data_type' => 'varchar',
             'null' => true,
         ),
-//        'block_context' => array(
-//            'default' => null,
-//            'data_type' => 'varchar',
-//            'null' => true,
-//        ),
-//        'block_context_common_id' => array(
-//            'default' => null,
-//            'data_type' => 'int unsigned',
-//            'null' => true,
-//        ),
         'block_model' => array(
             'default' => null,
             'data_type' => 'varchar',
