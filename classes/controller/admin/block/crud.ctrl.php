@@ -120,7 +120,7 @@ class Controller_Admin_Block_Crud extends \Nos\Controller_Admin_Crud
     public function action_autocomplete_model($config_key = 'no')
     {
         // We load the config of the compatible models
-        $models = \Config::load('novius_block::connection_model', true);
+        $models = \Config::load('novius_blocks::connection_model', true);
         $filter = \Fuel\Core\Input::post('search', '');
 
         // We assure that the model is compatible with the block

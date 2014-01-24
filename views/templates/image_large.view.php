@@ -12,16 +12,16 @@
 <div class="block_wrapper {name}">
     <h2><?= $title ?></h2>
     <?php if ($image) {
-        if ($url) {
-            echo '<a href="' . $url . '">';
+        if ($link) {
+            echo '<a href="' . $link . '">';
         }
             echo $image;
-        if ($url) {
+        if ($link) {
             echo '</a>';
         }
     }
-    if ($url) {
+    if ($link) {
     ?>
-    <a class="bottom" href="<?= $url ?>">{link_title}</a>
+    <a class="bottom" href="<?= $link ?>">{link_title}</a>
     <? } ?>
 </div>

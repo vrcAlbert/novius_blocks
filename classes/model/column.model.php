@@ -13,7 +13,30 @@ namespace Novius\Blocks;
 class Model_Column extends \Nos\Orm\Model
 {
     protected static $_primary_key = array('blco_id');
-    protected static $_table_name = 'blocks_columns';
+    protected static $_table_name = 'novius_blocks_columns';
+
+    protected static $_properties = array(
+        'blco_id' => array(
+            'default' => null,
+            'data_type' => 'int unsigned',
+            'null' => false,
+        ),
+        'blco_title' => array(
+            'default' => null,
+            'data_type' => 'varchar',
+            'null' => false,
+        ),
+        'blco_parent_id' => array(
+            'default' => null,
+            'data_type' => 'int unsigned',
+            'null' => true,
+        ),
+        'blco_blocks_ordre' => array(
+            'default' => null,
+            'data_type' => 'text',
+            'null' => true,
+        ),
+    );
 
     protected static $_observers = array(
         'Orm\Observer_CreatedAt' => array(
@@ -44,7 +67,7 @@ class Model_Column extends \Nos\Orm\Model
 
     protected static $_many_many = array(
         'blocks' => array(
-            'table_through' => 'blocks_columns_liaison',
+            'table_through' => 'novius_blocks_columns_liaison',
             'key_from' => 'blco_id',
             'key_through_from' => 'blcl_blco_id',
             'key_through_to' => 'blcl_block_id',

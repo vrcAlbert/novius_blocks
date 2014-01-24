@@ -14,7 +14,60 @@ class Model_Block extends \Nos\Orm\Model
 {
 
     protected static $_primary_key = array('block_id');
-    protected static $_table_name = 'blocks';
+    protected static $_table_name = 'novius_blocks';
+
+    protected static $_properties = array(
+        'block_id' => array(
+            'default' => null,
+            'data_type' => 'int unsigned',
+            'null' => false,
+        ),
+        'block_title' => array(
+            'default' => null,
+            'data_type' => 'varchar',
+            'null' => false,
+        ),
+        'block_template' => array(
+            'default' => null,
+            'data_type' => 'varchar',
+            'null' => true,
+        ),
+        'block_link_title' => array(
+            'default' => null,
+            'data_type' => 'varchar',
+            'null' => true,
+        ),
+        'block_link_new_page' => array(
+            'default' => null,
+            'data_type' => 'boolean',
+            'null' => true,
+        ),
+        'block_class' => array(
+            'default' => null,
+            'data_type' => 'varchar',
+            'null' => true,
+        ),
+//        'block_context' => array(
+//            'default' => null,
+//            'data_type' => 'varchar',
+//            'null' => true,
+//        ),
+//        'block_context_common_id' => array(
+//            'default' => null,
+//            'data_type' => 'int unsigned',
+//            'null' => true,
+//        ),
+        'block_model' => array(
+            'default' => null,
+            'data_type' => 'varchar',
+            'null' => true,
+        ),
+        'block_model_id' => array(
+            'default' => null,
+            'data_type' => 'int unsigned',
+            'null' => true,
+        ),
+    );
 
     protected static $_observers = array(
         'Orm\Observer_CreatedAt' => array(
@@ -48,7 +101,7 @@ class Model_Block extends \Nos\Orm\Model
 
     protected static $_many_many = array(
         'columns' => array(
-            'table_through' => 'blocks_columns_liaison',
+            'table_through' => 'novius_blocks_columns_liaison',
             'key_from' => 'block_id',
             'key_through_from' => 'blcl_block_id',
             'key_through_to' => 'blcl_blco_id',
