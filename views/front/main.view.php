@@ -33,7 +33,6 @@ foreach ($blocks as $block) {
     if ($config['css']) {
         \Nos\Nos::main_controller()->addCss($config['css']);
     }
-d($name);
     echo \Novius\Blocks\Controller_Front_Block::get_block_view($block, $config, $name);
 }
 
