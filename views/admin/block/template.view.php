@@ -28,7 +28,7 @@ foreach ($templates_config as $name => $props) {
     // We set the transmitted datas
     $title = $item->block_title ? $item->block_title : 'Title';
     $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ipsum eros, euismod sagittis interdum non, pulvinar in tellus.';
-    $url = '#';
+    $link = '#';
     $image = '';
     $link_title = $item->block_link_title ? $item->block_link_title : 'Link';
 
@@ -58,9 +58,10 @@ foreach ($templates_config as $name => $props) {
         'name' => $name,
         'title' => $title,
         'description' => $description,
-        'url' => $url,
+        'link' => $link,
         'image' => $image,
         'link_title' => $link_title,
+        'link_new_page' => $item->block_link_new_page,
         'block' => $item
     ), false);
 
@@ -76,7 +77,7 @@ foreach ($templates_config as $name => $props) {
         $title,
         $name,
         $description,
-        $url,
+        $link,
         $link_title,
         $image,
         $props['class'],

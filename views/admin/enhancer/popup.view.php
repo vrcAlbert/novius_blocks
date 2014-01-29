@@ -71,8 +71,8 @@
 <br />&nbsp;
 <!-- Columns selection -->
 <div id="<?= $wrapper_columns ?>" style="visibility: hidden; position: relative;">
-    <?=
-    \Novius\Renderers\Renderer_Categories::renderer(array(
+    <?php
+    $options_renderer_categories = array(
         'width'         => '250px',
         'height'        => '100px',
         'namespace'     => 'Novius\Blocks',
@@ -85,20 +85,32 @@
                 'dataKey'   => 'blco_title',
             ),
         ),
-        'treeOptions' => array(
-            'context' => $context,
-        ),
         'input_name'    => 'blco_id',
         'selected'      => array('id' => $blco_id),
         'label'         => 'Column',
         'reset_default_column' => true,
-    ));
+    );
+    if ($context) {
+        $options_renderer_categories['treeOptions'] = array(
+            'context' => $context,
+        );
+    }
+    ?>
+    <?=
+    \Novius\Renderers\Renderer_Categories::renderer($options_renderer_categories);
     ?>
 </div>
 <!-- Blocks selection -->
+<?php
+$where_blocs = array();
+if ($context) {
+    $where_blocs['bloc_context'] = $context;
+}
+$blocs = \Arr::assoc_to_keyval(\Lib\Blocs\Model_bloc::find('all', array('where' => $where_blocs)), 'bloc_id', 'bloc_title');
+?>
 <div id="<?= $wrapper_blocks ?>" style="visibility: hidden; position: relative;">
     <?= \Novius\Renderers\Renderer_Multiselect::renderer(array(
-        'options'       => \Arr::assoc_to_keyval(\Novius\Blocks\Model_block::find('all', array('where' => array('block_context' => $context))), 'block_id', 'block_title'),
+        'options'       => $blocs,
         'name'          => 'blocks_ids[]',
         'values'        => $blocks_ids,
         'order'         => true,

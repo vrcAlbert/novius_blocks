@@ -15,5 +15,5 @@
     <div class="content">
         {description}
     </div>
-    <a href="{link}" class="bottom"<?= link_new_page ? ' target="blank"' : '' ?>">{link_title}</a>
+    <a href="{link}" class="bottom"<?= $link_new_page ? ' target="blank"' : '' ?>">{link_title}</a>
 </div>

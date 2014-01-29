@@ -34,8 +34,13 @@
         }
     }
 
+    $where_options = array();
+    if ($item->blco_context) {
+        $where_options['bloc_context'] = $item->blco_context;
+    }
+    $options = \Arr::assoc_to_keyval(\Lib\Blocs\Model_bloc::find('all', array('where' => $where_options)), 'bloc_id', 'bloc_title');
     echo \Novius\Renderers\Renderer_Multiselect::renderer(array(
-        'options'       => \Arr::assoc_to_keyval(\Novius\Blocks\Model_block::find('all', array('where' => array('block_context' => $item->blco_context))), 'block_id', 'block_title'),
+        'options'       => $options,
         'name'          => 'blocks[]',
         'values'        => $values,
         'order'         => true,
