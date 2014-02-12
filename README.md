@@ -175,7 +175,7 @@ You don't have to specify these URLs in your config files, these are the default
 <p>Here is the list of the available variables :</p>
 <br>
 
-| Var               | Type          | Description                                                   | Available in template way {var]   |
+| Var               | Type          | Description                                                   | Available in template way {var}   |
  -------------------|---------------|---------------------------------------------------------------|-----------------------------------
 | title             | string        | The title of your block                                       | yes
 | name              | string        | name of the block (from your config)                          | yes
