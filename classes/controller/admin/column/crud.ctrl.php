@@ -17,7 +17,7 @@ class Controller_Admin_Column_Crud extends \Nos\Controller_Admin_Crud
     public function fields($fields)
     {
         $fields = parent::fields($fields);
-        $query = Model_Block::find();
+        $query = Model_Block::query();
         $results = $query->get();
         $fields['blocks']['form']['options'] = \Arr::assoc_to_keyval($results, 'block_id', 'block_title');
         return $fields;
