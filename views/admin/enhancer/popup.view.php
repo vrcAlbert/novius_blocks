@@ -102,11 +102,11 @@
 </div>
 <!-- Blocks selection -->
 <?php
-$where_blocs = array();
+$where_blocks = array();
 if ($context) {
-    $where_blocs['bloc_context'] = $context;
+    $where_blocks['block_context'] = $context;
 }
-$blocs = \Arr::assoc_to_keyval(\Lib\Blocs\Model_bloc::find('all', array('where' => $where_blocs)), 'bloc_id', 'bloc_title');
+$blocs = \Arr::assoc_to_keyval(\Novius\Blocks\Model_Block::find('all', array('where' => $where_blocks)), 'block_id', 'block_title');
 ?>
 <div id="<?= $wrapper_blocks ?>" style="visibility: hidden; position: relative;">
     <?= \Novius\Renderers\Renderer_Multiselect::renderer(array(
