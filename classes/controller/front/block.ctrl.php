@@ -50,6 +50,7 @@ class Controller_Front_Block extends Controller_Front_Application
                     $blocks_tmp = $column->blocks;
                     if ($column->blco_blocks_ordre) {
                         $ordre = unserialize($column->blco_blocks_ordre);
+                        if (!is_array($ordre)) $ordre = array();
                         $ids = array();
                         foreach ($blocks_tmp as $tmp_block) {
                             $ids[$tmp_block->block_id] = $tmp_block->block_id;
