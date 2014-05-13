@@ -69,7 +69,9 @@ class Model_Block extends \Nos\Orm\Model
             'events' => array('before_save'),
             'mysql_timestamp' => true,
             'property'=>'block_updated_at'
-        )
+        ),
+        'Orm\Observer_Self' => array(
+        ),
     );
 
     protected static $_behaviours = array(
@@ -159,5 +161,27 @@ class Model_Block extends \Nos\Orm\Model
         }
         return $retour_config;
     }
+
+    /**
+     * If a block is not set in the order field of its columns, it is set in the last position.
+     */
+    public function _event_after_save()
+    {
+
+        foreach ($this->columns as $column) {
+            if (!empty($column->blco_blocks_ordre)) {
+                $blocks_order = (array) unserialize($column->blco_blocks_ordre);
+            } else {
+                $blocks_order = array();
+            }
+            if (!in_array($this->get('id'), $blocks_order)) {
+                array_push($blocks_order, $this->get('id'));
+                $column->blco_blocks_ordre = serialize($blocks_order);
+                $column->save();
+            }
+        }
+
+    }
+
 
 }
