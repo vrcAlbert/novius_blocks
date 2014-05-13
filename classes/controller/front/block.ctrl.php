@@ -48,8 +48,8 @@ class Controller_Front_Block extends Controller_Front_Application
                 if (!empty($args['blco_id'])) {
                     $column = Model_Column::find($args['blco_id']);
                     $blocks_tmp = $column->blocks;
-                    if ($column->blco_blocks_ordre) {
-                        $ordre = unserialize($column->blco_blocks_ordre);
+                    if (!empty($column->blco_blocks_ordre)) {
+                        $ordre = (array) unserialize($column->blco_blocks_ordre);
                         $ids = array();
                         foreach ($blocks_tmp as $tmp_block) {
                             $ids[$tmp_block->block_id] = $tmp_block->block_id;
