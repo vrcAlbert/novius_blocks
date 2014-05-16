@@ -20,7 +20,7 @@
     });
 </script>
 <div class="wrapper_assoc_model_choice">
-    <label for="<?= $select_id ?>">Link with :</label>
+    <label for="<?= $select_id ?>"><?= __('Link with :'); ?></label>
     <input type="hidden" name="autocomplete_url" value="__" />
     <select id="<?= $select_id ?>" name="select_model">
         <option value=""></option>

@@ -163,14 +163,14 @@ return array(
             'label' => '',
         ),
         'block_link' => array(
-            'label' => 'Lien',
+            'label' => __('Link'),
             'description' => '',
         ),
         'block_link_title' => array(
-            'label' => 'Text of the link',
+            'label' => __('Text of the link'),
         ),
         'block_link_new_page' => array(
-            'label' => 'Open in a new page',
+            'label' => __('Open in a new page'),
             'form' => array(
                 'type' => 'checkbox',
                 'value' => 1,

@@ -10,7 +10,7 @@
 
 
 if (!count($blocks)) {
-    echo 'No block will be displayed';
+    echo __('No block will be displayed');
     exit();
 }
 

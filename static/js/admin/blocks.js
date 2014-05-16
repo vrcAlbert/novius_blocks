@@ -102,7 +102,7 @@ define(
                             $wrapper_model.fadeIn();
                             // We activate the js
                             $container.find('.delete_liaison_model').on('click', function(e){
-                                if (!confirm('Souhaitez vous supprimer cette relation ?')) {
+                                if (!confirm('Do you want to delete this relation ?')) {
                                     return false;
                                 }
                                 $model_id.val('');

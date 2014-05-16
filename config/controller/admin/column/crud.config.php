@@ -38,7 +38,7 @@ return array(
     ),
     'fields' => array(
         'blco_id' => array (
-            'label' => 'ID: ',
+            'label' => __('ID: '),
             'form' => array(
                 'type' => 'hidden',
             ),

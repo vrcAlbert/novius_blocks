@@ -65,8 +65,8 @@
 </script>
 <h1><?= __('Display type'); ?></h1>
 <select name="display_type" id="<?= $display_type ?>">
-    <option value="column"<?= \Input::get('display_type') == 'column' ? ' selected' : '' ?>>Column</option>
-    <option value="blocks"<?= \Input::get('display_type') == 'blocks' ? ' selected' : '' ?>>Blocks selection</option>
+    <option value="column"<?= \Input::get('display_type') == 'column' ? ' selected' : '' ?>><?= __('Column'); ?></option>
+    <option value="blocks"<?= \Input::get('display_type') == 'blocks' ? ' selected' : '' ?>><?= __('Blocks selection'); ?></option>
 </select>
 <br />&nbsp;
 <!-- Columns selection -->
@@ -87,7 +87,7 @@
         ),
         'input_name'    => 'blco_id',
         'selected'      => array('id' => $blco_id),
-        'label'         => 'Column',
+        'label'         => __('Column'),
         'reset_default_column' => true,
     );
     if ($context) {

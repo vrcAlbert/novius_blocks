@@ -25,7 +25,7 @@ return array(
     'namespace' => 'Novius\Blocks',
     'launchers' => array(
 		'novius_blocks' => array(
-            'name'    => 'Blocks',
+            'name'    => __('Blocks'),
             'action' => array(
                 'action' => 'nosTabs',
                 'tab' => array(
@@ -36,7 +36,7 @@ return array(
     ),
     'enhancers' => array(
         'blocks' => array(
-            'title' => 'Blocks',
+            'title' => __('Blocks'),
             'id' => 'blocks',
             'desc' => '',
             'enhancer' => 'novius_blocks/front/block/main',
@@ -51,13 +51,13 @@ return array(
     ),
     'data_catchers' => array(
         'novius_blocks' => array(
-            'title' => 'Blocks',
-            'description'  => 'Put forward this element',
+            'title' => __('Blocks'),
+            'description'  => __('Put forward this element'),
             'action' => array(
                 'action' => 'nosTabs',
                 'tab' => array(
                     'url' => 'admin/novius_blocks/block/crud/insert_update/?context={{context}}&title={{urlencode:'.\Nos\DataCatcher::TYPE_TITLE.'}}&summary={{urlencode:'.\Nos\DataCatcher::TYPE_TEXT.'}}&thumbnail={{urlencode:'.\Nos\DataCatcher::TYPE_IMAGE.'}}&absolute_url={{urlencode:absolute_url}}',
-                    'label' => 'Block',
+                    'label' => __('Block'),
                 ),
             ),
             'onDemand' => true,

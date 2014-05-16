@@ -14,10 +14,10 @@
 ?>
 <form action="#">
     <div>
-        <h1>Search for an item to synchronize :</h1>
-        <h2><label for="<?= $title_id ?>">Title :</label></h2>
+        <h1><?= __('Search for an item to synchronize :'); ?></h1>
+        <h2><label for="<?= $title_id ?>"><?= __('Title :'); ?></label></h2>
         <input type="text" name="search_title" value="" id="<?= $title_id ?>" />
-        <h2 id="<?= $titre_liste_id ?>">Last elements added :</h2>
+        <h2 id="<?= $titre_liste_id ?>"><?= __('Last elements added :'); ?></h2>
         <div id="<?= $wrapper_liste_id ?>">
         </div>
     </div>

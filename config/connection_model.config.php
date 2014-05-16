@@ -11,7 +11,7 @@
 return array(
     'pages' => array(
         'model'                         => 'Nos\Page\Model_Page',
-        'label'                         => 'A page',
+        'label'                         => __('A page'),
         'search_autocomplete_fields'    => array(
             'page_title',
         ),
@@ -21,11 +21,11 @@ return array(
         'data_mapping'                  => array(
             'title'                     => array(
                 'field' => 'page_title',
-                'label' => 'Title',
+                'label' => __('Title'),
             ),
             'description'               => array(
                 'field' => 'content',
-                'label' => 'Description',
+                'label' => __('Description'),
                 'type'  => 'wysiwyg',
             ),
         ),

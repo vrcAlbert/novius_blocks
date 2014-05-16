@@ -19,7 +19,7 @@
     });
 </script>
 <div id="<?= $wrapper_id ?>">
-    <h1>Retrieve the datas of an item</h1>
+    <h1><?= __('Retrieve the datas of an item'); ?></h1>
     <input type="hidden" name="retrieve_model_id" value="<?= $item_id ?>" />
     <?php
     foreach ($config['data_mapping'] as $key => $field) {
@@ -60,7 +60,7 @@
         ?>
         <p>
             <input type="checkbox" name="get_link" id="<?= $t_id ?>" value="1" />
-            <label for="<?= $t_id ?>">Use the url of an item</label>
+            <label for="<?= $t_id ?>"><?= __('Use the url of an item'); ?></label>
         </p>
         <?php
     }
@@ -68,6 +68,6 @@
     <button id="<?= $btn_ok ?>"
             class="ui-button ui-state-default ui-corner-all ui-button-text-icon-primary">
         <span class="ui-button-icon-primary ui-icon ui-icon-play"></span>
-        <span class="ui-button-text">Save</span>
+        <span class="ui-button-text"><?= __('Save'); ?></span>
     </button>
 </div>

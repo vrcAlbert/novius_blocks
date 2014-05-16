@@ -26,11 +26,11 @@ foreach ($templates_config as $name => $props) {
     $props['fields'][] = 'titre';   // Mandatory title
 
     // We set the transmitted datas
-    $title = $item->block_title ? $item->block_title : 'Title';
+    $title = $item->block_title ? $item->block_title : __('Title');
     $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ipsum eros, euismod sagittis interdum non, pulvinar in tellus.';
     $link = '#';
     $image = '';
-    $link_title = $item->block_link_title ? $item->block_link_title : 'Link';
+    $link_title = $item->block_link_title ? $item->block_link_title : __('Link');
 
     if (isset($props['image_params'])) {
         $image = str_replace(
