@@ -1,0 +1,149 @@
+#: config/controller/admin/column/crud.config.php:22
+#: config/controller/admin/column/crud.config.php:67
+#: config/metadata.config.php:12
+#: config/metadata.config.php:28
+#: config/metadata.config.php:39
+#: config/metadata.config.php:54
+msgid "Blocks"
+msgstr ""
+
+#: config/controller/admin/column/crud.config.php:41
+msgid "ID: "
+msgstr ""
+
+#. Mandatory title
+#. We set the transmitted datas
+#: config/controller/admin/column/crud.config.php:48
+#: config/controller/admin/block/crud.config.php:141
+#: config/connection_model.config.php:24
+#: config/common/block.config.php:15
+#: views/admin/block/template.view.php:29
+msgid "Title"
+msgstr ""
+
+#: config/controller/admin/column/crud.config.php:89
+#: config/controller/admin/block/crud.config.php:243
+#: views/admin/block/retrieve_model.view.php:71
+msgid "Save"
+msgstr ""
+
+#: config/controller/admin/block/inspector/column.config.php:28
+#: config/controller/admin/block/crud.config.php:107
+#: config/controller/admin/block/crud.config.php:187
+#: config/common/column.config.php:14
+msgid "Columns"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:25
+msgid "Template"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:43
+#: config/controller/admin/block/crud.config.php:159
+msgid "Image"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:62
+#: config/controller/admin/block/crud.config.php:148
+#: config/connection_model.config.php:28
+msgid "Description"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:82
+#: config/controller/admin/block/crud.config.php:166
+#: views/admin/block/template.view.php:33
+msgid "Link"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:113
+msgid "Link with a model"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:122
+msgid "Configuration"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:170
+msgid "Text of the link"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:173
+msgid "Open in a new page"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:180
+msgid "Class"
+msgstr ""
+
+#: config/controller/admin/block/crud.config.php:219
+msgid "Search the item"
+msgstr ""
+
+#: config/connection_model.config.php:14
+msgid "A page"
+msgstr ""
+
+#: config/metadata.config.php:55
+msgid "Put forward this element"
+msgstr ""
+
+#: config/metadata.config.php:60
+msgid "Block"
+msgstr ""
+
+#: classes/controller/admin/block/enhancer.ctrl.php:27
+msgid "I’m an application. Give me a name!"
+msgstr ""
+
+#: views/admin/enhancer/popup.view.php:66
+msgid "Display type"
+msgstr ""
+
+#: views/admin/enhancer/popup.view.php:68
+#: views/admin/enhancer/popup.view.php:90
+msgid "Column"
+msgstr ""
+
+#: views/admin/enhancer/popup.view.php:69
+msgid "Blocks selection"
+msgstr ""
+
+#: views/admin/enhancer/preview.view.php:12
+msgid "No block will be displayed"
+msgstr ""
+
+#: views/admin/block/retrieve_model.view.php:22
+msgid "Retrieve the datas of an item"
+msgstr ""
+
+#: views/admin/block/retrieve_model.view.php:63
+msgid "Use the url of an item"
+msgstr ""
+
+#: views/admin/block/model_compatibility.view.php:17
+msgid "Search for an item to synchronize :"
+msgstr ""
+
+#: views/admin/block/model_compatibility.view.php:18
+msgid "Title :"
+msgstr ""
+
+#: views/admin/block/model_compatibility.view.php:20
+msgid "Last elements added :"
+msgstr ""
+
+#: views/admin/block/connection_model.view.php:23
+msgid "Link with :"
+msgstr ""
+
+#: views/admin/block/model_assoc_infos.view.php:12
+msgid "This block is linked to an item "
+msgstr ""
+
+#: views/admin/block/model_assoc_infos.view.php:14
+msgid "Title of the item :"
+msgstr ""
+
+#: views/admin/block/model_assoc_infos.view.php:19
+msgid "Delete this link"
+msgstr ""
