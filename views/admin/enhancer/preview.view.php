@@ -19,6 +19,11 @@ $templates_config = \Config::load('novius_blocks::templates', true);
 
 
 ?>
+<style type="text/css">
+    .blocs_wrapper .bloc_wrapper {
+        margin: 20px 0 0 0;
+    }
+</style>
 <div class="blocks_wrapper blocks_wrapper_enhancer">
 <?php
 foreach ($blocks as $block) {
