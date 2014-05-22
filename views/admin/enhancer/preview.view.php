@@ -20,7 +20,7 @@ $templates_config = \Config::load('novius_blocks::templates', true);
 
 ?>
 <style type="text/css">
-    .blocs_wrapper .bloc_wrapper {
+    .blocks_wrapper .block_wrapper {
         margin: 20px 0 0 0;
     }
 </style>
