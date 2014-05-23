@@ -10,16 +10,32 @@
 
 namespace Novius\Blocks;
 
-use Nos\Controller_Front_Application;
-
-use View;
-
-class Controller_Front_Block extends Controller_Front_Application
+class Controller_Front_Block extends \Nos\Controller_Front_Application
 {
     public function action_main($args = array())
     {
-        return \View::forge($this->config['views'][$args['display_type']], array(
+        // Get the available displays
+        $displays = \Config::load('novius_blocks::displays', true);
+        if (empty($displays)) {
+            return false;
+        }
+
+        // Get the selected display
+        $display = \Arr::get($displays, \Arr::get($args, 'display', 'default'));
+        if (empty($display)) {
+            return false;
+        }
+
+        // Generate the blocks in the selected display
+        $blocks = \View::forge(\Arr::get($display, 'view'), array(
+            'enhancer_args' => $args,
             'blocks'     => self::get_blocks($args),
+        ), false);
+
+        // Return the blocks wrapped in the selected display type
+        return \View::forge($this->config['views'][$args['display_type']], array(
+            'enhancer_args' => $args,
+            'blocks' => $blocks,
         ), false);
     }
 
@@ -27,7 +43,7 @@ class Controller_Front_Block extends Controller_Front_Application
      * @param $args
      * @return array
      */
-    public static function get_blocks ($args)
+    public static function get_blocks($args)
     {
         $blocks = array();
         switch ($args['display_type']) {
@@ -73,12 +89,42 @@ class Controller_Front_Block extends Controller_Front_Application
     }
 
     /**
+     * Display a block
+     *
+     * @param $block
+     * @return bool|mixed
+     */
+    public static function display_block($block)
+    {
+        if (empty($block)) {
+            return false;
+        }
+
+        // Get the template configuration
+        $templates_config = \Config::load('novius_blocks::templates', true);
+        $template_config = \Arr::get($templates_config, $block->block_template);
+        if (empty($template_config)) {
+            return false;
+        }
+
+        // Get the block configuration
+        $config = Model_Block::init_config($template_config, $block->block_template);
+
+        // Append the custom stylesheet
+        if ($config['css']) {
+            \Nos\Nos::main_controller()->addCss($config['css']);
+        }
+
+        return static::get_block_view($block, $config, $block->block_template);
+    }
+
+    /**
      * @param Model_Block $block
      * @param $config
      * @param $name
      * @return mixed
      */
-    public static function get_block_view (Model_Block $block, $config, $name)
+    public static function get_block_view(Model_Block $block, $config, $name)
     {
         $image = '';
         if (!empty($block->medias->image)) {

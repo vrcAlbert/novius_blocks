@@ -44,8 +44,8 @@ return array(
             'dialog' => array(
                 'contentUrl' => 'admin/novius_blocks/block/enhancer/popup',
                 'ajax' => true,
-                'width' => 500,
-                'height' => 300,
+                'width' => 700,
+                'height' => 500,
             ),
         ),
     ),

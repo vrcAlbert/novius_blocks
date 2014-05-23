@@ -8,33 +8,13 @@
  * @link http://www.novius-os.org
  */
 
-
-// No blocks ?
-if (!count($blocks)) {
+// Nothing to display
+if (empty($blocks)) {
     echo '&nbsp;';
-    return;
+    return ;
 }
-
-// Loading of the templates config
-$templates_config = \Config::load('novius_blocks::templates', true);
 
 ?>
 <div class="blocks_wrapper">
-<?php
-
-foreach ($blocks as $block) {
-    $name = $block->block_template;
-    if (!$template_config = $templates_config[$name]) {
-        continue;
-    }
-
-    $image = '';
-    $config = \Novius\Blocks\Model_Block::init_config($template_config, $name);
-    if ($config['css']) {
-        \Nos\Nos::main_controller()->addCss($config['css']);
-    }
-    echo \Novius\Blocks\Controller_Front_Block::get_block_view($block, $config, $name);
-}
-
-?>
+    <?= $blocks ?>
 </div>
