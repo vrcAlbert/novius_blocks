@@ -19,12 +19,13 @@ $templates_config = \Config::load('novius_blocks::templates', true);
 
 
 ?>
-<style type="text/css">
-    .blocks_wrapper .block_wrapper {
-        margin: 20px 0 0 0;
-    }
-</style>
-<div class="blocks_wrapper blocks_wrapper_enhancer">
+<div>
+    <style type="text/css">
+        .blocks_wrapper .block_wrapper {
+            margin: 20px 0 0 0;
+        }
+    </style>
+    <div class="blocks_wrapper blocks_wrapper_enhancer">
 <?php
 foreach ($blocks as $block) {
     $name = $block->block_template;
@@ -53,4 +54,5 @@ foreach ($blocks as $block) {
     echo \Novius\Blocks\Controller_Front_Block::get_block_view($block, $config, $name);
 }
 ?>
+    </div>
 </div>
