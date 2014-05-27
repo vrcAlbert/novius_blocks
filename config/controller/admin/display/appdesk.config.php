@@ -9,12 +9,5 @@
  */
 
 return array(
-    'data_mapping' => array(
-        'blod_title' => array(
-            'title' => __('Displays'),
-        ),
-    ),
-    'controller' => 'display/crud',
-    'actions' => array(
-    ),
+    'model' => 'Novius\Blocks\Model_Display',
 );

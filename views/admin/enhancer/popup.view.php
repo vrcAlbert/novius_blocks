@@ -16,9 +16,11 @@ $display_type_id = uniqid('display_type_');
 $display_type = \Input::get('display_type', false);
 
 // Display
-$displays = \Config::load('novius_blocks::displays', true);
+
+$displays = \Novius\Blocks\Display::available();
 $display_id = uniqid('display_');
 $display = \Input::get('display', false);
+
 
 // Initialize block or block list
 $blco_id            = \Input::get('blco_id', false);
@@ -38,6 +40,7 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
 ?>
 
 <div>
+
     <fieldset>
         <h1><?= __('Display type'); ?></h1>
         <select name="display_type" id="<?= $display_type ?>">
@@ -73,9 +76,7 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
                     'context' => $context,
                 );
             }
-            ?>
-            <?=
-            \Novius\Renderers\Renderer_Categories::renderer($options_renderer_categories);
+            echo \Novius\Renderers\Renderer_Categories::renderer($options_renderer_categories);
             ?>
         </div>
     </fieldset>
@@ -87,13 +88,13 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
         if ($context) {
             $where_blocks['block_context'] = $context;
         }
-        $blocs = \Arr::assoc_to_keyval(\Novius\Blocks\Model_Block::find('all', array('where' => $where_blocks)), 'block_id', 'block_title');
+        $blocks = \Arr::assoc_to_keyval(\Novius\Blocks\Model_Block::find('all', array('where' => $where_blocks)), 'block_id', 'block_title');
         ?>
         <div id="<?= $wrapper_blocks ?>" style="visibility: hidden; position: relative;">
             <?= \Novius\Renderers\Renderer_Multiselect::renderer(array(
-                'options'       => $blocs,
+                'options'       => array(),
                 'name'          => 'blocks_ids[]',
-                'values'        => $blocks_ids,
+                'values'        => array(),
                 'order'         => true,
                 'renderer_options' => array(
                     'sortable' => true,
@@ -112,10 +113,16 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
     <fieldset>
         <h1><?= __('Display') ?></h1>
         <select name="display" id="<?= $display_id ?>">
-            <?php foreach ($displays as $id => $props) { ?>
-                <option value="<?= $id ?>"<?= $id == $display ? ' selected="selected"' : '' ?>><?= \Arr::get($props, 'title') ?></option>
+            <?php foreach (\Arr::get($displays, 'views') as $id => $props) { ?>
+            <option value="<?= $id ?>"<?= $id == $display ? ' selected="selected"' : '' ?>><?= \Arr::get($props, 'title') ?></option>
             <?php } ?>
+            <optgroup label="Personnalisés">
+                <?php foreach (\Arr::get($displays, 'model') as $id => $props) { ?>
+                    <option value="<?= $id ?>"<?= $id == $display ? ' selected="selected"' : '' ?>><?= \Arr::get($props, 'title') ?></option>
+                <?php } ?>
+            </optgroup>
         </select>
+
     </fieldset>
     <?php } ?>
 

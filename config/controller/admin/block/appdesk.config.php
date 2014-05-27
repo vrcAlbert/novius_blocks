@@ -13,5 +13,6 @@ return array(
     'search_text' => 'block_title',
     'inspectors' => array(
         'column',
+        'display',
     ),
 );

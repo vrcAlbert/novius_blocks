@@ -8,13 +8,8 @@
  * @link http://www.novius-os.org
  */
 
-return array(
-    'data_mapping' => array(
-        'blod_title' => array(
-            'title' => __('Displays'),
-        ),
-    ),
-    'controller' => 'display/crud',
-    'actions' => array(
-    ),
-);
+namespace Novius\Blocks;
+
+class Controller_Admin_Block_Inspector_Display extends \Nos\Controller_Inspector_Model
+{
+}
