@@ -16,38 +16,42 @@ if (!count($blocks)) {
 $templates_config = \Config::load('novius_blocks::templates', true);
 
 ?>
-<div class="blocks_wrapper blocks_wrapper_enhancer">
+<div>
     <style type="text/css">
     .blocks_wrapper .block_wrapper {
         margin: 20px 0 0 0;
     }
     </style>
-    <?php
-    foreach ($blocks as $block) {
-        $name = $block->block_template;
-        if (!$template_config = $templates_config[$name]) {
-            continue;
-        }
-
-        $image = '';
-        $config = \Novius\Blocks\Model_Block::init_config($template_config, $name);
-        if ($config['css']) {
-            ?>
-            <link rel="stylesheet" href="<?= $config['css'] ?>" />
-            <?php
-        }
-
-        // Does a special admin CSS file exists
-        if (is_file(DOCROOT . 'static/css/blocks/admin/' . $name . '.preview.css')) {
-            ?>
-            <link rel="stylesheet" href="static/css/blocks/admin/<?= $name ?>.preview.css" />
+    <div class="blocks_wrapper blocks_wrapper_enhancer">
         <?php
-        } else if (is_file(DOCROOT . 'static/css/blocks/admin/' . $name . '.css')) {
-            ?>
-            <link rel="stylesheet" href="static/css/blocks/admin/<?= $name ?>.css" />
-        <?php
+        foreach ($blocks as $block) {
+            $name = $block->block_template;
+            if (!$template_config = $templates_config[$name]) {
+                continue;
+            }
+
+            // Custom block stylesheet
+            $config = \Novius\Blocks\Model_Block::init_config($template_config, $name);
+            if ($config['css']) {
+                ?>
+                <link rel="stylesheet" href="<?= $config['css'] ?>" />
+                <?php
+            }
+
+            // Does a special admin CSS file exists ?
+            if (is_file(DOCROOT . 'static/css/blocks/admin/' . $name . '.preview.css')) {
+                ?>
+                <link rel="stylesheet" href="static/css/blocks/admin/<?= $name ?>.preview.css" />
+                <?php
+            } else if (is_file(DOCROOT . 'static/css/blocks/admin/' . $name . '.css')) {
+                ?>
+                <link rel="stylesheet" href="static/css/blocks/admin/<?= $name ?>.css" />
+                <?php
+            }
+
+            // Display the block
+            echo \Novius\Blocks\Controller_Front_Block::get_block_view($block, $config, $name);
         }
-        echo \Novius\Blocks\Controller_Front_Block::get_block_view($block, $config, $name);
-    }
-    ?>
+        ?>
+    </div>
 </div>
