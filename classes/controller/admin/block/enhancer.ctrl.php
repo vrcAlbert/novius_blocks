@@ -29,7 +29,11 @@ class Controller_Admin_Block_Enhancer extends \Nos\Controller_Admin_Enhancer
             }
         }
 
-        $blocks = Controller_Front_Block::get_blocks($args);
+        // Get the selected display
+        $display_id = \Arr::get($args, 'display', 'default');
+
+        // Generate the blocks in the selected display
+        $blocks = Controller_Front_Block::generate_display($display_id, $args);
 
         if ($this->config['preview']['custom']) {
             $view = $this->config['preview']['view'];
@@ -37,16 +41,27 @@ class Controller_Admin_Block_Enhancer extends \Nos\Controller_Admin_Enhancer
             $view = 'nos::admin/enhancer/preview';
         }
 
+        // Return the blocks wrapped in the selected display type
+        $preview = \View::forge($view, array( //$this->config['views'][$args['display_type']]
+//            'enhancer_args' => $args,
+//            'blocks' => $blocks,
+            'layout' => $this->config['preview']['layout'],
+            'params' => $this->config['preview']['params'],
+            'enhancer_args' => $args,
+            'blocks' => $blocks,
+        ), false)->render();
+
         $body = array(
             'debug'  => $this->config['preview'],
             'config'  => $args,
-            'preview' => \View::forge($view, array(
-                    'layout' => $this->config['preview']['layout'],
-                    'params' => $this->config['preview']['params'],
-                    'enhancer_args' => $args,
-                    'blocks' => $blocks,
-                ))->render(),
+            'preview' => $preview,
         );
+//        \View::forge($view, array(
+//            'layout' => $this->config['preview']['layout'],
+//            'params' => $this->config['preview']['params'],
+//            'enhancer_args' => $args,
+//            'blocks' => $blocks,
+//        ))
         \Response::json($body);
     }
 }

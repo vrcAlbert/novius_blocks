@@ -8,11 +8,20 @@
  * @link http://www.novius-os.org
  */
 
+$templates_config = \Config::load('novius_blocks::templates', true);
+
 return array(
     'controller' => 'block/crud',
     'data_mapping' => array(
         'block_title' => array(
             'title' => __('Title'),
+        ),
+        'block_template' => array(
+            'title' => __('Template'),
+            'value' => function ($item) use ($templates_config) {
+                $template_config = \Arr::get($templates_config, $item->block_template.'.title', $item->block_template);
+                return $template_config;
+            },
         ),
     ),
     'actions' => array(

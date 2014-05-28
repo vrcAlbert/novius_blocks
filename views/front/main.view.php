@@ -8,13 +8,7 @@
  * @link http://www.novius-os.org
  */
 
-// Nothing to display
-if (empty($blocks)) {
-    echo '&nbsp;';
-    return ;
-}
-
 ?>
 <div class="blocks_wrapper">
-    <?= $blocks ?>
+    <?= !empty($blocks) ? $blocks : '' ?>
 </div>

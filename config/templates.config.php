@@ -10,6 +10,7 @@
 
 return array(
     'basic' => array(
+        'title'         => __('Basic block'),
         'image_params' => array(
             'width_admin'   => 130,
             'height_admin'  => 80,
@@ -20,12 +21,14 @@ return array(
         ),
     ),
     'image_large' => array(
+        'title'         => __('Large image'),
         'fields' => array(
             'image',
             'link',
         ),
     ),
     'only_wysiwyg' => array(
+        'title'         => __('Only wysiwyg'),
         'css' => '',
         'fields' => array(
             'description',

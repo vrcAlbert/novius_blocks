@@ -38,24 +38,23 @@ $wrapper_columns = uniqid('wrapper_colum_');
 $wrapper_blocks = uniqid('wrapper_blocks_');
 
 ?>
-
 <div>
-
+    <!-- Display type -->
     <fieldset>
-        <h1><?= __('Display type'); ?></h1>
-        <select name="display_type" id="<?= $display_type ?>">
+        <h1><?= __('Source'); ?></h1>
+        <select name="display_type" id="<?= $display_type_id ?>">
             <option value="column"<?= \Input::get('display_type') == 'column' ? ' selected' : '' ?>><?= __('Column'); ?></option>
             <option value="blocks"<?= \Input::get('display_type') == 'blocks' ? ' selected' : '' ?>><?= __('Blocks selection'); ?></option>
         </select>
     </fieldset>
 
     <!-- Columns selection -->
-    <fieldset>
-        <div id="<?= $wrapper_columns ?>" style="visibility: hidden; position: relative;">
+    <div id="<?= $wrapper_columns ?>" style="visibility: hidden; position: relative; overflow: hidden;">
+        <fieldset>
             <?php
             $options_renderer_categories = array(
-                'width'         => '250px',
-                'height'        => '100px',
+                'width'         => '100%',
+                'height'        => '200px',
                 'namespace'     => 'Novius\Blocks',
                 'folder'        => 'novius_blocks',
                 'inspector_tree'=> 'block/inspector/column',
@@ -78,35 +77,35 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
             }
             echo \Novius\Renderers\Renderer_Categories::renderer($options_renderer_categories);
             ?>
-        </div>
-    </fieldset>
+        </fieldset>
+    </div>
 
     <!-- Blocks selection -->
-    <fieldset>
-        <?php
-        $where_blocks = array();
-        if ($context) {
-            $where_blocks['block_context'] = $context;
-        }
-        $blocks = \Arr::assoc_to_keyval(\Novius\Blocks\Model_Block::find('all', array('where' => $where_blocks)), 'block_id', 'block_title');
+    <?php
+    $where_blocks = array();
+    if ($context) {
+        $where_blocks['block_context'] = $context;
+    }
+    $blocks = \Arr::assoc_to_keyval(\Novius\Blocks\Model_Block::find('all', array('where' => $where_blocks)), 'block_id', 'block_title');
+    ?>
+    <div id="<?= $wrapper_blocks ?>" style="visibility: hidden; position: relative; overflow: hidden;">
+        <fieldset>
+        <?= \Novius\Renderers\Renderer_Multiselect::renderer(array(
+            'options'       => $blocks,
+            'name'          => 'blocks_ids[]',
+            'values'        => $blocks_ids,
+            'order'         => true,
+            'renderer_options' => array(
+                'sortable' => true,
+            ),
+            'style'         => array(
+                'width'     => '100%',
+                'height'    => '200px',
+            ),
+        ));
         ?>
-        <div id="<?= $wrapper_blocks ?>" style="visibility: hidden; position: relative;">
-            <?= \Novius\Renderers\Renderer_Multiselect::renderer(array(
-                'options'       => array(),
-                'name'          => 'blocks_ids[]',
-                'values'        => array(),
-                'order'         => true,
-                'renderer_options' => array(
-                    'sortable' => true,
-                ),
-                'style'         => array(
-                    'width'     => '100%',
-                    'height'    => '200px',
-                ),
-            ));
-            ?>
-        </div>
-    </fieldset>
+        </fieldset>
+    </div>
 
     <!-- Display -->
     <?php if (!empty($displays) && (!isset($displays['default']) || count($displays) > 1)) { ?>
@@ -127,46 +126,54 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
     <?php } ?>
 
     <script type="text/javascript">
-        require(['jquery-nos'], function () {
-            var $select_type = $('#<?= $display_type ?>');
-            var $wrapper_column = $('#<?= $wrapper_columns ?>');
-            var $wrapper_blocks = $('#<?= $wrapper_blocks ?>');
-            var b_width = $wrapper_blocks.width();
+    require(['jquery-nos'], function () {
+        var $select_type = $('#<?= $display_type_id ?>');
+        var $wrapper_column = $('#<?= $wrapper_columns ?>');
+        var $wrapper_blocks = $('#<?= $wrapper_blocks ?>');
+        var b_width = $wrapper_blocks.width();
 
-            $select_type.change(function(){
-                display_select();
-            });
+        $select_type.change(function(){
             display_select();
-
-            function display_select() {
-                var type = $select_type.val();
-                switch (type) {
-                    case 'column' :
-                        $wrapper_blocks.css({
-                            visibility : 'hidden'
-                            , position : 'absolute'
-                        }).width(b_width);
-                        $wrapper_column.css({
-                            visibility : 'visible'
-                            , position : 'relative'
-                        }).width(b_width);
-                        break;
-                    case 'blocks' :
-                        $wrapper_column.css({
-                            visibility : 'hidden'
-                            , position : 'absolute'
-                        }).width(b_width);
-                        $wrapper_blocks.css({
-                            visibility : 'visible'
-                            , position : 'relative'
-                        }).width(b_width);
-                        break;
-                }
-            }
         });
+        display_select();
+
+        function display_select() {
+            var type = $select_type.val();
+            switch (type) {
+                case 'column' :
+                    $wrapper_blocks.css({
+                        visibility : 'hidden'
+                        , position : 'absolute'
+                        , height   : 0
+                    }).width(b_width);
+                    $wrapper_column.css({
+                        visibility : 'visible'
+                        , position : 'relative'
+                        , height   : 'auto'
+                    }).width(b_width);
+                    break;
+                case 'blocks' :
+                    $wrapper_column.css({
+                        visibility : 'hidden'
+                        , position : 'absolute'
+                        , height   : 0
+                    }).width(b_width);
+                    $wrapper_blocks.css({
+                        visibility : 'visible'
+                        , position : 'relative'
+                        , height   : 'auto'
+                    }).width(b_width);
+                    break;
+            }
+        }
+    });
     </script>
 
     <style type="text/css">
+    h1 {
+        font-size: 16px;
+        margin: 15px 0 8px 0;
+    }
     fieldset {
         margin: 0 0 10px 0;
     }

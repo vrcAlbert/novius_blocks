@@ -85,6 +85,12 @@ return array(
     'I’m an application. Give me a name!' => 'Je suis une application, donnez moi un nom !',
 
     #: views/admin/enhancer/popup.view.php:66
+    'Display' => 'Affichage',
+
+    #: views/admin/enhancer/popup.view.php:66
+    'Source' => 'Source',
+
+    #: views/admin/enhancer/popup.view.php:66
     'Display type' => 'type d\'affichage',
 
     #: views/admin/enhancer/popup.view.php:68
@@ -95,7 +101,7 @@ return array(
     'Blocks selection' => 'Séléction de blocs',
 
     #: views/admin/enhancer/preview.view.php:12
-    'No block will be displayed' => 'Aucun bloc ne sera affiché',
+    'No block to display' => 'Aucun bloc à afficher',
 
     #: views/admin/block/retrieve_model.view.php:22
     'Retrieve the datas of an item' => 'Récupérer les données d\'un objet',

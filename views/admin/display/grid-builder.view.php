@@ -1,15 +1,9 @@
 <?php
-//$json = file_get_contents('test.json');
-//if (empty($json)) {
-//    $json = json_encode(array());
-//}
 
 $default_structure = \Arr::filter_recursive($item->blod_structure);
 
 ?>
-
-<div class="grid-builder" data-default-structure="<?= htmlspecialchars(\Fuel\Core\Format::forge($default_structure)->to_json()) ?>" data-hidden-field="blod_structure">
-</div>
+<div class="grid-builder" data-default-structure="<?= htmlspecialchars(\Fuel\Core\Format::forge($default_structure)->to_json()) ?>" data-hidden-field="blod_structure"></div>
 
 <script type="text/javascript">
 require(
@@ -22,13 +16,6 @@ require(
     function($) {
 
         var $form = $('#<?= $fieldset->form()->get_attribute('id') ?>');
-
-        // Save the grid on form submit
-        $form.on('submit', function(e) {
-            e.preventDefault();
-            $form.find('.grid-builder').trigger('save');
-            return false;
-        });
 
         // Initialize the grids
         $form.find('.grid-builder').each(function() {
@@ -186,6 +173,9 @@ require(
                     containment: "parent",
                     distance: 30,
                     stop: function() {
+                        // Generate block numbers
+                        generate_blocks_numbers();
+                        // Save the grid
                         $grid.trigger('save');
                     }
                 });
@@ -212,6 +202,9 @@ require(
                 $column.resizable({
                     grid: settings.block.size,
                     stop: function() {
+                        // Generate block numbers
+                        generate_blocks_numbers();
+                        // Save the grid
                         $grid.trigger('save');
                     }
                 });
@@ -238,6 +231,9 @@ require(
                     grid: settings.block.size,
                     containment: "parent",
                     stop: function() {
+                        // Generate block numbers
+                        generate_blocks_numbers();
+                        // Save the grid
                         $grid.trigger('save');
                     }
                 });
@@ -266,6 +262,9 @@ require(
 
                 // Generate block numbers
                 generate_blocks_numbers();
+
+                // Save the grid
+                $grid.trigger('save');
             }
 
             /**
@@ -330,7 +329,7 @@ require(
     width: 100%;
     margin: 0 0 35px 0;
     padding: 0;
-    background: #f6f6f6;
+    background: #ffffff;
     border: 1px dashed #ccc !important;
 }
 
@@ -343,7 +342,7 @@ require(
     padding: 0;
     max-width: 100%;
     max-height: 100%;
-    background: #e6e6e6;
+    background: #f2f2f2;
 }
 
 .grid-builder .grid-column:before {

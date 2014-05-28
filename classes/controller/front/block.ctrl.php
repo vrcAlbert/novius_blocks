@@ -10,33 +10,68 @@
 
 namespace Novius\Blocks;
 
+use Nos\Nos;
+
 class Controller_Front_Block extends \Nos\Controller_Front_Application
 {
+    /**
+     *
+     *
+     * @param array $args
+     * @return bool|\Fuel\Core\View
+     */
     public function action_main($args = array())
     {
-        // Get the available displays
-        $displays = \Config::load('novius_blocks::displays', true);
-        if (empty($displays)) {
-            return false;
-        }
-
         // Get the selected display
-        $display = \Arr::get($displays, \Arr::get($args, 'display', 'default'));
-        if (empty($display)) {
-            return false;
-        }
+        $display_id = \Arr::get($args, 'display', 'default');
 
         // Generate the blocks in the selected display
-        $blocks = \View::forge(\Arr::get($display, 'view'), array(
-            'enhancer_args' => $args,
-            'blocks'     => self::get_blocks($args),
-        ), false);
+        $blocks = static::generate_display($display_id, $args);
+        if (empty($blocks)) {
+            return false;
+        }
 
         // Return the blocks wrapped in the selected display type
         return \View::forge($this->config['views'][$args['display_type']], array(
             'enhancer_args' => $args,
             'blocks' => $blocks,
         ), false);
+    }
+
+    /**
+     * Generate the view containing the blocks in the selected display
+     *
+     * @param $display_id
+     * @param $args
+     * @return bool|\Fuel\Core\View
+     */
+    public static function generate_display($display_id, $args) {
+        // Get the available displays
+        $displays = Display::available();
+        if (empty($displays)) {
+            return false;
+        }
+
+        // The selected display is a view ?
+        $display = \Arr::get($displays, 'views.'.$display_id);
+        if (!empty($display)) {
+            return \View::forge(\Arr::get($display, 'view'), array(
+                'enhancer_args' => $args,
+                'blocks'     => self::get_blocks($args),
+            ), false);
+        }
+
+        // The selected display is a model ?
+        $display = \Arr::get($displays, 'model.'.$display_id);
+        if (!empty($display)) {
+            return \View::forge('front/display/grid', array(
+                'display'       => $display,
+                'enhancer_args' => $args,
+                'blocks'        => self::get_blocks($args),
+            ), false);
+        }
+
+        return false;
     }
 
     /**
@@ -110,9 +145,32 @@ class Controller_Front_Block extends \Nos\Controller_Front_Application
         // Get the block configuration
         $config = Model_Block::init_config($template_config, $block->block_template);
 
-        // Append the custom stylesheet
-        if ($config['css']) {
-            \Nos\Nos::main_controller()->addCss($config['css']);
+        // Append the stylesheet
+        if (($stylesheet = \Arr::get($config, 'css'))) {
+            $main_controller = \Nos\Nos::main_controller();
+            if ($main_controller && method_exists($main_controller, 'addCss')) {
+                \Nos\Nos::main_controller()->addCss($stylesheet);
+            } else {
+                ?>
+                <link rel="stylesheet" href="<?= $stylesheet ?>" />
+                <?php
+            }
+        }
+
+        // Append the custom stylesheets (backoffice)
+        if (NOS_ENTRY_POINT == Nos::ENTRY_POINT_ADMIN) {
+            $files = array(
+                'static/css/blocks/admin/'.$block->block_template.'.preview.css',
+                'static/css/blocks/admin/'.$block->block_template.'.css'
+            );
+            foreach ($files as $file) {
+                if (file_exists(DOCROOT.$file)) {
+                    ?>
+                    <link rel="stylesheet" href="<?= $file ?>" />
+                    <?php
+                    break;
+                }
+            }
         }
 
         return static::get_block_view($block, $config, $block->block_template);
@@ -126,54 +184,46 @@ class Controller_Front_Block extends \Nos\Controller_Front_Application
      */
     public static function get_block_view(Model_Block $block, $config, $name)
     {
+        // Image
         $image = '';
         if (!empty($block->medias->image)) {
-            $image = str_replace(
-                array(
-                    '{src}',
-                    '{title}',
-                ),
-                array(
-                    $block->medias->image->get_public_path_resized($config['image_params']['width'], $config['image_params']['height']),
-                    $block->block_title,
-                ),
-                $config['image_params']['tpl']
-            );
+            $image = strtr($config['image_params']['tpl'], array(
+                '{src}' => $block->medias->image->get_public_path_resized($config['image_params']['width'], $config['image_params']['height']),
+                '{title}' => $block->block_title,
+            ));
         }
+
+        // Description (wysiwyg)
         $description = \Nos\Nos::parse_wysiwyg($block->wysiwygs->description);
-        $title = $block->block_title;
-        $link = $block->get_url();
-        $link_title = $block->block_link_title;
 
-        if ($block->block_class) {
-            $config['class'] .= ($config['class'] ? ' ' : '') . $block->block_class;
+        // CSS class
+        if (!empty($block->block_class)) {
+            $config['class'] = trim(\Arr::get($config, 'class').' '.$block->block_class);
         }
 
-        return str_replace(array(
-            '{title}',
-            '{name}',
-            '{description}',
-            '{link}',
-            '{link_title}',
-            '{image}',
-            '{class}',
-        ), array(
-            $title,
-            $name,
-            $description,
-            $link,
-            $link_title,
-            $image,
-            $config['class'],
-        ), \View::forge($config['view'], array(
+        // Forge the view
+        $view = \View::forge($config['view'], array(
             'config'        => $config,
             'description'   => $description,
-            'title'         => $title,
-            'link'          => $link,
-            'link_title'    => $link_title,
+            'title'         => $block->block_title,
+            'link'          => $block->get_url(),
+            'link_title'    => $block->block_link_title,
             'link_new_page' => $block->block_link_new_page,
             'image'         => $image,
             'block'          => $block
-        ), false));
+        ), false)->render();
+
+        // Replace the placeholders
+        $view = strtr($view, array(
+            '{title}'       => $block->block_title,
+            '{name}'        => $name,
+            '{description}' => $description,
+            '{link}'        => $block->get_url(),
+            '{link_title}'  => $block->block_link_title,
+            '{image}'       => $image,
+            '{class}'       => \Arr::get($config, 'class'),
+        ));
+
+        return $view;
     }
 }
