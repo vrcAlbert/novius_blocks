@@ -64,7 +64,7 @@ class Controller_Front_Block extends \Nos\Controller_Front_Application
         // The selected display is a model ?
         $display = \Arr::get($displays, 'model.'.$display_id);
         if (!empty($display)) {
-            return \View::forge('front/display/grid', array(
+            return \View::forge('novius_blocks::front/display/grid', array(
                 'display'       => $display,
                 'enhancer_args' => $args,
                 'blocks'        => self::get_blocks($args),

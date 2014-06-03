@@ -1,5 +1,7 @@
 <?php
 
+!empty($item->blod_structure) or ($item->blod_structure = array());
+
 $default_structure = \Arr::filter_recursive($item->blod_structure);
 
 ?>

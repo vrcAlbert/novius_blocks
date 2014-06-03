@@ -20,7 +20,7 @@ if (empty($display) || empty($display->blod_structure)) {
                     $width = strtr((\Arr::get($block, 'w', 12)) * (100 / \Arr::get($column, 'w', 12)), array(',' => '.'));
                     ?>
                     <div class="block column" style="width: <?= $width ?>%;">
-                        <?= \View::forge('front/display/grid-block', array(
+                        <?= \View::forge('novius_blocks::front/display/grid-block', array(
                             'block' => $next_block,
                         ), false) ?>
                     </div>
