@@ -17,7 +17,7 @@ return array(
             'title' => __('Title'),
         ),
         'block_template' => array(
-            'title' => __('Template'),
+            'title' => __('Type'),
             'value' => function ($item) use ($templates_config) {
                 $template_config = \Arr::get($templates_config, $item->block_template.'.title', $item->block_template);
                 return $template_config;
@@ -25,5 +25,8 @@ return array(
         ),
     ),
     'actions' => array(
-    )
+        'add' => array(
+            'label' => __('Add a block'),
+        ),
+    ),
 );

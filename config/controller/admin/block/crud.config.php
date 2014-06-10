@@ -22,7 +22,7 @@ return array(
             'template' => array(
                 'view' => 'nos::form/expander',
                 'params' => array(
-                    'title'   => __('Template'),
+                    'title'   => __('Block type'),
                     'nomargin' => true,
                     'options' => array(
                         'allowExpand' => true,
@@ -104,7 +104,7 @@ return array(
                 'params' => array(
                     'accordions' => array(
                         'columns' => array(
-                            'title' => __('Columns'),
+                            'title' => __('Groups'),
                             'fields' => array(
                                 'columns'
                             ),
@@ -184,7 +184,7 @@ return array(
         ),
         'columns' => array(
             'renderer' => 'Novius\Renderers\Renderer_Multiselect',
-            'label' => __('Columns'),
+            'label' => __('Groups'),
             'form' => array(
                 'options' => array(),
                 'style' => array(

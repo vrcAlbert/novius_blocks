@@ -19,7 +19,7 @@ return array(
             'blocks' => array(
                 'view' => 'nos::form/expander',
                 'params' => array(
-                    'title'   => __('Builder'),
+                    'title'   => __('Grid'),
                     'nomargin' => true,
                     'options' => array(
                         'allowExpand' => true,

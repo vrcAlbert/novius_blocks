@@ -1,30 +1,137 @@
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/classes/controller/admin/block/enhancer.ctrl.php:27
+#: classes/controller/admin/block/enhancer.ctrl.php:27
+msgid "I’m an application. Give me a name!"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/enhancer/preview.view.php:17
+msgid "No block to display"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/enhancer/popup.view.php:43
+msgid "1. What to display ?"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/enhancer/popup.view.php:45
+msgid "A selection of blocks"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/enhancer/popup.view.php:46
+msgid "A group of blocks"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/enhancer/popup.view.php:69
+msgid "Group"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/enhancer/popup.view.php:112
+msgid "2. How to display ?"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/enhancer/popup.view.php:117
+msgid "Custom displays"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/model_assoc_infos.view.php:12
+#: views/admin/block/model_assoc_infos.view.php:12
+msgid "This block is linked to an item "
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/model_assoc_infos.view.php:14
+#: views/admin/block/model_assoc_infos.view.php:14
+msgid "Title of the item :"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/model_assoc_infos.view.php:19
+#: views/admin/block/model_assoc_infos.view.php:19
+msgid "Delete this link"
+msgstr ""
+
+#. Mandatory title
+#. We set the transmitted datas
+#. Mandatory title
+#. We set the transmitted datas
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/template.view.php:29
+#: config/controller/admin/column/crud.config.php:48
+#: config/controller/admin/block/crud.config.php:141
+#: config/connection_model.config.php:24
+#: config/common/block.config.php:15
+#: views/admin/block/template.view.php:29
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/block.config.php:17
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/connection_model.config.php:24
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/display/crud.config.php:49
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/column/crud.config.php:48
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:141
+msgid "Title"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/template.view.php:33
+#: config/controller/admin/block/crud.config.php:82
+#: config/controller/admin/block/crud.config.php:166
+#: views/admin/block/template.view.php:33
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:82
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:166
+msgid "Link"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/connection_model.view.php:23
+#: views/admin/block/connection_model.view.php:23
+msgid "Link with :"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/model_compatibility.view.php:17
+#: views/admin/block/model_compatibility.view.php:17
+msgid "Search for an item to synchronize :"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/model_compatibility.view.php:18
+#: views/admin/block/model_compatibility.view.php:18
+msgid "Title :"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/model_compatibility.view.php:20
+#: views/admin/block/model_compatibility.view.php:20
+msgid "Last elements added :"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/retrieve_model.view.php:22
+#: views/admin/block/retrieve_model.view.php:22
+msgid "Retrieve the datas of an item"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/retrieve_model.view.php:63
+#: views/admin/block/retrieve_model.view.php:63
+msgid "Use the url of an item"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/views/admin/block/retrieve_model.view.php:71
+#: config/controller/admin/column/crud.config.php:89
+#: config/controller/admin/block/crud.config.php:243
+#: views/admin/block/retrieve_model.view.php:71
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/display/crud.config.php:67
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/column/crud.config.php:89
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:243
+msgid "Save"
+msgstr ""
+
 #: config/controller/admin/column/crud.config.php:22
 #: config/controller/admin/column/crud.config.php:67
 #: config/metadata.config.php:12
 #: config/metadata.config.php:28
 #: config/metadata.config.php:39
 #: config/metadata.config.php:54
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/metadata.config.php:12
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/metadata.config.php:28
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/metadata.config.php:39
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/metadata.config.php:54
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/column/crud.config.php:22
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/column/crud.config.php:67
 msgid "Blocks"
 msgstr ""
 
 #: config/controller/admin/column/crud.config.php:41
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/display/crud.config.php:42
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/column/crud.config.php:41
 msgid "ID: "
-msgstr ""
-
-#. Mandatory title
-#. We set the transmitted datas
-#: config/controller/admin/column/crud.config.php:48
-#: config/controller/admin/block/crud.config.php:141
-#: config/connection_model.config.php:24
-#: config/common/block.config.php:15
-#: views/admin/block/template.view.php:29
-msgid "Title"
-msgstr ""
-
-#: config/controller/admin/column/crud.config.php:89
-#: config/controller/admin/block/crud.config.php:243
-#: views/admin/block/retrieve_model.view.php:71
-msgid "Save"
 msgstr ""
 
 #: config/controller/admin/block/inspector/column.config.php:28
@@ -35,64 +142,70 @@ msgid "Columns"
 msgstr ""
 
 #: config/controller/admin/block/crud.config.php:25
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/block.config.php:20
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:25
 msgid "Template"
 msgstr ""
 
 #: config/controller/admin/block/crud.config.php:43
 #: config/controller/admin/block/crud.config.php:159
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:43
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:159
 msgid "Image"
 msgstr ""
 
 #: config/controller/admin/block/crud.config.php:62
 #: config/controller/admin/block/crud.config.php:148
 #: config/connection_model.config.php:28
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/connection_model.config.php:28
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:62
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:148
 msgid "Description"
 msgstr ""
 
-#: config/controller/admin/block/crud.config.php:82
-#: config/controller/admin/block/crud.config.php:166
-#: views/admin/block/template.view.php:33
-msgid "Link"
-msgstr ""
-
 #: config/controller/admin/block/crud.config.php:113
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:113
 msgid "Link with a model"
 msgstr ""
 
 #: config/controller/admin/block/crud.config.php:122
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:122
 msgid "Configuration"
 msgstr ""
 
 #: config/controller/admin/block/crud.config.php:170
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:170
 msgid "Text of the link"
 msgstr ""
 
 #: config/controller/admin/block/crud.config.php:173
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:173
 msgid "Open in a new page"
 msgstr ""
 
 #: config/controller/admin/block/crud.config.php:180
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:180
 msgid "Class"
 msgstr ""
 
 #: config/controller/admin/block/crud.config.php:219
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:219
 msgid "Search the item"
 msgstr ""
 
 #: config/connection_model.config.php:14
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/connection_model.config.php:14
 msgid "A page"
 msgstr ""
 
 #: config/metadata.config.php:55
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/metadata.config.php:55
 msgid "Put forward this element"
 msgstr ""
 
 #: config/metadata.config.php:60
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/metadata.config.php:60
 msgid "Block"
-msgstr ""
-
-#: classes/controller/admin/block/enhancer.ctrl.php:27
-msgid "I’m an application. Give me a name!"
 msgstr ""
 
 #: views/admin/enhancer/popup.view.php:66
@@ -112,38 +225,77 @@ msgstr ""
 msgid "No block will be displayed"
 msgstr ""
 
-#: views/admin/block/retrieve_model.view.php:22
-msgid "Retrieve the datas of an item"
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/templates.config.php:13
+msgid "Basic block"
 msgstr ""
 
-#: views/admin/block/retrieve_model.view.php:63
-msgid "Use the url of an item"
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/templates.config.php:24
+msgid "Large image"
 msgstr ""
 
-#: views/admin/block/model_compatibility.view.php:17
-msgid "Search for an item to synchronize :"
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/templates.config.php:31
+msgid "Only wysiwyg"
 msgstr ""
 
-#: views/admin/block/model_compatibility.view.php:18
-msgid "Title :"
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/block.config.php:29
+msgid "Add a block"
 msgstr ""
 
-#: views/admin/block/model_compatibility.view.php:20
-msgid "Last elements added :"
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/column.config.php:14
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:107
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/crud.config.php:187
+msgid "Groups"
 msgstr ""
 
-#: views/admin/block/connection_model.view.php:23
-msgid "Link with :"
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/column.config.php:20
+msgid "Add a group"
 msgstr ""
 
-#: views/admin/block/model_assoc_infos.view.php:12
-msgid "This block is linked to an item "
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/display.config.php:14
+msgid "Displays"
 msgstr ""
 
-#: views/admin/block/model_assoc_infos.view.php:14
-msgid "Title of the item :"
+#. Crud
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/display.config.php:34
+msgid "Right, your new display is ready."
 msgstr ""
 
-#: views/admin/block/model_assoc_infos.view.php:19
-msgid "Delete this link"
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/display.config.php:35
+msgid "The display has been deleted."
+msgstr ""
+
+#. General errors
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/display.config.php:38
+msgid "This display doesn’t exist any more. It has been deleted."
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/display.config.php:39
+msgid "We cannot find this display."
+msgstr ""
+
+#. Deletion popup
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/display.config.php:42
+msgid "Deleting the display ‘{{title}}’"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/display.config.php:46
+msgid "Yes, delete this display"
+msgid_plural "Yes, delete these {{count}} displays"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/common/display.config.php:52
+msgid "Add a display"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/display/crud.config.php:22
+msgid "Builder"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/inspector/display.config.php:18
+msgid "Templates"
+msgstr ""
+
+#: /data/www/web/nos_sites/novius-os-depot-commun/novius_blocks/ci/i18n/po/config/controller/admin/block/inspector/column.config.php:28
+msgid "Liste"
 msgstr ""

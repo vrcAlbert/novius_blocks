@@ -11,10 +11,13 @@
 return array(
     'data_mapping' => array(
         'blco_title' => array(
-            'title' => __('Columns'),
+            'title' => __('Groups'),
         ),
     ),
     'controller' => 'column/crud',
     'actions' => array(
+        'add' => array(
+            'label' => __('Add a group'),
+        ),
     ),
 );

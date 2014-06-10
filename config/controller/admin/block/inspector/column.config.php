@@ -25,6 +25,6 @@ return array(
         },
     ),
     'appdesk' => array(
-        'label'     => __('Columns'),
+        'label'     => __('Group'),
     ),
 );

@@ -39,16 +39,14 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
 
 ?>
 <div>
-    <!-- Display type -->
     <fieldset>
-        <h1><?= __('Source'); ?></h1>
+        <h1><?= __('1. What to display ?'); ?></h1>
         <select name="display_type" id="<?= $display_type_id ?>">
-            <option value="column"<?= \Input::get('display_type') == 'column' ? ' selected' : '' ?>><?= __('Column'); ?></option>
-            <option value="blocks"<?= \Input::get('display_type') == 'blocks' ? ' selected' : '' ?>><?= __('Blocks selection'); ?></option>
+            <option value="blocks"<?= \Input::get('display_type') != 'column' ? ' selected' : '' ?>><?= __('A selection of blocks'); ?></option>
+            <option value="column"<?= \Input::get('display_type') == 'column' ? ' selected' : '' ?>><?= __('A group of blocks'); ?></option>
         </select>
     </fieldset>
 
-    <!-- Columns selection -->
     <div id="<?= $wrapper_columns ?>" style="visibility: hidden; position: relative; overflow: hidden;">
         <fieldset>
             <?php
@@ -67,7 +65,7 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
                 ),
                 'input_name'    => 'blco_id',
                 'selected'      => array('id' => $blco_id),
-                'label'         => __('Column'),
+                'label'         => __('Group'),
                 'reset_default_column' => true,
             );
             if ($context) {
@@ -80,7 +78,6 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
         </fieldset>
     </div>
 
-    <!-- Blocks selection -->
     <?php
     $where_blocks = array();
     if ($context) {
@@ -107,15 +104,14 @@ $wrapper_blocks = uniqid('wrapper_blocks_');
         </fieldset>
     </div>
 
-    <!-- Display -->
     <?php if (!empty($displays) && (!isset($displays['default']) || count($displays) > 1)) { ?>
     <fieldset>
-        <h1><?= __('Display') ?></h1>
+        <h1><?= __('2. How to display ?') ?></h1>
         <select name="display" id="<?= $display_id ?>">
             <?php foreach (\Arr::get($displays, 'views') as $id => $props) { ?>
             <option value="<?= $id ?>"<?= $id == $display ? ' selected="selected"' : '' ?>><?= \Arr::get($props, 'title') ?></option>
             <?php } ?>
-            <optgroup label="Personnalisés">
+            <optgroup label="<?= __('Custom displays') ?>">
                 <?php foreach (\Arr::get($displays, 'model') as $id => $props) { ?>
                     <option value="<?= $id ?>"<?= $id == $display ? ' selected="selected"' : '' ?>><?= \Arr::get($props, 'title') ?></option>
                 <?php } ?>
