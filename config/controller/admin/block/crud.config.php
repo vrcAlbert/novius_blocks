@@ -161,6 +161,9 @@ return array(
         ),
         'block_template' => array(
             'label' => '',
+            'validation' => array(
+                'required',
+            ),
         ),
         'block_link' => array(
             'label' => __('Link'),
