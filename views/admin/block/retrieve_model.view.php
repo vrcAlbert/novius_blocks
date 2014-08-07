@@ -26,17 +26,23 @@
         $field = array_merge(array(
             'type' => 'text',
         ), $field);
-        $t_id = uniqid($field['field']);
+        $t_id = uniqid(\Arr::get($field, 'field', $key));
         $value = '';
-        switch ($field['type']) {
-            case 'wysiwyg' :
-                $value = $item->wysiwygs->{$field['field']};
-                break;
-            case 'text' :
+        $populateCallback = \Arr::get($field, 'populate');
+        if ($populateCallback && is_callable($populateCallback)) {
+            $value = call_user_func($populateCallback, $item);
+        } else {
+            switch ($field['type']) {
+                case 'wysiwyg' :
+                    $value = $item->wysiwygs->{$field['field']};
+                    break;
+                case 'text' :
                 default :
                     $value = $item->{$field['field']};
-                break;
+                    break;
+            }
         }
+
         ?>
         <p>
             <input type="checkbox" name="<?= $key ?>" id="<?= $t_id ?>" value="1" />
