@@ -54,7 +54,7 @@ define(
                         $block_over_wrapper.removeClass('on');
                         $this_checkbox.prop('checked', true);
                         $wrapper.addClass('on');
-                        display_expanders();
+                        display_expanders($container);
                     }
                     ev.preventDefault();
                 });
@@ -70,7 +70,7 @@ define(
             $container.find('.block_over_wrapper').css('min-height', max_height);
 
             check_link();
-            display_expanders();
+            display_expanders($container);
 
             $wrapper_links.on('action_links', function() {
                 check_link();
@@ -130,13 +130,13 @@ define(
             /**
              * Display only the required expanders
              */
-            function display_expanders()
+            function display_expanders($container)
             {
                     $.each(fieldsets, function(i,name){
                         $('#' + name + uniqid).hide();
                     });
                     init = true;
-                var $template_selected = $('input[name="block_template"]:checked');
+                var $template_selected = $container.find('input[name="block_template"]:checked');
                 var fields = explode('|', $template_selected.data('fields') || $template_selected.attr('data-fields') || '');
                 $.each(fieldsets, function(i,name){
                     if (in_array(name, fields)) {
