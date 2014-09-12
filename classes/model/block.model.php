@@ -104,6 +104,23 @@ class Model_Block extends \Nos\Orm\Model
         ),
     );
 
+    protected static $_has_many = array(
+        'attributes' => array(
+            'key_from' => 'block_id', // key in this model
+            'model_to' => 'Novius\Blocks\Model_Block_Attribute',
+            'key_to' => 'blat_block_id', // key in the related model
+            'cascade_save' => true, // update the related table on save
+            'cascade_delete' => true, // delete the related data when deleting the parent
+        ),
+    );
+
+    protected static $_eav = array(
+        'attributes' => array( // we use the statistics relation to store the EAV data
+            'attribute' => 'blat_key', // the key column in the related table contains the attribute
+            'value' => 'blat_value', // the value column in the related table contains the value
+        )
+    );
+
     /**
      * Return the link that goes with the block
      * @return mixed|\Nos\Orm\Model|null
