@@ -151,6 +151,10 @@ class Controller_Admin_Block_Crud extends \Nos\Controller_Admin_Crud
             $show->where_close();
         }
 
+        if (isset($model_config['autocomplete_callback']) && is_callable($model_config['autocomplete_callback'])) {
+            $show = $model_config['autocomplete_callback']($show);
+        }
+
         $show = (array) $show->distinct(true)->execute()->as_array();
 
         return \Response::json($show);
