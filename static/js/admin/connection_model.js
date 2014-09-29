@@ -16,7 +16,7 @@ define(
         return function(select_id) {
             var $container = $(this);
             var $select = $('#' + select_id);
-            var $input_autocomplete = $container.find('input[name="model_autocomplete"]');
+            var $input_autocomplete = $container.find('input').filter('.autocomplete');
             var $autocomplete_wrapper = $input_autocomplete.parents('p:first');
 
             $select.change(function(){
