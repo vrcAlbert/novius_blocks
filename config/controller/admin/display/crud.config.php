@@ -55,6 +55,9 @@ return array(
             'form' => array(
                 'type' => 'hidden',
             ),
+            'populate' => function($item) {
+                return \Format::forge($item->blod_structure)->to_json();
+            },
             'before_save' => function($item, $data) {
                 $item->blod_structure = \Fuel\Core\Format::forge($data['blod_structure'], 'json')->to_array();
             },
