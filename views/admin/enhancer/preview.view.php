@@ -22,8 +22,8 @@ if (empty($blocks)) {
 
 ?>
 <div>
-    <link rel="stylesheet" href="static/apps/novius_blocks/css/admin/preview.css"/>
     <div class="blocks_wrapper blocks_wrapper_enhancer novius_blocks_preview">
         <?= $blocks ?>
+        <link rel="stylesheet" href="static/apps/novius_blocks/css/admin/preview.css"/>
     </div>
 </div>
