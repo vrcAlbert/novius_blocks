@@ -94,7 +94,11 @@ define(
                     $wrapper_autocompletion.hide();
                     // We search for the associated content
                     $nos.ajax({
-                        'url': 'admin/novius_blocks/block/crud/get_model_assoc_infos/' + model_key + '/' + model_id,
+                        'url': 'admin/novius_blocks/block/crud/get_model_assoc_infos',
+                        data : {
+                            key : model_key,
+                            id : model_id
+                        },
                         'success' : function(vue) {
                             $wrapper_assoc_model_done.html(vue);
                             $wrapper_assoc_model_done.fadeIn();

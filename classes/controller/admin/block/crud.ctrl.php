@@ -191,16 +191,21 @@ class Controller_Admin_Block_Crud extends \Nos\Controller_Admin_Crud
      * @param $model_id
      * @return bool|\Fuel\Core\View
      */
-    public function action_get_model_assoc_infos ($config_key, $model_id)
+    public function action_get_model_assoc_infos ()
     {
+        $config_key = \Input::get('key', false);
+        $model_id = \Input::get('id', false);
+        if (empty($config_key) || empty($model_id)) {
+            exit();
+        }
         $models = \Config::load('novius_blocks::connection_model', true);
         if (!isset($models[$config_key])) {
-            return false;
+            exit();
         }
         $model_config = $models[$config_key];
         $class_name = $model_config['model'];
         if (!$item = $class_name::find($model_id)) {
-            return false;
+            exit();
         }
 
         $return = \View::forge('novius_blocks::admin/block/model_assoc_infos', array(
