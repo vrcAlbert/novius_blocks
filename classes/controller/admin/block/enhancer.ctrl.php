@@ -40,7 +40,7 @@ class Controller_Admin_Block_Enhancer extends \Nos\Controller_Admin_Enhancer
         } else {
             $view = 'nos::admin/enhancer/preview';
         }
-        $blocks = (string) $blocks;
+
         // Return the blocks wrapped in the selected display type
         $preview = \View::forge($view, array( //$this->config['views'][$args['display_type']]
 //            'enhancer_args' => $args,

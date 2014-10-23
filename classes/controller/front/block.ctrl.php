@@ -275,7 +275,7 @@ class Controller_Front_Block extends \Nos\Controller_Front_Application
             return $content;
         } else {
             //classic parse in front (deal with enhancers)
-            return \Nos\Nos::parse_wysiwyg($content);
+            return Tools_Wysiwyg::parse($content);
         }
     }
 }
